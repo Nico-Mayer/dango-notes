@@ -1,12 +1,31 @@
 <script lang="ts">
 	import '../app.css'
 	import 'virtual:windi.css'
-	import 'iconify-icon'
-	import ThemeToggle from '$lib/ThemeToggle.svelte'
+	import { onMount } from 'svelte'
+	import { invalidateAll } from '$app/navigation'
+	import { supabaseClient } from '$lib/supabase'
+	import Sidebar from '$lib/Sidebar.svelte'
+	import type { LayoutData } from './$types'
+
+	export let data: LayoutData
+	$: ({ folders } = data)
+	$: console.log(folders)
+
+	onMount(() => {
+		const {
+			data: { subscription },
+		} = supabaseClient.auth.onAuthStateChange(() => {
+			invalidateAll()
+		})
+		return () => {
+			subscription.unsubscribe()
+		}
+	})
 </script>
 
 <main
-	class="flex h-screen bg-nord4 w-screen text-nord0 relative dark:bg-nord0 dark:text-nord6">
-	<ThemeToggle />
+	class="flex h-screen bg-nord6 border-nord0 w-screen text-nord0 dark:(bg-nord0 text-nord6) ">
+	<Sidebar />
+
 	<slot />
 </main>
