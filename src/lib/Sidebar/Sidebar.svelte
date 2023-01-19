@@ -1,20 +1,15 @@
 <script lang="ts">
-	import FolderEl from './FolderEl.svelte'
 	import AddFolderEl from './AddFolderEl.svelte'
 	import { onMount } from 'svelte'
+	import NavItem from './NavItem.svelte'
 
-	export let folders: any[]
+	export let rootFolders: any[] | void
 	export let userId: string | undefined
 	export let avatarUrl: string
 
 	let sidebar: HTMLElement
 	let resizing = false
 	let scrollContainer: HTMLElement
-	folders.map((folder) => {
-		folder.children = [...folder.childNotes, ...folder.childFolders]
-	})
-
-	$: console.log(folders)
 
 	onMount(() => {
 		const width = localStorage.getItem('sidebarWidth')
@@ -76,23 +71,8 @@
 		on:scroll={handleScroll}
 		bind:this={scrollContainer}>
 		<ul class="space-y-1 py-1 px-[2px]">
-			{#each folders as folder}
-				<li>
-					<FolderEl {folder} />
-					{#if folder?.children?.length > 0}
-						{#each folder.children as child}
-							{#if child.type === 'folder'}
-								<div class="ml-5">
-									<FolderEl folder={child} />
-								</div>
-							{:else}
-								<div class="flex text-sm ml-10">
-									{child.name}
-								</div>
-							{/if}
-						{/each}
-					{/if}
-				</li>
+			{#each rootFolders as rootFolder}
+				<NavItem item={rootFolder} />
 			{/each}
 		</ul>
 		<AddFolderEl {userId} />

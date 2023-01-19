@@ -44,6 +44,10 @@ declare global {
 		interface PageData {
 			session: import('@supabase/supabase-js').Session | null
 		}
+		interface LayoutData {
+			session: import('@supabase/supabase-js').Session | null
+			rootFolders: Folder[]
+		}
 		// interface Platform {}
 	}
 }
