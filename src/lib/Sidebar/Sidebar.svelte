@@ -2,12 +2,19 @@
 	import FolderEl from './FolderEl.svelte'
 	import AddFolderEl from './AddFolderEl.svelte'
 	import { onMount } from 'svelte'
+
 	export let folders: any[]
 	export let userId: string | undefined
 	export let avatarUrl: string
 
 	let sidebar: HTMLElement
 	let resizing = false
+	let scrollContainer: HTMLElement
+	folders.map((folder) => {
+		folder.children = [...folder.childNotes, ...folder.childFolders]
+	})
+
+	$: console.log(folders)
 
 	onMount(() => {
 		const width = localStorage.getItem('sidebarWidth')
@@ -37,6 +44,20 @@
 			localStorage.setItem('sidebarWidth', sidebar.style.width)
 		}
 	}
+
+	function handleScroll() {
+		if (
+			scrollContainer.scrollTop > 0 &&
+			!scrollContainer.classList.contains('border-nord3')
+		) {
+			scrollContainer.classList.remove('border-transparent')
+			scrollContainer.classList.add('border-nord3')
+			return
+		} else if (scrollContainer.scrollTop === 0) {
+			scrollContainer.classList.remove('border-nord3')
+			scrollContainer.classList.add('border-transparent')
+		}
+	}
 </script>
 
 <main
@@ -44,17 +65,33 @@
 	bind:this={sidebar}>
 	<section id="top">
 		<div
-			class="cursor-pointer flex h-12 py-1 px-2 transition-all items-center dark:(hover:bg-nord3) hover:bg-nord4">
+			class="cursor-pointer flex h-12 py-1 px-2  items-center dark:(hover:bg-nord3) hover:bg-nord4">
 			<span class="font-bold">🍡 Dango Notes</span>
 		</div>
 		<div id="options" class="h-22" />
 	</section>
 
-	<nav class="max-h-full overflow-y-scroll">
-		<ul class="space-y-1  py-1 px-[2px] ">
+	<nav
+		class="border-transparent border-t h-full max-h-full overflow-y-auto"
+		on:scroll={handleScroll}
+		bind:this={scrollContainer}>
+		<ul class="space-y-1 py-1 px-[2px]">
 			{#each folders as folder}
 				<li>
 					<FolderEl {folder} />
+					{#if folder?.children?.length > 0}
+						{#each folder.children as child}
+							{#if child.type === 'folder'}
+								<div class="ml-5">
+									<FolderEl folder={child} />
+								</div>
+							{:else}
+								<div class="flex text-sm ml-10">
+									{child.name}
+								</div>
+							{/if}
+						{/each}
+					{/if}
 				</li>
 			{/each}
 		</ul>
@@ -63,7 +100,7 @@
 
 	<section id="bottom">
 		<div
-			class="border-t flex border-nord5 h-13 py-1 px-2 items-center dark:(border-nord2)">
+			class="border-t flex border-nord5 h-13 py-1 px-2 items-center dark:(border-nord3)">
 			{#if avatarUrl}
 				<img
 					src={avatarUrl}
@@ -83,7 +120,7 @@
 			class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
 			on:mousedown={handleSidebarResize}>
 			<div
-				class="border-l h-full border-nord2 transition-all duration-500 group-hover:(border-nord4/40) "
+				class="border-l h-full border-nord3 transition-all duration-500 group-hover:(border-nord4/40) "
 				class:is-resizing={resizing} />
 		</div>
 	</div>
