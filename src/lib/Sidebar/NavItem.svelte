@@ -38,15 +38,23 @@
 				on:click={() => {
 					handleOpen()
 				}}>
-				{#if item.type === 'folder'}
-					<iconify-icon icon="ri:arrow-right-s-line" />
+				{#if isFolder(item)}
+					<iconify-icon
+						icon={item.open
+							? 'ri:arrow-down-s-line'
+							: 'ri:arrow-right-s-line'} />
 				{/if}
 			</button>
 			<div class="flex text-sm ml-2 items-center">
-				<iconify-icon
-					icon={item.type === 'folder'
-						? 'ri:folder-2-line'
-						: 'ri:sticky-note-2-line'} />
+				{#if isFolder(item)}
+					<iconify-icon
+						icon={!item.open
+							? 'vscode-icons:default-folder'
+							: 'vscode-icons:default-folder-opened'} />
+				{:else}
+					<iconify-icon icon="ri:sticky-note-2-line" />
+				{/if}
+
 				<span class="font-semibold ml-1">{item.name}</span>
 			</div>
 		</section>
