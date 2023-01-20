@@ -8,7 +8,7 @@
 	import type { LayoutData } from './$types'
 
 	export let data: LayoutData
-	$: ({ rootFolders, session } = data)
+	$: ({ session, folderTree } = data)
 	$: avatarUrl = session?.user?.user_metadata.avatar_url
 	$: userId = session?.user?.id
 
@@ -27,7 +27,7 @@
 <main
 	class="flex h-screen bg-nord6 border-nord0 w-screen text-nord0 dark:(bg-nord0 text-nord6) ">
 	{#if session}
-		<Sidebar {rootFolders} {avatarUrl} {userId} />
+		<Sidebar {folderTree} {avatarUrl} {userId} />
 	{/if}
 
 	<slot />

@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte'
 	import NavItem from './NavItem.svelte'
 
-	export let rootFolders: any[] | void
+	export let folderTree: any[] | null
 	export let userId: string | undefined
 	export let avatarUrl: string
 
@@ -71,9 +71,11 @@
 		on:scroll={handleScroll}
 		bind:this={scrollContainer}>
 		<ul class="space-y-1 py-1 px-[2px]">
-			{#each rootFolders as rootFolder}
-				<NavItem item={rootFolder} />
-			{/each}
+			{#if folderTree}
+				{#each folderTree as rootFolder}
+					<NavItem item={rootFolder} />
+				{/each}
+			{/if}
 		</ul>
 		<AddFolderEl {userId} />
 	</nav>

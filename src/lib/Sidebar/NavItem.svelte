@@ -9,10 +9,15 @@
 		href={'#'}>
 		<section class="flex">
 			<button class="flex items-center justify-center btn-hov">
-				<iconify-icon icon="ri:arrow-right-s-line" />
+				{#if item.type === 'folder'}
+					<iconify-icon icon="ri:arrow-right-s-line" />
+				{/if}
 			</button>
 			<div class="flex text-sm ml-2 items-center">
-				<iconify-icon icon="ri:folder-2-line" />
+				<iconify-icon
+					icon={item.type === 'folder'
+						? 'ri:folder-2-line'
+						: 'ri:sticky-note-2-line'} />
 				<span class="font-semibold ml-1">{item.name}</span>
 			</div>
 		</section>
@@ -26,10 +31,17 @@
 			</button>
 		</section>
 	</a>
-	{#if item.children}
-		{#each item.children as child}
+	{#if item.notes}
+		{#each item.notes as note}
 			<div class="ml-2">
-				<NavItem item={child} />
+				<NavItem item={note} />
+			</div>
+		{/each}
+	{/if}
+	{#if item.subfolders}
+		{#each item.subfolders as folder}
+			<div class="ml-2">
+				<NavItem item={folder} />
 			</div>
 		{/each}
 	{/if}

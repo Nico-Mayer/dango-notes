@@ -7,27 +7,30 @@ import type { Session } from '@supabase/supabase-js'
 // and what to do when importing types
 declare global {
 	type Note = {
-		id?: string
+		id: string
+		created_at: string
+		parent_folder_id: string
+		owner: string
 		name: string
 		content: string
+		icon_url: string | null
+		last_edited: string | null
+		shared_with: string | null
 		type: string
-		shared_with?: string[]
-		created_at?: string
-		updated_at?: string
-		owner: string
-		parent_id: string
 	}
 	type Folder = {
-		id?: string
+		id: string
+		created_at: string
+		owner: string
 		name: string
+		icon_url: string | null
+		shared_with: string | null
+		desc: string
+		parent_folder_id: string | null
 		type: string
 		open: boolean
-		shared_with?: string[]
-		created_at?: string
-		updated_at?: string
-		owner: string
-		parent_id: string
-		children?: JSON
+		notes: Note[]
+		subfolders: Folder[]
 	}
 
 	type Locals = {
