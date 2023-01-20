@@ -1,4 +1,4 @@
-export function buildTree(folders: Folder[], notes: Note[]) {
+export function buildTree(folders: Folder[], notes: Note[]): Folder[] {
 	let folderMap = new Map()
 	let rootFolders = []
 

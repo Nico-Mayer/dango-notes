@@ -104,10 +104,25 @@ export async function deleteFolder(userId: string, folderId: string) {
 	return { data, error }
 }
 
-export async function updateFolder(
+export async function updateFolderOpen(
 	userId: string,
 	folderId: string,
-	newFolder: { name: string; iconURL: string; desc: string }
+	openStatus: boolean
+) {
+	const { data, error } = await supabaseClient
+		.from('folder')
+		.update({ open: openStatus })
+		.eq('id', folderId)
+		.eq('owner', userId)
+		.select()
+		.single()
+	return { data, error }
+}
+
+export async function updateFolder(
+	userId: string | undefined,
+	folderId: string,
+	newFolder: Folder
 ) {
 	const { data, error } = await supabaseClient
 		.from('folder')

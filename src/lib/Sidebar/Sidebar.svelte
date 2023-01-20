@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte'
 	import NavItem from './NavItem.svelte'
 
-	export let folderTree: any[] | null
+	export let folderTree: Folder[] | null
 	export let userId: string | undefined
 	export let avatarUrl: string
 
@@ -73,7 +73,7 @@
 		<ul class="space-y-1 py-1 px-[2px]">
 			{#if folderTree}
 				{#each folderTree as rootFolder}
-					<NavItem item={rootFolder} />
+					<NavItem item={rootFolder} {userId} />
 				{/each}
 			{/if}
 		</ul>

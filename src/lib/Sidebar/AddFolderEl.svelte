@@ -24,12 +24,3 @@
 		<span class="font-semibold text-sm">Add a folder</span>
 	</section>
 </button>
-
-<style>
-	.btn-hov {
-		@apply rounded h-5 w-5;
-	}
-	.btn-hov:hover {
-		@apply bg-nord3;
-	}
-</style>
