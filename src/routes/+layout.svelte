@@ -8,9 +8,13 @@
 	import type { LayoutData } from './$types'
 
 	export let data: LayoutData
+	let userId: string
 	$: ({ session, folderTree } = data)
 	$: avatarUrl = session?.user?.user_metadata.avatar_url
-	$: userId = session?.user?.id
+	$: {
+		if (session) userId = session.user.id
+		else userId = ''
+	}
 
 	onMount(() => {
 		const {

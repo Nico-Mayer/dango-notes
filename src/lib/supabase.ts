@@ -51,7 +51,7 @@ export async function updateNote(
 	userId: string,
 	noteId: string,
 	parentFolderId: string,
-	newNote: { name: string; content: string }
+	newNote: Note
 ) {
 	const { data, error } = await supabaseClient
 		.from('note')
@@ -101,29 +101,17 @@ export async function deleteFolder(userId: string, folderId: string) {
 		.eq('id', folderId)
 		.eq('owner', userId)
 		.single()
-	return { data, error }
-}
 
-export async function updateFolderOpen(
-	userId: string,
-	folderId: string,
-	openStatus: boolean
-) {
-	const { data, error } = await supabaseClient
-		.from('folder')
-		.update({ open: openStatus })
-		.eq('id', folderId)
-		.eq('owner', userId)
-		.select()
-		.single()
 	return { data, error }
 }
 
 export async function updateFolder(
-	userId: string | undefined,
+	userId: string,
 	folderId: string,
 	newFolder: Folder
 ) {
+	delete newFolder.notes
+	delete newFolder.subfolders
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.update(newFolder)

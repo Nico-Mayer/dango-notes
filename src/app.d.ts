@@ -29,8 +29,8 @@ declare global {
 		parent_folder_id: string | null
 		type: string
 		open: boolean
-		notes: Note[]
-		subfolders: Folder[]
+		notes?: Note[]
+		subfolders?: Folder[]
 	}
 
 	type Locals = {

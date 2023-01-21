@@ -4,7 +4,7 @@
 	import NavItem from './NavItem.svelte'
 
 	export let folderTree: Folder[] | null
-	export let userId: string | undefined
+	export let userId: string
 	export let avatarUrl: string
 
 	let sidebar: HTMLElement
