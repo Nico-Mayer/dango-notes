@@ -15,12 +15,12 @@
 </script>
 
 <button
-	class="flex h-7 w-full px-4 text-nord4/80 rotate-6 items-center justify-between group dark:(hover:bg-nord2)"
+	class="flex h-9 w-full px-4 text-nord4/80 rotate-6 items-center justify-between group hover:bg-nord2"
 	on:click={handleAddFolder}>
 	<section class="flex space-x-2 items-center">
 		<iconify-icon
 			icon="ri:add-fill"
-			class="animate-fast group-hover:animate-rubberBand" />
+			class="text-lg animate-fast group-hover:animate-rubberBand" />
 		<span class="font-semibold text-sm">Add a folder</span>
 	</section>
 </button>

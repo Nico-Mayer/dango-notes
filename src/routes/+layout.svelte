@@ -28,8 +28,7 @@
 	})
 </script>
 
-<main
-	class="flex h-screen bg-nord6 border-nord0 w-screen text-nord0 dark:(bg-nord0 text-nord6) ">
+<main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6">
 	{#if session}
 		<Sidebar {folderTree} {avatarUrl} {userId} />
 	{/if}

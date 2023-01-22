@@ -56,11 +56,11 @@
 </script>
 
 <main
-	class="flex flex-col h-screen bg-nord4 w-70 select-none relative sidebar dark:(bg-nord1 ) "
+	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar"
 	bind:this={sidebar}>
 	<section id="top">
 		<div
-			class="cursor-pointer flex h-12 py-1 px-2  items-center dark:(hover:bg-nord3) hover:bg-nord4">
+			class="cursor-pointer flex h-12 py-1 px-2  items-center hover:bg-nord3">
 			<span class="font-bold">🍡 Dango Notes</span>
 		</div>
 		<div id="options" class="h-22" />
@@ -73,16 +73,17 @@
 		<ul class="space-y-1 py-1 px-[2px]">
 			{#if folderTree}
 				{#each folderTree as rootFolder}
-					<NavItem item={rootFolder} {userId} />
+					<NavItem item={rootFolder} {userId} lvl={0} />
 				{/each}
 			{/if}
 		</ul>
-		<AddFolderEl {userId} />
+		<div class="mt-2">
+			<AddFolderEl {userId} />
+		</div>
 	</nav>
 
 	<section id="bottom">
-		<div
-			class="border-t flex border-nord5 h-13 py-1 px-2 items-center dark:(border-nord3)">
+		<div class="border-t flex border-nord3 h-13 py-1 px-2 items-center">
 			{#if avatarUrl}
 				<img
 					src={avatarUrl}
@@ -126,5 +127,6 @@
 		flex-grow: 0;
 		z-index: 1;
 		pointer-events: auto;
+		transition: width 0.2s ease 0s;
 	}
 </style>

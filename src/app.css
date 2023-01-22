@@ -18,3 +18,23 @@ select:-webkit-autofill:focus {
 	transition: background-color 5000s ease-in-out 0s;
 	color: white;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	@apply bg-nord0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	@apply bg-nord2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-nord3;
+}

@@ -2,15 +2,17 @@
 	import NavItem from './NavItem.svelte'
 	import { slide } from 'svelte/transition'
 	import { updateFolder } from '$lib/supabase'
+	import { onMount } from 'svelte'
 
 	export let item: Folder | Note
 	export let userId: string
+	export let lvl: number
+	let containerFolder: HTMLElement
+	let containerNote: HTMLElement
 
 	function isFolder(value: any): value is Folder {
 		return value.type === 'folder'
 	}
-
-	console.log(item)
 
 	function handleOpen() {
 		if (isFolder(item)) {
@@ -18,55 +20,66 @@
 			updateFolder(userId, item.id, { ...item, open: item.open })
 		}
 	}
+
+	onMount(() => {
+		if (lvl > 0 && containerFolder) {
+			containerFolder.style.paddingLeft = `${lvl * 1}rem`
+		}
+		if (lvl > 0 && containerNote) {
+			containerNote.style.paddingLeft = `${lvl * 1}rem`
+		}
+	})
 </script>
 
 {#if isFolder(item)}
 	<div>
-		<div
-			class="rounded flex h-7 w-full px-2 text-nord4/60 group items-center justify-between dark:(hover:bg-nord2)">
-			<section class="flex">
+		<button
+			class="rounded flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+			bind:this={containerFolder}
+			on:click={handleOpen}>
+			<section class="flex items-center justify-center">
 				<button
 					class="flex items-center justify-center btn-hov"
-					on:click={() => {
-						handleOpen()
-					}}>
+					on:click|stopPropagation={handleOpen}>
 					<iconify-icon
 						icon={item.open
 							? 'ri:arrow-down-s-line'
 							: 'ri:arrow-right-s-line'} />
 				</button>
-				<div class="flex text-sm ml-2 items-center">
+				<div class="flex ml-2 items-center">
 					<iconify-icon
+						class="text-lg text-[#f0be51]"
 						icon={!item.open
-							? 'vscode-icons:default-folder'
-							: 'vscode-icons:default-folder-opened'} />
+							? 'material-symbols:folder-rounded'
+							: 'material-symbols:folder-open-rounded'} />
 
-					<span class="font-semibold ml-1">{item.name}</span>
+					<div
+						class="font-semibold text-sm ml-2 block whitespace-nowrap overflow-hidden">
+						{item.name}
+					</div>
 				</div>
 			</section>
 
 			<section class="flex space-x-1">
 				<button
-					class="hidden items-center justify-center btn-hov group-hover:flex">
+					class="hidden items-center justify-center btn-hov group-hover:flex"
+					on:click|stopPropagation={() => {}}>
 					<iconify-icon icon="ri:more-fill" />
 				</button>
 				<button
-					class="hidden items-center justify-center btn-hov group-hover:flex">
+					class="hidden items-center justify-center btn-hov group-hover:flex"
+					on:click|stopPropagation={() => {}}>
 					<iconify-icon icon="ri:add-fill" />
 				</button>
 			</section>
-		</div>
+		</button>
 		{#if item.open === true && item.notes && item.subfolders}
 			<div transition:slide>
 				{#each item.notes as note}
-					<div class="ml-4">
-						<NavItem item={note} {userId} />
-					</div>
+					<NavItem item={note} {userId} lvl={lvl + 1} />
 				{/each}
 				{#each item.subfolders as folder}
-					<div class="ml-4">
-						<NavItem item={folder} {userId} />
-					</div>
+					<NavItem item={folder} {userId} lvl={lvl + 1} />
 				{/each}
 			</div>
 		{/if}
@@ -74,20 +87,27 @@
 {:else}
 	<div>
 		<a
-			class="rounded flex h-7 w-full px-2 text-nord4/60 group items-center justify-between dark:(hover:bg-nord2) "
-			href={'#'}>
-			<section class="flex">
+			class="rounded flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+			href={'#'}
+			bind:this={containerNote}>
+			<section class="flex justify-center items-center">
 				<div class="h-5 w-5 spacer" />
-				<div class="flex text-sm ml-2 items-center">
-					<iconify-icon icon="ri:sticky-note-2-line" />
+				<div class="flex ml-2 items-center">
+					<iconify-icon
+						class="text-lg"
+						icon="ri:sticky-note-2-line" />
 
-					<span class="font-semibold ml-1">{item.name}</span>
+					<div
+						class="font-semibold text-sm ml-2 block whitespace-nowrap overflow-hidden">
+						{item.name}
+					</div>
 				</div>
 			</section>
 
 			<section class="flex space-x-1">
 				<button
-					class="hidden items-center justify-center btn-hov group-hover:flex">
+					class="hidden items-center justify-center btn-hov group-hover:flex"
+					on:click|stopPropagation={() => {}}>
 					<iconify-icon icon="ri:more-fill" />
 				</button>
 			</section>
@@ -97,7 +117,7 @@
 
 <style>
 	.btn-hov {
-		@apply rounded h-5 w-5;
+		@apply rounded h-5 text-lg w-5;
 	}
 	.btn-hov:hover {
 		@apply bg-nord3;
