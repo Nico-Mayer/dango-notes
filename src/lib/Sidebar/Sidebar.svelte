@@ -60,7 +60,7 @@
 	bind:this={sidebar}>
 	<section id="top">
 		<div
-			class="cursor-pointer flex h-12 py-1 px-2  items-center hover:bg-nord3">
+			class="cursor-pointer flex h-12 py-1 px-2  items-center hover:bg-nord2">
 			<span class="font-bold">🍡 Dango Notes</span>
 		</div>
 		<div id="options" class="h-22" />

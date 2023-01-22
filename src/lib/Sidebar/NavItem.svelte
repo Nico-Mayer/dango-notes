@@ -42,6 +42,7 @@
 					class="flex items-center justify-center btn-hov"
 					on:click|stopPropagation={handleOpen}>
 					<iconify-icon
+						class="text-nord13"
 						icon={item.open
 							? 'ri:arrow-down-s-line'
 							: 'ri:arrow-right-s-line'} />
@@ -96,8 +97,8 @@
 				</div>
 				<div class="flex ml-2 items-center">
 					<iconify-icon
-						class="text-lg"
-						icon="ri:sticky-note-2-line" />
+						class="text-lg "
+						icon="material-symbols:note-outline-rounded" />
 
 					<div
 						class="font-semibold text-sm ml-2 block whitespace-nowrap overflow-hidden">
