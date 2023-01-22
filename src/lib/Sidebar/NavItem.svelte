@@ -16,15 +16,6 @@
 		if (isFolder(item)) {
 			item.open = !item.open
 			updateFolder(userId, item.id, { ...item, open: item.open })
-			if (item.open === false && item.subfolders) {
-				item.subfolders.forEach((folder) => {
-					folder.open = false
-					updateFolder(userId, folder.id, {
-						...folder,
-						open: folder.open,
-					})
-				})
-			}
 		}
 	}
 </script>
