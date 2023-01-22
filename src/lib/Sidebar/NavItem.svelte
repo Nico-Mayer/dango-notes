@@ -91,7 +91,9 @@
 			href={'#'}
 			bind:this={containerNote}>
 			<section class="flex justify-center items-center">
-				<div class="h-5 w-5 spacer" />
+				<div class="flex h-5 w-5 items-center justify-center">
+					<iconify-icon icon="ci:dot-02-s" />
+				</div>
 				<div class="flex ml-2 items-center">
 					<iconify-icon
 						class="text-lg"
