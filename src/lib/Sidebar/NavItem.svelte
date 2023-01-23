@@ -32,14 +32,14 @@
 </script>
 
 {#if isFolder(item)}
-	<div>
+	<div class="relative">
 		<button
-			class="rounded flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+			class="rounded-lg flex h-9 w-full px-2 text-nord6/50 justify-between group items-center hover:bg-nord2"
 			bind:this={containerFolder}
 			on:click={handleOpen}>
-			<section class="flex items-center justify-center">
+			<section class="flex min-w-0 grow items-center justify-center">
 				<button
-					class="flex items-center justify-center btn-hov"
+					class="flex items-center btn-hov justify-center"
 					on:click|stopPropagation={handleOpen}>
 					<iconify-icon
 						class="text-nord13"
@@ -47,17 +47,16 @@
 							? 'ri:arrow-down-s-line'
 							: 'ri:arrow-right-s-line'} />
 				</button>
-				<div class="flex ml-2 items-center">
+				<div class="flex ml-2 min-w-0 items-center grow">
 					<iconify-icon
 						class="text-lg text-[#f0be51]"
 						icon={!item.open
 							? 'material-symbols:folder-rounded'
 							: 'material-symbols:folder-open-rounded'} />
 
-					<div
-						class="font-semibold text-sm ml-2 block whitespace-nowrap overflow-hidden">
+					<span class="font-semibold text-sm ml-2 truncate">
 						{item.name}
-					</div>
+					</span>
 				</div>
 			</section>
 
@@ -88,22 +87,21 @@
 {:else}
 	<div>
 		<a
-			class="rounded flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+			class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
 			href={'#'}
 			bind:this={containerNote}>
-			<section class="flex justify-center items-center">
+			<section class="flex min-w-0 grow justify-center items-center">
 				<div class="flex h-5 w-5 items-center justify-center">
 					<iconify-icon icon="ci:dot-02-s" />
 				</div>
-				<div class="flex ml-2 items-center">
+				<div class="flex ml-2 min-w-0 items-center grow">
 					<iconify-icon
 						class="text-lg "
 						icon="material-symbols:note-outline-rounded" />
 
-					<div
-						class="font-semibold text-sm ml-2 block whitespace-nowrap overflow-hidden">
+					<span class="font-semibold text-sm ml-2 truncate">
 						{item.name}
-					</div>
+					</span>
 				</div>
 			</section>
 
@@ -120,7 +118,7 @@
 
 <style>
 	.btn-hov {
-		@apply rounded h-5 text-lg w-5;
+		@apply rounded-lg h-5 text-lg w-5;
 	}
 	.btn-hov:hover {
 		@apply bg-nord3;

@@ -7,13 +7,16 @@
 	export let userId: string
 	export let avatarUrl: string
 
+	const minSize = 260
+	const maxSize = 480
+
 	let sidebar: HTMLElement
 	let resizing = false
 	let scrollContainer: HTMLElement
 
 	onMount(() => {
 		const width = localStorage.getItem('sidebarWidth')
-		if (width && parseInt(width) >= 220 && parseInt(width) <= 480) {
+		if (width && parseInt(width) >= minSize && parseInt(width) <= maxSize) {
 			sidebar.style.width = width
 		} else {
 			sidebar.style.width = '280px'
@@ -26,7 +29,7 @@
 		window.addEventListener('mousemove', handleMouseMove)
 		window.addEventListener('mouseup', handleMouseUp)
 		function handleMouseMove(e: MouseEvent) {
-			if (e.clientX > 220 && e.clientX < 480) {
+			if (e.clientX > minSize && e.clientX < maxSize) {
 				sidebar.style.width = e.clientX + 'px'
 				document.body.style.cursor = 'col-resize'
 			}
@@ -63,7 +66,37 @@
 			class="cursor-pointer flex h-12 py-1 px-2  items-center hover:bg-nord2">
 			<span class="font-bold">🍡 Dango Notes</span>
 		</div>
-		<div id="options" class="h-22" />
+		<section class="flex flex-col w-full py-2 px-2 gap-2">
+			<div
+				class="rounded-lg flex bg-nord2 w-full py-2 px-4 items-center justify-center ">
+				<iconify-icon icon="ri:search-line" />
+				<input
+					class="bg-transparent outline-none ml-2 w-full"
+					placeholder="Search..."
+					type="text" />
+			</div>
+
+			<div class="flex text-lg justify-between">
+				<button
+					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					<iconify-icon icon="akar-icons:home-alt1" />
+				</button>
+				<button
+					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					<iconify-icon icon="ri:moon-line" />
+				</button>
+				<button
+					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					<iconify-icon icon="akar-icons:trash-bin" />
+				</button>
+				<button
+					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					<iconify-icon icon="ri:settings-3-line" />
+				</button>
+			</div>
+		</section>
+
+		<section />
 	</section>
 
 	<nav
