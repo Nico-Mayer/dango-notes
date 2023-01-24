@@ -11,6 +11,15 @@
 	let containerFolder: HTMLElement
 	let containerNote: HTMLElement
 
+	onMount(() => {
+		if (lvl > 0 && containerFolder) {
+			containerFolder.style.paddingLeft = `${lvl * 1}rem`
+		}
+		if (lvl > 0 && containerNote) {
+			containerNote.style.paddingLeft = `${lvl * 1}rem`
+		}
+	})
+
 	function isFolder(value: any): value is Folder {
 		return value.type === 'folder'
 	}
@@ -21,15 +30,6 @@
 			updateFolder(userId, item.id, { ...item, open: item.open })
 		}
 	}
-
-	onMount(() => {
-		if (lvl > 0 && containerFolder) {
-			containerFolder.style.paddingLeft = `${lvl * 1}rem`
-		}
-		if (lvl > 0 && containerNote) {
-			containerNote.style.paddingLeft = `${lvl * 1}rem`
-		}
-	})
 
 	function handleContextMenuAdd(e: MouseEvent) {
 		const { pageX, pageY } = e
@@ -114,7 +114,7 @@
 	<div>
 		<a
 			class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
-			href={'#'}
+			href={`/${item.parent_folder_id}/${item.id}`}
 			bind:this={containerNote}>
 			<section class="flex min-w-0 grow justify-center items-center">
 				<div class="flex h-5 w-5 items-center justify-center">

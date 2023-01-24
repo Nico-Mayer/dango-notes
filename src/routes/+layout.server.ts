@@ -14,6 +14,8 @@ export const load: LayoutServerLoad = async (event) => {
 	return {
 		session: await getServerSession(event),
 		folderTree: buildTree(folders, notes),
+		notes: notes,
+		folders: folders,
 	}
 }
 
