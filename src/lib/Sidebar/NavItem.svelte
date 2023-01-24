@@ -3,7 +3,7 @@
 	import { slide } from 'svelte/transition'
 	import { updateFolder } from '$lib/supabase'
 	import { onMount } from 'svelte'
-	import { contextMenuAdd } from '$lib/store'
+	import { contextMenuAdd, contextMenuEdit } from '$lib/store'
 
 	export let item: Folder | Note
 	export let userId: string
@@ -31,14 +31,28 @@
 		}
 	})
 
-	function handleContextMenu(e: MouseEvent) {
-		console.log('open context menu')
+	function handleContextMenuAdd(e: MouseEvent) {
 		const { pageX, pageY } = e
+
 		$contextMenuAdd = {
 			show: true,
 			x: pageX,
 			y: pageY,
 			parentFolderId: item.id,
+		}
+	}
+
+	function handleContextMenuEdit(e: MouseEvent) {
+		const { pageX, pageY } = e
+
+		if (item.parent_folder_id === null) return
+		$contextMenuEdit = {
+			show: true,
+			itemId: item.id,
+			type: item.type,
+			x: pageX,
+			y: pageY,
+			parentFolderId: item.parent_folder_id,
 		}
 	}
 </script>
@@ -75,12 +89,12 @@
 			<section class="flex space-x-1">
 				<button
 					class="hidden items-center justify-center btn-hov group-hover:flex"
-					on:click|stopPropagation={() => {}}>
+					on:click|stopPropagation={handleContextMenuEdit}>
 					<iconify-icon icon="ri:more-fill" />
 				</button>
 				<button
 					class="hidden items-center justify-center btn-hov group-hover:flex"
-					on:click|stopPropagation={handleContextMenu}>
+					on:click|stopPropagation={handleContextMenuAdd}>
 					<iconify-icon icon="ri:add-fill" />
 				</button>
 			</section>
@@ -120,7 +134,7 @@
 			<section class="flex space-x-1">
 				<button
 					class="hidden items-center justify-center btn-hov group-hover:flex"
-					on:click|stopPropagation={() => {}}>
+					on:click|stopPropagation={handleContextMenuEdit}>
 					<iconify-icon icon="ri:more-fill" />
 				</button>
 			</section>

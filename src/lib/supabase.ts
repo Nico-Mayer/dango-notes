@@ -10,7 +10,7 @@ export async function addNote(userId: string, parentFolderId: string) {
 		.insert({
 			name: 'Untitled Note',
 			owner: userId,
-			parent_folderId: parentFolderId,
+			parent_folder_id: parentFolderId,
 		})
 		.select()
 		.single()
@@ -27,7 +27,7 @@ export async function deleteNote(
 		.delete()
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folderId', parentFolderId)
+		.eq('parent_folder_id', parentFolderId)
 		.single()
 	return { data, error }
 }
@@ -99,6 +99,8 @@ export async function getFolder(userId: string, folderId: string) {
 }
 
 export async function deleteFolder(userId: string, folderId: string) {
+	await deleteChildNotes(userId, folderId)
+
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.delete()
@@ -126,11 +128,11 @@ export async function updateFolder(
 	return { data, error }
 }
 
-export async function deleteChildNotes(userId: string, folderId: string) {
+async function deleteChildNotes(userId: string, folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.delete()
-		.eq('parent_folderId', folderId)
+		.eq('parent_folder_id', folderId)
 		.eq('owner', userId)
 
 	return { data, error }

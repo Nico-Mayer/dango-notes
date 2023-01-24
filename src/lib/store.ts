@@ -6,3 +6,12 @@ export const contextMenuAdd = writable({
 	y: 0,
 	parentFolderId: '',
 })
+
+export const contextMenuEdit = writable({
+	show: false,
+	itemId: '',
+	type: '',
+	x: 0,
+	y: 0,
+	parentFolderId: '',
+})

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import { contextMenuAdd } from '$lib/store'
 	import { clickoutside } from '@svelte-put/clickoutside'
-	import { addFolder } from '$lib/supabase'
+	import { addFolder, addNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 
 	export let x: number
@@ -28,6 +28,14 @@
 		invalidateAll()
 		handleClose()
 	}
+	async function handleAddNote() {
+		const { data, error } = await addNote(
+			userId,
+			$contextMenuAdd.parentFolderId
+		)
+		invalidateAll()
+		handleClose()
+	}
 </script>
 
 <div class="h-screen text-sm w-screen top-0 left-0 z-100 absolute">
@@ -36,7 +44,7 @@
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
-		<button class="ctx-btn">
+		<button class="ctx-btn" on:click={handleAddNote}>
 			<iconify-icon class="text-lg" icon="ri:file-add-line" />
 			<span>Add Note</span>
 		</button>
