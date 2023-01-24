@@ -3,6 +3,7 @@
 	import { slide } from 'svelte/transition'
 	import { updateFolder } from '$lib/supabase'
 	import { onMount } from 'svelte'
+	import { contextMenuAdd } from '$lib/store'
 
 	export let item: Folder | Note
 	export let userId: string
@@ -29,10 +30,21 @@
 			containerNote.style.paddingLeft = `${lvl * 1}rem`
 		}
 	})
+
+	function handleContextMenu(e: MouseEvent) {
+		console.log('open context menu')
+		const { pageX, pageY } = e
+		$contextMenuAdd = {
+			show: true,
+			x: pageX,
+			y: pageY,
+			parentFolderId: item.id,
+		}
+	}
 </script>
 
 {#if isFolder(item)}
-	<div class="relative">
+	<div>
 		<button
 			class="rounded-lg flex h-9 w-full px-2 text-nord6/50 justify-between group items-center hover:bg-nord2"
 			bind:this={containerFolder}
@@ -68,7 +80,7 @@
 				</button>
 				<button
 					class="hidden items-center justify-center btn-hov group-hover:flex"
-					on:click|stopPropagation={() => {}}>
+					on:click|stopPropagation={handleContextMenu}>
 					<iconify-icon icon="ri:add-fill" />
 				</button>
 			</section>

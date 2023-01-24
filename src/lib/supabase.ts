@@ -75,7 +75,11 @@ export async function getFolderNotes(userId: string, parentFolderId: string) {
 }
 
 // Folder API
-export async function addFolder(newFolder: { name: string; owner: string }) {
+export async function addFolder(newFolder: {
+	name: string
+	owner: string
+	parent_folder_id: string | null
+}) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.insert(newFolder)

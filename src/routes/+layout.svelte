@@ -5,10 +5,13 @@
 	import { invalidateAll } from '$app/navigation'
 	import { supabaseClient } from '$lib/supabase'
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
+	import ContextMenu from '$lib/Sidebar/ContextMenu.svelte'
 	import type { LayoutData } from './$types'
+	import { contextMenuAdd } from '$lib/store'
 
 	export let data: LayoutData
 	let userId: string
+
 	$: ({ session, folderTree } = data)
 	$: avatarUrl = session?.user?.user_metadata.avatar_url
 	$: {
@@ -28,7 +31,11 @@
 	})
 </script>
 
-<main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6">
+<main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative">
+	{#if $contextMenuAdd.show}
+		<ContextMenu x={$contextMenuAdd.x} y={$contextMenuAdd.y} {userId} />
+	{/if}
+
 	{#if session}
 		<Sidebar {folderTree} {avatarUrl} {userId} />
 	{/if}
