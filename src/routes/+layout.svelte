@@ -1,16 +1,16 @@
 <script lang="ts">
-	import '../app.css'
-	import 'virtual:windi.css'
-	import { onMount } from 'svelte'
 	import { invalidateAll } from '$app/navigation'
-	import { supabaseClient } from '$lib/supabase'
-	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
+	import { page } from '$app/stores'
 	import Navbar from '$lib/Navbar.svelte'
 	import ContextMenuAdd from '$lib/Sidebar/ContextMenuAdd.svelte'
 	import ContextMenuEdit from '$lib/Sidebar/ContextMenuEdit.svelte'
-	import type { LayoutData } from './$types'
+	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
 	import { contextMenuAdd, contextMenuEdit } from '$lib/store'
-	import { page } from '$app/stores'
+	import { supabaseClient } from '$lib/supabase'
+	import { onMount } from 'svelte'
+	import 'virtual:windi.css'
+	import '../app.css'
+	import type { LayoutData } from './$types'
 
 	export let data: LayoutData
 	let userId: string

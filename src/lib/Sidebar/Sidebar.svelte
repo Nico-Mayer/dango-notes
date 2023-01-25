@@ -1,14 +1,14 @@
 <script lang="ts">
-	import AddFolderEl from './AddFolderEl.svelte'
 	import { onMount } from 'svelte'
-	import NavItem from './NavItem.svelte'
+	import AddFolderEl from './AddFolderEl.svelte'
+	import NavFolder from './NavFolder.svelte'
 
 	export let folderTree: Folder[] | null
 	export let userId: string
 	export let avatarUrl: string
 
-	const minSize = 260
-	const maxSize = 480
+	const minSize = 270
+	const maxSize = 500
 
 	let sidebar: HTMLElement
 	let resizing = false
@@ -59,7 +59,7 @@
 </script>
 
 <main
-	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar"
+	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar overflow-hidden"
 	bind:this={sidebar}>
 	<section id="top">
 		<div
@@ -106,7 +106,7 @@
 		<ul class="space-y-1 py-1 px-[2px]">
 			{#if folderTree}
 				{#each folderTree as rootFolder}
-					<NavItem item={rootFolder} {userId} lvl={0} />
+					<NavFolder item={rootFolder} {userId} lvl={0} />
 				{/each}
 			{/if}
 		</ul>
