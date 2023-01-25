@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { contextMenuEdit } from '$lib/store'
 	import { onMount } from 'svelte'
-
+	import { page } from '$app/stores'
 	export let item: Note
 	export let userId: string
 	export let lvl: number
 
 	let containerNote: HTMLElement
+
+	$: active = $page.params.noteId === item.id
 
 	onMount(() => {
 		if (lvl > 0 && containerNote) {
@@ -32,6 +34,7 @@
 <div>
 	<a
 		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+		class:active
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
 		<section class="flex min-w-0 grow justify-center items-center">
@@ -65,5 +68,8 @@
 	}
 	.btn-hov:hover {
 		@apply bg-nord3;
+	}
+	.active {
+		@apply bg-nord2 text-nord6;
 	}
 </style>
