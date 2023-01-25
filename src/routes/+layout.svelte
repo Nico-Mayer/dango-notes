@@ -50,6 +50,17 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Dango Notes</title>
+	<meta
+		name="description"
+		content="Efficient and organized notetaking for students, professionals, and anyone looking to improve their productivity. Take notes online and access them from anywhere." />
+	<meta
+		name="keywords"
+		content="notetaking, productivity, notes, organization, online" />
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd x={$contextMenuAdd.x} y={$contextMenuAdd.y} {userId} />
