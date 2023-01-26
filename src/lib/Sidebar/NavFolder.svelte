@@ -50,12 +50,12 @@
 
 <div>
 	<button
-		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 justify-between group items-center hover:bg-nord2"
+		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 justify-between group items-center hover:bg-nord3"
 		bind:this={containerFolder}
 		on:click={handleOpen}>
 		<section class="flex min-w-0 grow items-center justify-center">
 			<button
-				class="flex items-center btn-hov justify-center"
+				class="flex items-center btn justify-center"
 				on:click|stopPropagation={handleOpen}>
 				<iconify-icon
 					class="text-nord13"
@@ -78,12 +78,12 @@
 
 		<section class="flex space-x-1">
 			<button
-				class="hidden items-center justify-center btn-hov group-hover:flex"
+				class="hidden items-center justify-center btn group-hover:flex"
 				on:click|stopPropagation={handleContextMenuEdit}>
 				<iconify-icon icon="ri:more-fill" />
 			</button>
 			<button
-				class="hidden items-center justify-center btn-hov group-hover:flex"
+				class="hidden items-center justify-center btn group-hover:flex"
 				on:click|stopPropagation={handleContextMenuAdd}>
 				<iconify-icon icon="ri:add-fill" />
 			</button>
@@ -100,12 +100,3 @@
 		</div>
 	{/if}
 </div>
-
-<style>
-	.btn-hov {
-		@apply rounded-lg h-5 text-lg w-5;
-	}
-	.btn-hov:hover {
-		@apply bg-nord3;
-	}
-</style>

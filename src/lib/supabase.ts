@@ -125,6 +125,8 @@ export async function updateFolder(
 		.eq('owner', userId)
 		.select()
 		.single()
+
+	if (error) console.log(error)
 	return { data, error }
 }
 

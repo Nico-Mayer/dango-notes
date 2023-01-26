@@ -9,6 +9,7 @@
 		await addFolder({
 			name: 'New Folder',
 			owner: userId,
+			parent_folder_id: null,
 		})
 		invalidateAll()
 	}
@@ -20,7 +21,7 @@
 	<section class="flex space-x-2 items-center">
 		<iconify-icon
 			icon="ri:add-fill"
-			class="text-lg animate-fast group-hover:animate-rubberBand" />
+			class="text-lg  group-hover:rubberBand" />
 		<span class="font-semibold text-sm">Add a folder</span>
 	</section>
 </button>

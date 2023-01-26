@@ -77,7 +77,7 @@
 	{/if}
 
 	<div class="flex flex-col flex-1">
-		<Navbar {currentFolder} {currentNote} />
+		<Navbar {currentFolder} {currentNote} {userId} />
 		<slot />
 	</div>
 </main>

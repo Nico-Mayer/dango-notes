@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte'
 	import AddFolderEl from './AddFolderEl.svelte'
 	import NavFolder from './NavFolder.svelte'
+	import { slide } from 'svelte/transition'
 
 	export let folderTree: Folder[] | null
 	export let userId: string
@@ -66,17 +67,22 @@
 
 <main
 	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar overflow-hidden"
-	bind:this={sidebar}
-	class:hidden={!$sidebarOpen}>
+	class:hidden={!$sidebarOpen}
+	bind:this={sidebar}>
 	<section id="top" class="group">
-		<div
-			class="cursor-pointer flex h-12 p-2  items-center justify-between hover:bg-nord2">
-			<span class="font-bold ml-1">🍡 Dango Notes</span>
+		<div class="flex h-12 p-2  items-center justify-between">
+			<div class="flex ml-2 gap-2 items-center">
+				<iconify-icon
+					icon="fluent-emoji-high-contrast:dango"
+					class="text-lg" />
+				<span class="font-bold">Dango Notes</span>
+			</div>
+
 			<button
-				class="rounded-lg flex opacity-0 p-1 transition-all duration-200 items-center hover:bg-nord3 group-hover:opacity-100"
+				class="rounded-lg flex opacity-0 p-1 trans items-center hover:bg-nord2 group-hover:opacity-100"
 				on:click={handleMinimize}>
 				<iconify-icon
-					class="text-xl"
+					class="text-xl hover:rubberBand"
 					icon="material-symbols:keyboard-double-arrow-left-rounded" />
 			</button>
 		</div>

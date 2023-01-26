@@ -33,7 +33,7 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord2"
+		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord3"
 		class:active
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
@@ -54,7 +54,7 @@
 
 		<section class="flex space-x-1">
 			<button
-				class="hidden items-center justify-center btn-hov group-hover:flex"
+				class="hidden items-center justify-center btn group-hover:flex"
 				on:click|preventDefault|stopPropagation={handleContextMenuEdit}>
 				<iconify-icon icon="ri:more-fill" />
 			</button>
@@ -63,12 +63,6 @@
 </div>
 
 <style>
-	.btn-hov {
-		@apply rounded-lg h-5 text-lg w-5;
-	}
-	.btn-hov:hover {
-		@apply bg-nord3;
-	}
 	.active {
 		@apply bg-nord2 text-nord6;
 	}

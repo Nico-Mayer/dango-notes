@@ -37,4 +37,9 @@ export default defineConfig({
 			},
 		}),
 	],
+	shortcuts: {
+		btn: 'rounded-lg h-5 text-lg transition-all ease-in-out w-5 duration-250 hover:bg-nord2 hover:text-nord6',
+		trans: 'transition-all ease-in-out duration-250',
+		rubberBand: 'animate-rubberBand animate-animated',
+	},
 })
