@@ -76,7 +76,7 @@
 		<Sidebar {folderTree} {avatarUrl} {userId} />
 	{/if}
 
-	<div class="w-full">
+	<div class="flex flex-col flex-1">
 		<Navbar {currentFolder} {currentNote} />
 		<slot />
 	</div>

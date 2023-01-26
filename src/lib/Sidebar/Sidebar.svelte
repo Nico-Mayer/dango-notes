@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { sidebarOpen } from '$lib/store'
 	import { onMount } from 'svelte'
 	import AddFolderEl from './AddFolderEl.svelte'
 	import NavFolder from './NavFolder.svelte'
@@ -56,17 +57,30 @@
 			scrollContainer.classList.add('border-transparent')
 		}
 	}
+
+	function handleMinimize() {
+		$sidebarOpen = false
+		localStorage.setItem('sidebarOpen', 'false')
+	}
 </script>
 
 <main
 	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar overflow-hidden"
-	bind:this={sidebar}>
-	<section id="top">
+	bind:this={sidebar}
+	class:hidden={!$sidebarOpen}>
+	<section id="top" class="group">
 		<div
-			class="cursor-pointer flex h-12 py-1 px-2  items-center hover:bg-nord2">
-			<span class="font-bold">🍡 Dango Notes</span>
+			class="cursor-pointer flex h-12 p-2  items-center justify-between hover:bg-nord2">
+			<span class="font-bold ml-1">🍡 Dango Notes</span>
+			<button
+				class="rounded-lg flex opacity-0 p-1 transition-all duration-200 items-center hover:bg-nord3 group-hover:opacity-100"
+				on:click={handleMinimize}>
+				<iconify-icon
+					class="text-xl"
+					icon="material-symbols:keyboard-double-arrow-left-rounded" />
+			</button>
 		</div>
-		<section class="flex flex-col w-full py-2 px-2 gap-2">
+		<section class="flex flex-col w-full p-2 gap-2">
 			<div
 				class="rounded-lg flex bg-nord2 w-full py-2 px-4 items-center justify-center ">
 				<iconify-icon icon="ri:search-line" />
