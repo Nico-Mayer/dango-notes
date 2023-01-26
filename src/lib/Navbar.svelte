@@ -12,10 +12,8 @@
 	$: folderName = currentFolder?.name
 	$: noteName = currentNote?.name
 
-	async function handleSubmit(e: Event) {
-		e.preventDefault()
-		const targetId = (e.target as HTMLFormElement).id
-		if (targetId === 'folder-name-form') {
+	async function handleSubmit(type: 'folder' | 'note') {
+		if (type === 'folder') {
 			if (
 				currentFolder === undefined ||
 				userId === undefined ||
@@ -34,6 +32,8 @@
 
 			if (error) console.error(error)
 			console.log(data)
+
+			inputFolderName.blur()
 			invalidateAll()
 		}
 	}
@@ -53,18 +53,21 @@
 
 	<div class="flex text-sm text-nord6/60 gap-2 items-center">
 		<div>
-			<form id="folder-name-form" on:submit={handleSubmit}>
+			<form
+				id="folder-name-form"
+				on:submit|preventDefault={() => handleSubmit('folder')}>
 				<input
 					bind:this={inputFolderName}
 					maxlength="32"
 					class="input-field"
 					type="text"
-					value={folderName} />
+					value={folderName}
+					on:blur={() => handleSubmit('folder')} />
 			</form>
 		</div>
 		<span> / </span>
 		<div>
-			<form id="note-name-form" on:submit={handleSubmit}>
+			<form id="note-name-form" on:submit={() => handleSubmit('note')}>
 				<input
 					maxlength="32"
 					class="input-field"
