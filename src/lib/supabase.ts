@@ -110,19 +110,6 @@ export async function getFolder(userId: string, folderId: string) {
 	return { data, error }
 }
 
-export async function deleteFolder(userId: string, folderId: string) {
-	await deleteChildNotes(userId, folderId)
-
-	const { data, error } = await supabaseClient
-		.from('folder')
-		.delete()
-		.eq('id', folderId)
-		.eq('owner', userId)
-		.single()
-
-	return { data, error }
-}
-
 export async function updateFolder(
 	userId: string,
 	folderId: string,
@@ -139,6 +126,42 @@ export async function updateFolder(
 		.single()
 
 	if (error) console.log(error)
+	return { data, error }
+}
+
+export async function deleteFolder(userId: string, folderId: string) {
+	/* await deleteChildNotes(userId, folderId)
+
+	const { data, error } = await supabaseClient
+		.from('folder')
+		.delete()
+		.eq('id', folderId)
+		.eq('owner', userId)
+		.single() */
+
+	const { data: subfolders, error: subfoldersError } = await getSubfolders(
+		userId,
+		folderId
+	)
+
+	if (subfolders) {
+		for (const folder of subfolders) {
+			let { data: subfolders } = await getSubfolders(userId, folder.id)
+			console.log(folder)
+			console.log(subfolders)
+		}
+	}
+
+	return {}
+}
+
+async function getSubfolders(userId: string, folderId: string) {
+	const { data, error } = await supabaseClient
+		.from('folder')
+		.select()
+		.eq('parent_folder_id', folderId)
+		.eq('owner', userId)
+
 	return { data, error }
 }
 

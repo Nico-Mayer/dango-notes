@@ -16,24 +16,39 @@
 	$: console.log(trashItems)
 </script>
 
-<main class="p-2">
+<main>
 	<div class="w-full">
-		{#each trashItems as item}
-			{#if item.type === 'folder'}
-				<div class="flex p-2 gap-2 items-center">
-					<iconify-icon
-						class="text-lg text-[#f0be51]"
-						icon="material-symbols:folder-rounded" />
-					<div>{item.name}</div>
-				</div>
-			{:else}
-				<div class="flex p-2 gap-2 items-center">
-					<iconify-icon
-						class="text-lg "
-						icon="material-symbols:note-outline-rounded" />
-					<div>{item.name}</div>
-				</div>
-			{/if}
+		{#each trashItems as item, i}
+			<div
+				class="flex p-2 gap-2 items-center justify-between hover:bg-nord2"
+				class:bg-nord1={i % 2 === 0}>
+				<section class="flex gap-2 items-center">
+					{#if item.type === 'folder'}
+						<iconify-icon
+							class="text-lg text-[#f0be51]"
+							icon="material-symbols:folder-rounded" />
+						<div>{item.name}</div>
+					{:else}
+						<iconify-icon
+							class="text-lg "
+							icon="material-symbols:note-outline-rounded" />
+						<div>{item.name}</div>
+					{/if}
+				</section>
+
+				<section class="flex gap-2 items-center justify-center">
+					<button class="flex items-center">
+						<iconify-icon
+							class="text-lg "
+							icon="grommet-icons:revert" />
+					</button>
+					<button class="flex items-center">
+						<iconify-icon
+							class="text-lg "
+							icon="material-symbols:delete-outline-rounded" />
+					</button>
+				</section>
+			</div>
 		{/each}
 	</div>
 </main>
