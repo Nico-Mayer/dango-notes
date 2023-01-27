@@ -97,10 +97,11 @@
 			</div>
 
 			<div class="flex text-lg justify-between">
-				<button
+				<a
+					href="/"
 					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
 					<iconify-icon icon="akar-icons:home-alt1" />
-				</button>
+				</a>
 				<button
 					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
 					<iconify-icon icon="ri:moon-line" />

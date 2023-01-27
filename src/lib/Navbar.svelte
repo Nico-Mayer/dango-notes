@@ -2,15 +2,20 @@
 	import { invalidateAll } from '$app/navigation'
 	import { updateFolder, updateNote } from '$lib/supabase'
 	import { sidebarOpen } from './store'
+	import { page } from '$app/stores'
 
 	export let currentFolder: Folder | undefined
 	export let currentNote: Note | undefined
 	export let userId: string | undefined
 
 	let inputFolderName: HTMLInputElement
+	let inputNoteName: HTMLInputElement
 
 	$: folderName = currentFolder?.name
 	$: noteName = currentNote?.name
+
+	$: inTrash = $page.route.id === '/trash'
+	$: home = $page.route.id === '/'
 
 	async function handleSubmit(type: 'folder' | 'note') {
 		if (type === 'folder') {
@@ -31,9 +36,32 @@
 			)
 
 			if (error) console.error(error)
-			console.log(data)
 
 			inputFolderName.blur()
+			invalidateAll()
+		}
+		if (type === 'note') {
+			if (
+				currentNote === undefined ||
+				userId === undefined ||
+				noteName === undefined ||
+				currentFolder === undefined
+			)
+				return
+
+			const { data, error } = await updateNote(
+				userId,
+				currentNote.id,
+				currentFolder?.id,
+				{
+					...currentNote,
+					name: inputNoteName.value,
+				}
+			)
+
+			if (error) console.error(error)
+
+			inputNoteName.blur()
 			invalidateAll()
 		}
 	}
@@ -52,29 +80,35 @@
 	</button>
 
 	<div class="flex text-sm text-nord6/60 gap-2 items-center">
-		<div>
-			<form
-				id="folder-name-form"
-				on:submit|preventDefault={() => handleSubmit('folder')}>
-				<input
-					bind:this={inputFolderName}
-					maxlength="32"
-					class="input-field"
-					type="text"
-					value={folderName}
-					on:blur={() => handleSubmit('folder')} />
-			</form>
-		</div>
-		<span> / </span>
-		<div>
-			<form id="note-name-form" on:submit={() => handleSubmit('note')}>
-				<input
-					maxlength="32"
-					class="input-field"
-					type="text"
-					value={noteName} />
-			</form>
-		</div>
+		{#if home}
+			<h1 class="font-semibold px-4">Home</h1>
+		{:else if inTrash}
+			<h1 class="font-semibold px-4">Trash</h1>
+		{:else}
+			<div>
+				<form on:submit|preventDefault={() => handleSubmit('folder')}>
+					<input
+						bind:this={inputFolderName}
+						maxlength="32"
+						class="input-field"
+						type="text"
+						value={folderName}
+						on:blur={() => handleSubmit('folder')} />
+				</form>
+			</div>
+			<span> / </span>
+			<div>
+				<form on:submit|preventDefault={() => handleSubmit('note')}>
+					<input
+						bind:this={inputNoteName}
+						maxlength="32"
+						class="input-field"
+						type="text"
+						value={noteName}
+						on:blur={() => handleSubmit('note')} />
+				</form>
+			</div>
+		{/if}
 	</div>
 </main>
 

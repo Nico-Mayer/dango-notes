@@ -18,6 +18,7 @@ declare global {
 		shared_with: string | null
 		type: string
 		trash: boolean
+		trashedAt: number | null
 	}
 	type Folder = {
 		id: string
@@ -31,6 +32,7 @@ declare global {
 		type: string
 		open: boolean
 		trash: boolean
+		trashedAt: number | null
 		notes?: Note[]
 		subfolders?: Folder[]
 	}

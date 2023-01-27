@@ -42,7 +42,7 @@ export async function getNote(
 		.select()
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folderId', parentFolderId)
+		.eq('parent_folder_id', parentFolderId)
 		.single()
 	return { data, error }
 }
@@ -58,7 +58,7 @@ export async function updateNote(
 		.update(newNote)
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folderId', parentFolderId)
+		.eq('parent_folder_id', parentFolderId)
 		.single()
 	return { data, error }
 }
@@ -77,9 +77,11 @@ export async function getFolderNotes(userId: string, parentFolderId: string) {
 export async function trashNote(userId: string, noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
-		.update({ trash: true })
+		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', noteId)
 		.eq('owner', userId)
+
+	if (error) console.error(error)
 
 	return { data, error }
 }
@@ -153,7 +155,7 @@ async function deleteChildNotes(userId: string, folderId: string) {
 export async function trashFolder(userId: string, folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
-		.update({ trash: true })
+		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', folderId)
 		.eq('owner', userId)
 
