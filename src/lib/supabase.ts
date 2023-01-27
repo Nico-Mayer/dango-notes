@@ -74,6 +74,16 @@ export async function getFolderNotes(userId: string, parentFolderId: string) {
 	return { data, error }
 }
 
+export async function trashNote(userId: string, noteId: string) {
+	const { data, error } = await supabaseClient
+		.from('note')
+		.update({ trash: true })
+		.eq('id', noteId)
+		.eq('owner', userId)
+
+	return { data, error }
+}
+
 // Folder API
 export async function addFolder(newFolder: {
 	name: string
@@ -135,6 +145,16 @@ async function deleteChildNotes(userId: string, folderId: string) {
 		.from('note')
 		.delete()
 		.eq('parent_folder_id', folderId)
+		.eq('owner', userId)
+
+	return { data, error }
+}
+
+export async function trashFolder(userId: string, folderId: string) {
+	const { data, error } = await supabaseClient
+		.from('folder')
+		.update({ trash: true })
+		.eq('id', folderId)
 		.eq('owner', userId)
 
 	return { data, error }

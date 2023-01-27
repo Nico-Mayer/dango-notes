@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import { contextMenuEdit } from '$lib/store'
 	import { clickoutside } from '@svelte-put/clickoutside'
-	import { deleteFolder, deleteNote } from '$lib/supabase'
+	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 
 	export let x: number
@@ -30,13 +30,9 @@
 	async function handleDelete() {
 		if ($contextMenuEdit.type === 'folder') {
 			console.log('delete folder')
-			await deleteFolder(userId, $contextMenuEdit.itemId)
+			await trashFolder(userId, $contextMenuEdit.itemId)
 		} else if ($contextMenuEdit.type === 'note') {
-			await deleteNote(
-				userId,
-				$contextMenuEdit.itemId,
-				$contextMenuEdit.parentFolderId
-			)
+			await trashNote(userId, $contextMenuEdit.itemId)
 		}
 		invalidateAll()
 		handleClose()

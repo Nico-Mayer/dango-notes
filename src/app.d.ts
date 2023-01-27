@@ -17,6 +17,7 @@ declare global {
 		last_edited: string | null
 		shared_with: string | null
 		type: string
+		trash: boolean
 	}
 	type Folder = {
 		id: string
@@ -29,6 +30,7 @@ declare global {
 		parent_folder_id: string | null
 		type: string
 		open: boolean
+		trash: boolean
 		notes?: Note[]
 		subfolders?: Folder[]
 	}

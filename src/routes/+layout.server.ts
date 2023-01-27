@@ -26,6 +26,7 @@ async function getAllFolders(locals: Locals): Promise<Folder[]> {
 		.from('folder')
 		.select('*')
 		.eq('owner', owner)
+		.eq('trash', false)
 		.order('created_at', { ascending: true })
 
 	if (err) {
@@ -43,6 +44,7 @@ async function getAllNotes(locals: Locals): Promise<Note[]> {
 		.from('note')
 		.select('*')
 		.eq('owner', owner)
+		.eq('trash', false)
 		.order('created_at', { ascending: true })
 
 	if (err) {

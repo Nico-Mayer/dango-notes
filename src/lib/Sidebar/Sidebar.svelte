@@ -105,10 +105,11 @@
 					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
 					<iconify-icon icon="ri:moon-line" />
 				</button>
-				<button
+				<a
+					href="/trash"
 					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
 					<iconify-icon icon="akar-icons:trash-bin" />
-				</button>
+				</a>
 				<button
 					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
 					<iconify-icon icon="ri:settings-3-line" />
