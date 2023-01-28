@@ -33,7 +33,7 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 text-nord6/50 group items-center justify-between hover:bg-nord3"
+		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:bg-nord3"
 		class:active
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>

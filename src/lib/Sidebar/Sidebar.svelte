@@ -66,7 +66,7 @@
 </script>
 
 <main
-	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar"
+	class="flex flex-col h-screen bg-nord1 text-nord6/60 w-70 select-none relative sidebar"
 	class:hidden={!$sidebarOpen}
 	bind:this={sidebar}>
 	<section id="top" class="group">
