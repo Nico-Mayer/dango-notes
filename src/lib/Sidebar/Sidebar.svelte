@@ -66,7 +66,7 @@
 </script>
 
 <main
-	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar overflow-hidden"
+	class="flex flex-col h-screen bg-nord1 w-70 select-none relative sidebar"
 	class:hidden={!$sidebarOpen}
 	bind:this={sidebar}>
 	<section id="top" class="group">
@@ -158,7 +158,7 @@
 			class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
 			on:mousedown={handleSidebarResize}>
 			<div
-				class="border-l h-full border-nord3 transition-all duration-500 group-hover:(border-nord4/40) "
+				class="border-l h-full border-nord3 trans group-hover:(border-nord4/40) "
 				class:is-resizing={resizing} />
 		</div>
 	</div>
