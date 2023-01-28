@@ -17,32 +17,22 @@ export async function addNote(userId: string, parentFolderId: string) {
 	return { data, error }
 }
 
-export async function deleteNote(
-	userId: string,
-	noteId: string,
-	parentFolderId: string
-) {
+export async function deleteNote(userId: string, noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.delete()
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folder_id', parentFolderId)
 		.single()
 	return { data, error }
 }
 
-export async function getNote(
-	userId: string,
-	noteId: string,
-	parentFolderId: string
-) {
+export async function getNote(userId: string, noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.select()
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folder_id', parentFolderId)
 		.single()
 	return { data, error }
 }
@@ -50,7 +40,7 @@ export async function getNote(
 export async function updateNote(
 	userId: string,
 	noteId: string,
-	parentFolderId: string,
+
 	newNote: Note
 ) {
 	const { data, error } = await supabaseClient
@@ -58,19 +48,7 @@ export async function updateNote(
 		.update(newNote)
 		.eq('id', noteId)
 		.eq('owner', userId)
-		.eq('parent_folder_id', parentFolderId)
 		.single()
-	return { data, error }
-}
-
-export async function getFolderNotes(userId: string, parentFolderId: string) {
-	const { data, error } = await supabaseClient
-		.from('note')
-		.select()
-		.eq('owner', userId)
-		.eq('parent_folderId', parentFolderId)
-		.order('created_at', { ascending: true })
-
 	return { data, error }
 }
 
@@ -130,48 +108,12 @@ export async function updateFolder(
 }
 
 export async function deleteFolder(userId: string, folderId: string) {
-	/* await deleteChildNotes(userId, folderId)
-
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.delete()
 		.eq('id', folderId)
 		.eq('owner', userId)
-		.single() */
-
-	const { data: subfolders, error: subfoldersError } = await getSubfolders(
-		userId,
-		folderId
-	)
-
-	if (subfolders) {
-		for (const folder of subfolders) {
-			let { data: subfolders } = await getSubfolders(userId, folder.id)
-			console.log(folder)
-			console.log(subfolders)
-		}
-	}
-
-	return {}
-}
-
-async function getSubfolders(userId: string, folderId: string) {
-	const { data, error } = await supabaseClient
-		.from('folder')
-		.select()
-		.eq('parent_folder_id', folderId)
-		.eq('owner', userId)
-
-	return { data, error }
-}
-
-async function deleteChildNotes(userId: string, folderId: string) {
-	const { data, error } = await supabaseClient
-		.from('note')
-		.delete()
-		.eq('parent_folder_id', folderId)
-		.eq('owner', userId)
-
+		.single()
 	return { data, error }
 }
 

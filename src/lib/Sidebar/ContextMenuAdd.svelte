@@ -20,7 +20,7 @@
 		contextMenuAdd.set({ show: false, x: 0, y: 0, parentFolderId: '' })
 	}
 	async function handleAddFolder() {
-		const { data, error } = await addFolder({
+		await addFolder({
 			name: 'New Folder',
 			owner: userId,
 			parent_folder_id: $contextMenuAdd.parentFolderId,
@@ -29,10 +29,7 @@
 		handleClose()
 	}
 	async function handleAddNote() {
-		const { data, error } = await addNote(
-			userId,
-			$contextMenuAdd.parentFolderId
-		)
+		await addNote(userId, $contextMenuAdd.parentFolderId)
 		invalidateAll()
 		handleClose()
 	}

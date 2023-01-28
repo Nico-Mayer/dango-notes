@@ -26,14 +26,10 @@
 			)
 				return
 
-			const { data, error } = await updateFolder(
-				userId,
-				currentFolder.id,
-				{
-					...currentFolder,
-					name: inputFolderName.value,
-				}
-			)
+			const { error } = await updateFolder(userId, currentFolder.id, {
+				...currentFolder,
+				name: inputFolderName.value,
+			})
 
 			if (error) console.error(error)
 
@@ -49,15 +45,10 @@
 			)
 				return
 
-			const { data, error } = await updateNote(
-				userId,
-				currentNote.id,
-				currentFolder?.id,
-				{
-					...currentNote,
-					name: inputNoteName.value,
-				}
-			)
+			const { error } = await updateNote(userId, currentNote.id, {
+				...currentNote,
+				name: inputNoteName.value,
+			})
 
 			if (error) console.error(error)
 
