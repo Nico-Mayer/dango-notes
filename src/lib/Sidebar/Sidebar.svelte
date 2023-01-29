@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte'
 	import AddFolderEl from './AddFolderEl.svelte'
 	import NavFolder from './NavFolder.svelte'
-	import { slide } from 'svelte/transition'
 
 	export let folderTree: Folder[] | null
 	export let userId: string
@@ -75,14 +74,13 @@
 				<iconify-icon
 					icon="fluent-emoji-high-contrast:dango"
 					class="text-lg" />
-				<span class="font-bold">Dango Notes</span>
 			</div>
 
 			<button
 				class="rounded-lg flex opacity-0 p-1 trans items-center hover:bg-nord2 group-hover:opacity-100"
 				on:click={handleMinimize}>
 				<iconify-icon
-					class="text-xl hover:rubberBand"
+					class="text-xl hover:(rubberBand text-nord6/80) "
 					icon="material-symbols:keyboard-double-arrow-left-rounded" />
 			</button>
 		</div>
@@ -99,20 +97,20 @@
 			<div class="flex text-lg justify-between">
 				<a
 					href="/"
-					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center  hover:(bg-nord3 text-nord6/80) ">
 					<iconify-icon icon="akar-icons:home-alt1" />
 				</a>
 				<button
-					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord6/80) ">
 					<iconify-icon icon="ri:moon-line" />
 				</button>
 				<a
 					href="/trash"
-					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord6/80) ">
 					<iconify-icon icon="akar-icons:trash-bin" />
 				</a>
 				<button
-					class="rounded-lg flex bg-nord2 h-13 w-13 items-center justify-center hover:bg-nord3">
+					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord6/80) ">
 					<iconify-icon icon="ri:settings-3-line" />
 				</button>
 			</div>

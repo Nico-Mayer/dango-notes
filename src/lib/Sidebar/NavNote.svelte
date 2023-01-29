@@ -33,7 +33,7 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:bg-nord3"
+		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:(bg-nord3 text-nord6/80) "
 		class:active
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
@@ -64,6 +64,7 @@
 
 <style>
 	.active {
-		@apply bg-nord2 text-nord6;
+		@apply bg-nord2;
+		color: rgba(236, 239, 244) !important;
 	}
 </style>

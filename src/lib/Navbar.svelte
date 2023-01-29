@@ -58,7 +58,8 @@
 	}
 </script>
 
-<main class="flex h-12 w-full p-2 gap-5 items-center">
+<main
+	class="flex font-semibold h-12 w-full p-2 text-nord6/60 gap-5 items-center ">
 	<button
 		class="rounded-lg flex p-1 trans items-center hover:bg-nord2"
 		class:hidden={$sidebarOpen}
@@ -70,11 +71,11 @@
 			icon="material-symbols:menu" />
 	</button>
 
-	<div class="flex text-sm text-nord6/60 gap-2 items-center">
+	<div class="flex gap-2 items-center">
 		{#if home}
-			<h1 class="font-semibold px-4">Home</h1>
+			<h1 class="px-4">Home</h1>
 		{:else if inTrash}
-			<h1 class="font-semibold px-4">Trash</h1>
+			<h1 class="px-4">Trash</h1>
 		{:else}
 			<div>
 				<form on:submit|preventDefault={() => handleSubmit('folder')}>

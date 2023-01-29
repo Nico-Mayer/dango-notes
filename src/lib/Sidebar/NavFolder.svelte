@@ -50,7 +50,7 @@
 
 <div>
 	<button
-		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:bg-nord3"
+		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord6/80) "
 		bind:this={containerFolder}
 		on:click={handleOpen}>
 		<section class="flex min-w-0 grow items-center justify-center">
