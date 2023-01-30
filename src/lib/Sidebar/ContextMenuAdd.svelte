@@ -2,8 +2,9 @@
 	import { onMount } from 'svelte'
 	import { contextMenuAdd } from '$lib/store'
 	import { clickoutside } from '@svelte-put/clickoutside'
-	import { addFolder, addNote } from '$lib/supabase'
+	import { addFolder, addNote, updateFolder } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
+	import { isFolder, isWorkspace } from '$lib/Helper/utils'
 
 	export let x: number
 	export let y: number
@@ -37,20 +38,31 @@
 		contextMenuAdd.set({ show: false, x: 0, y: 0 })
 	}
 	async function handleAddFolder() {
-		console.log($contextMenuAdd)
-		if ($contextMenuAdd.item?.id) {
+		const { item } = $contextMenuAdd
+		if (item?.id) {
 			await addFolder({
 				name: 'New Folder',
 				owner: userId,
-				parent_folder_id: $contextMenuAdd.item.id,
+				parent_folder_id: item.id,
 			})
+			if (isFolder(item) || isWorkspace(item)) {
+				if (item.open === false) {
+					await updateFolder(userId, item.id, { ...item, open: true })
+				}
+			}
 			invalidateAll()
 			handleClose()
 		}
 	}
 	async function handleAddNote() {
-		if ($contextMenuAdd.item?.id) {
-			await addNote(userId, $contextMenuAdd.item.id)
+		const { item } = $contextMenuAdd
+		if (item?.id) {
+			await addNote(userId, item.id)
+			if (isFolder(item) || isWorkspace(item)) {
+				if (item.open === false) {
+					await updateFolder(userId, item.id, { ...item, open: true })
+				}
+			}
 			invalidateAll()
 			handleClose()
 		}

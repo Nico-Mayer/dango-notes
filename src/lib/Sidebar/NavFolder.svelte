@@ -50,7 +50,8 @@
 		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord6/80) "
 		class:workspace={lvl === 0}
 		bind:this={containerFolder}
-		on:click={handleOpen}>
+		on:click={handleOpen}
+		on:contextmenu|preventDefault={handleContextMenuEdit}>
 		<section class="flex min-w-0 grow items-center justify-center">
 			<button
 				class="flex items-center btn justify-center"

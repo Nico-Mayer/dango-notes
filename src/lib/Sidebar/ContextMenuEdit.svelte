@@ -4,6 +4,7 @@
 	import { clickoutside } from '@svelte-put/clickoutside'
 	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
+	import { toast } from 'svelte-french-toast'
 
 	export let x: number
 	export let y: number
@@ -53,17 +54,32 @@
 		})
 	}
 
+	async function makeToast(promise: Promise<any>) {
+		await toast.promise(
+			promise,
+			{
+				loading: 'Moving...',
+				success: 'Moved to trash!',
+				error: 'error',
+			},
+			{
+				style: 'border-radius: 200px; background: #4C566A; color: #ECEFF4;',
+				position: 'bottom-center',
+			}
+		)
+	}
+
 	async function handleDelete() {
-		console.log($contextMenuEdit)
 		if ($contextMenuEdit.item) {
 			if (
 				$contextMenuEdit.item.type === 'folder' ||
 				$contextMenuEdit.item.type === 'workspace'
 			) {
-				await trashFolder(userId, $contextMenuEdit.item.id)
+				await makeToast(trashFolder(userId, $contextMenuEdit.item.id))
 			} else if ($contextMenuEdit.item.type === 'note') {
-				await trashNote(userId, $contextMenuEdit.item.id)
+				await makeToast(trashNote(userId, $contextMenuEdit.item.id))
 			}
+
 			invalidateAll()
 			handleClose()
 		}
@@ -113,7 +129,9 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="h-screen text-sm w-screen top-0 left-0 z-100 absolute">
+<div
+	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute"
+	on:contextmenu|preventDefault={handleClose}>
 	<div
 		class="rounded-lg flex flex-col bg-nord3 shadow-xl p-1 shadow-nord0 text-nord6/80 w-52 gap-1 absolute"
 		bind:this={menu}

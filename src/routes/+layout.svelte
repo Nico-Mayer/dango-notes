@@ -11,6 +11,7 @@
 	import 'virtual:windi.css'
 	import '../app.css'
 	import type { LayoutData } from './$types'
+	import { Toaster } from 'svelte-french-toast'
 
 	export let data: LayoutData
 	let userId: string
@@ -75,6 +76,8 @@
 	{#if session}
 		<Sidebar {folderTree} {avatarUrl} {userId} />
 	{/if}
+
+	<Toaster />
 
 	<div class="flex flex-col flex-1">
 		{#if session}
