@@ -22,10 +22,9 @@
 		if (item.parent_folder_id === null) return
 		$contextMenuEdit = {
 			show: true,
-			itemId: item.id,
-			type: item.type,
 			x: pageX,
 			y: pageY,
+			item: item,
 		}
 	}
 </script>

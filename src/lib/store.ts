@@ -1,18 +1,19 @@
 import { writable } from 'svelte/store'
 
-export const contextMenuAdd = writable({
+type contextMenuType = {
+	show: boolean
+	x: number
+	y: number
+	item?: Folder | Note
+}
+const empty: contextMenuType = {
 	show: false,
 	x: 0,
 	y: 0,
-	parentFolderId: '',
-})
+}
 
-export const contextMenuEdit = writable({
-	show: false,
-	itemId: '',
-	type: '',
-	x: 0,
-	y: 0,
-})
+export const contextMenuAdd = writable(empty)
+
+export const contextMenuEdit = writable(empty)
 
 export const sidebarOpen = writable(true)

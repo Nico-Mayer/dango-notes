@@ -10,6 +10,7 @@ export async function addNote(userId: string, parentFolderId: string) {
 		.insert({
 			name: 'Untitled Note',
 			owner: userId,
+			last_edited: Date.now(),
 			parent_folder_id: parentFolderId,
 		})
 		.select()

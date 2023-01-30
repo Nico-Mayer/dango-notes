@@ -29,7 +29,7 @@
 			show: true,
 			x: pageX,
 			y: pageY,
-			parentFolderId: item.id,
+			item: item,
 		}
 	}
 
@@ -38,10 +38,9 @@
 
 		$contextMenuEdit = {
 			show: true,
-			itemId: item.id,
-			type: item.type,
 			x: pageX,
 			y: pageY,
+			item: item,
 		}
 	}
 </script>
@@ -94,8 +93,9 @@
 			</button>
 		</section>
 	</button>
-	{#if item.open === true && item.notes && item.subfolders}
-		<div class="px-[2px]" transition:slide>
+
+	{#if item.open === true && item.notes && item.subfolders && item.notes.length + item.subfolders.length > 0}
+		<div transition:slide class:p-1={item.type === 'workspace'}>
 			{#each item.notes as note}
 				<NavNote item={note} {userId} lvl={lvl + 1} />
 			{/each}
