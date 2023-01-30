@@ -26,9 +26,9 @@
 			await makeToastPromise(
 				recoverFolder(userId, item.id),
 				{
-					loading: 'Recovering folder...',
+					loading: `Recovering ${item.name}...`,
 					success: 'Recovered!',
-					error: 'Failed to recover folder',
+					error: `Failed to recover ${item.name}`,
 				},
 				'green'
 			)
@@ -36,9 +36,9 @@
 			await makeToastPromise(
 				recoverNote(userId, item.id),
 				{
-					loading: 'Recovering note...',
+					loading: `Recovering ${item.name}...`,
 					success: 'Recovered!',
-					error: 'Failed to recover note',
+					error: `Failed to recover ${item.name}`,
 				},
 				'green'
 			)
@@ -49,15 +49,15 @@
 	async function handleDelete(item: Folder | Note) {
 		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
 			await makeToastPromise(deleteFolder(userId, item.id), {
-				loading: 'Deleting folder...',
+				loading: `Deleting ${item.name}...`,
 				success: 'Deleted!',
-				error: 'Failed to delete folder',
+				error: `Failed to delete ${item.name}`,
 			})
 		} else if (item.type === 'note' && userId) {
 			await makeToastPromise(deleteNote(userId, item.id), {
-				loading: 'Deleting note...',
+				loading: `Deleting ${item.name}...`,
 				success: 'Deleted!',
-				error: 'Failed to delete note',
+				error: `Failed to delete ${item.name}`,
 			})
 		}
 		invalidateAll()

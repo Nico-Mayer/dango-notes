@@ -59,15 +59,15 @@
 		if (item) {
 			if (item.type === 'folder' || item.type === 'workspace') {
 				await makeToastPromise(trashFolder(userId, item.id), {
-					loading: 'Moving folder...',
-					success: 'Moved folder to trash',
-					error: 'Failed to move folder',
+					loading: `Moving ${item.name}...`,
+					success: `Moved ${item.name} to trash`,
+					error: `Failed to move ${item.name}`,
 				})
 			} else if (item.type === 'note') {
 				await makeToastPromise(trashNote(userId, item.id), {
-					loading: 'Moving note...',
-					success: 'Moved note to trash',
-					error: 'Failed to move note',
+					loading: `Moving ${item.name}...`,
+					success: `Moved ${item.name} to trash`,
+					error: `Failed to move ${item.name}`,
 				})
 			}
 
