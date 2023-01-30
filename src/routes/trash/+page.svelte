@@ -21,7 +21,7 @@
 	}
 
 	async function handleRecover(item: Folder | Note) {
-		if (item.type === 'folder' && userId) {
+		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
 			await recoverFolder(userId, item.id)
 		} else if (item.type === 'note' && userId) {
 			await recoverNote(userId, item.id)
@@ -30,7 +30,7 @@
 	}
 
 	async function handleDelete(item: Folder | Note) {
-		if (item.type === 'folder' && userId) {
+		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
 			await deleteFolder(userId, item.id)
 		} else if (item.type === 'note' && userId) {
 			await deleteNote(userId, item.id)
@@ -41,7 +41,7 @@
 
 <main>
 	<table class="w-full table-auto">
-		<thead>
+		<thead class="border-b border-nord3">
 			<tr>
 				<th class="table-header">Name</th>
 				<th class="table-header">Deleted at</th>
@@ -50,13 +50,17 @@
 		</thead>
 		<tbody>
 			{#each trashItems as item, i}
-				<tr>
+				<tr class="trans hover:bg-nord2">
 					<td class="table-data">
 						<div class="flex gap-2">
 							{#if item.type === 'folder'}
 								<iconify-icon
 									class="text-lg text-[#f0be51]"
 									icon="material-symbols:folder-rounded" />
+							{:else if item.type === 'workspace'}
+								<iconify-icon
+									class="text-lg text-nord7"
+									icon="material-symbols:space-dashboard" />
 							{:else}
 								<iconify-icon
 									class="text-lg "
@@ -76,14 +80,14 @@
 								class="flex items-center"
 								on:click={() => handleRecover(item)}>
 								<iconify-icon
-									class="text-lg "
+									class="text-lg text-nord14"
 									icon="grommet-icons:revert" />
 							</button>
 							<button
 								class="flex items-center"
 								on:click={() => handleDelete(item)}>
 								<iconify-icon
-									class="text-lg "
+									class="text-lg text-nord12"
 									icon="material-symbols:delete-outline-rounded" />
 							</button>
 						</section>

@@ -79,6 +79,7 @@ export async function recoverNote(userId: string, noteId: string) {
 export async function addFolder(newFolder: {
 	name: string
 	owner: string
+	type?: string
 	parent_folder_id: string | null
 }) {
 	const { data, error } = await supabaseClient

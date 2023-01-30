@@ -36,14 +36,12 @@
 	function handleContextMenuEdit(e: MouseEvent) {
 		const { pageX, pageY } = e
 
-		if (item.parent_folder_id === null) return
 		$contextMenuEdit = {
 			show: true,
 			itemId: item.id,
 			type: item.type,
 			x: pageX,
 			y: pageY,
-			parentFolderId: item.parent_folder_id,
 		}
 	}
 </script>
@@ -51,6 +49,7 @@
 <div>
 	<button
 		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord6/80) "
+		class:workspace={lvl === 0}
 		bind:this={containerFolder}
 		on:click={handleOpen}>
 		<section class="flex min-w-0 grow items-center justify-center">
@@ -58,17 +57,23 @@
 				class="flex items-center btn justify-center"
 				on:click|stopPropagation={handleOpen}>
 				<iconify-icon
-					class="text-nord13"
+					class={item.type === 'workspace'
+						? 'text-nord7'
+						: 'text-nord13'}
 					icon={item.open
 						? 'ri:arrow-down-s-line'
 						: 'ri:arrow-right-s-line'} />
 			</button>
 			<div class="flex ml-2 min-w-0 items-center grow">
-				<iconify-icon
-					class="text-lg text-[#f0be51]"
-					icon={!item.open
-						? 'material-symbols:folder-rounded'
-						: 'material-symbols:folder-open-rounded'} />
+				{#if item.type === 'workspace'}
+					<iconify-icon
+						class="text-lg text-nord7"
+						icon="material-symbols:space-dashboard" />
+				{:else}
+					<iconify-icon
+						class="text-lg text-[#f0be51]"
+						icon="material-symbols:folder-open-rounded" />
+				{/if}
 
 				<span class="font-semibold text-sm ml-2 truncate">
 					{item.name}
@@ -90,7 +95,7 @@
 		</section>
 	</button>
 	{#if item.open === true && item.notes && item.subfolders}
-		<div transition:slide>
+		<div class="px-[2px]" transition:slide>
 			{#each item.notes as note}
 				<NavNote item={note} {userId} lvl={lvl + 1} />
 			{/each}
@@ -100,3 +105,12 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.workspace {
+		@apply rounded-none bg-nord0 text-nord6/80;
+	}
+	.workspace:hover {
+		@apply bg-nord0 text-nord6;
+	}
+</style>

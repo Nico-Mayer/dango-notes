@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { sidebarOpen } from '$lib/store'
 	import { onMount } from 'svelte'
-	import AddFolderEl from './AddFolderEl.svelte'
+	import AddWorkspaceEl from './AddWorkspaceEl.svelte'
 	import NavFolder from './NavFolder.svelte'
 
 	export let folderTree: Folder[] | null
@@ -131,7 +131,7 @@
 			{/if}
 		</ul>
 		<div class="mt-2">
-			<AddFolderEl {userId} />
+			<AddWorkspaceEl {userId} />
 		</div>
 	</nav>
 

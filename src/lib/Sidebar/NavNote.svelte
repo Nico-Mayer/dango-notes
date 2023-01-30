@@ -26,7 +26,6 @@
 			type: item.type,
 			x: pageX,
 			y: pageY,
-			parentFolderId: item.parent_folder_id,
 		}
 	}
 </script>

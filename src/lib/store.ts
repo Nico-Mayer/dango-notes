@@ -13,7 +13,6 @@ export const contextMenuEdit = writable({
 	type: '',
 	x: 0,
 	y: 0,
-	parentFolderId: '',
 })
 
 export const sidebarOpen = writable(true)

@@ -23,13 +23,14 @@
 			type: '',
 			x: 0,
 			y: 0,
-			parentFolderId: '',
 		})
 	}
 
 	async function handleDelete() {
-		if ($contextMenuEdit.type === 'folder') {
-			console.log('delete folder')
+		if (
+			$contextMenuEdit.type === 'folder' ||
+			$contextMenuEdit.type === 'workspace'
+		) {
 			await trashFolder(userId, $contextMenuEdit.itemId)
 		} else if ($contextMenuEdit.type === 'note') {
 			await trashNote(userId, $contextMenuEdit.itemId)
