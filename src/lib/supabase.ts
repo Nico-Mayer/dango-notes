@@ -63,6 +63,17 @@ export async function trashNote(userId: string, noteId: string) {
 
 	return { data, error }
 }
+export async function recoverNote(userId: string, noteId: string) {
+	const { data, error } = await supabaseClient
+		.from('note')
+		.update({ trash: false, trashedAt: null })
+		.eq('id', noteId)
+		.eq('owner', userId)
+
+	if (error) console.error(error)
+
+	return { data, error }
+}
 
 // Folder API
 export async function addFolder(newFolder: {
@@ -121,6 +132,16 @@ export async function trashFolder(userId: string, folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.update({ trash: true, trashedAt: Date.now() })
+		.eq('id', folderId)
+		.eq('owner', userId)
+
+	return { data, error }
+}
+
+export async function recoverFolder(userId: string, folderId: string) {
+	const { data, error } = await supabaseClient
+		.from('folder')
+		.update({ trash: false, trashedAt: null })
 		.eq('id', folderId)
 		.eq('owner', userId)
 

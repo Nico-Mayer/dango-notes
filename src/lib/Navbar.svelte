@@ -67,7 +67,7 @@
 			$sidebarOpen = true
 		}}>
 		<iconify-icon
-			class="text-xl hover:rubberBand"
+			class="text-xl hover:(rubberBand text-nord6/80) "
 			icon="material-symbols:menu" />
 	</button>
 

@@ -1,10 +1,17 @@
 <script lang="ts">
 	import type { PageData } from './$types'
+	import {
+		recoverFolder,
+		recoverNote,
+		deleteFolder,
+		deleteNote,
+	} from '$lib/supabase'
+	import { invalidateAll } from '$app/navigation'
 
 	export let data: PageData
 
-	$: ({ trashItems } = data)
-
+	$: ({ trashItems, session } = data)
+	$: userId = session?.user?.id
 	$: {
 		trashItems.sort((a, b) => {
 			if (a.trashedAt === null) return 1
@@ -13,42 +20,85 @@
 		})
 	}
 
-	$: console.log(trashItems)
+	async function handleRecover(item: Folder | Note) {
+		if (item.type === 'folder' && userId) {
+			await recoverFolder(userId, item.id)
+		} else if (item.type === 'note' && userId) {
+			await recoverNote(userId, item.id)
+		}
+		invalidateAll()
+	}
+
+	async function handleDelete(item: Folder | Note) {
+		if (item.type === 'folder' && userId) {
+			await deleteFolder(userId, item.id)
+		} else if (item.type === 'note' && userId) {
+			await deleteNote(userId, item.id)
+		}
+		invalidateAll()
+	}
 </script>
 
 <main>
-	<div class="w-full">
-		{#each trashItems as item, i}
-			<div
-				class="flex p-2 gap-2 items-center justify-between hover:bg-nord2"
-				class:bg-nord1={i % 2 === 0}>
-				<section class="flex gap-2 items-center">
-					{#if item.type === 'folder'}
-						<iconify-icon
-							class="text-lg text-[#f0be51]"
-							icon="material-symbols:folder-rounded" />
-						<div>{item.name}</div>
-					{:else}
-						<iconify-icon
-							class="text-lg "
-							icon="material-symbols:note-outline-rounded" />
-						<div>{item.name}</div>
-					{/if}
-				</section>
-
-				<section class="flex gap-2 items-center justify-center">
-					<button class="flex items-center">
-						<iconify-icon
-							class="text-lg "
-							icon="grommet-icons:revert" />
-					</button>
-					<button class="flex items-center">
-						<iconify-icon
-							class="text-lg "
-							icon="material-symbols:delete-outline-rounded" />
-					</button>
-				</section>
-			</div>
-		{/each}
-	</div>
+	<table class="w-full table-auto">
+		<thead>
+			<tr>
+				<th class="table-header">Name</th>
+				<th class="table-header">Deleted at</th>
+				<th class="table-header">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each trashItems as item, i}
+				<tr>
+					<td class="table-data">
+						<div class="flex gap-2">
+							{#if item.type === 'folder'}
+								<iconify-icon
+									class="text-lg text-[#f0be51]"
+									icon="material-symbols:folder-rounded" />
+							{:else}
+								<iconify-icon
+									class="text-lg "
+									icon="material-symbols:note-outline-rounded" />
+							{/if}
+							<div>{item.name}</div>
+						</div>
+					</td>
+					<td class="table-data">
+						{#if item.trashedAt !== null}
+							{new Date(item.trashedAt).toLocaleString()}
+						{/if}
+					</td>
+					<td class="table-data">
+						<section class="flex gap-2 items-center justify-start">
+							<button
+								class="flex items-center"
+								on:click={() => handleRecover(item)}>
+								<iconify-icon
+									class="text-lg "
+									icon="grommet-icons:revert" />
+							</button>
+							<button
+								class="flex items-center"
+								on:click={() => handleDelete(item)}>
+								<iconify-icon
+									class="text-lg "
+									icon="material-symbols:delete-outline-rounded" />
+							</button>
+						</section>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </main>
+
+<style>
+	.table-header {
+		@apply font-medium text-sm text-left py-4 px-6 text-nord6/80;
+	}
+	.table-data {
+		@apply font-light text-sm py-4 px-6 text-nord6/60 whitespace-nowrap;
+	}
+</style>
