@@ -4,7 +4,7 @@
 	import { clickoutside } from '@svelte-put/clickoutside'
 	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
-	import { toast } from 'svelte-french-toast'
+	import { makeToastPromise } from '$lib/Helper/utils'
 
 	export let x: number
 	export let y: number
@@ -54,30 +54,21 @@
 		})
 	}
 
-	async function makeToast(promise: Promise<any>) {
-		await toast.promise(
-			promise,
-			{
-				loading: 'Moving...',
-				success: 'Moved to trash!',
-				error: 'error',
-			},
-			{
-				style: 'border-radius: 200px; background: #4C566A; color: #ECEFF4;',
-				position: 'bottom-center',
-			}
-		)
-	}
-
 	async function handleDelete() {
-		if ($contextMenuEdit.item) {
-			if (
-				$contextMenuEdit.item.type === 'folder' ||
-				$contextMenuEdit.item.type === 'workspace'
-			) {
-				await makeToast(trashFolder(userId, $contextMenuEdit.item.id))
-			} else if ($contextMenuEdit.item.type === 'note') {
-				await makeToast(trashNote(userId, $contextMenuEdit.item.id))
+		const item = $contextMenuEdit.item
+		if (item) {
+			if (item.type === 'folder' || item.type === 'workspace') {
+				await makeToastPromise(trashFolder(userId, item.id), {
+					loading: 'Moving folder...',
+					success: 'Moved folder to trash',
+					error: 'Failed to move folder',
+				})
+			} else if (item.type === 'note') {
+				await makeToastPromise(trashNote(userId, item.id), {
+					loading: 'Moving note...',
+					success: 'Moved note to trash',
+					error: 'Failed to move note',
+				})
 			}
 
 			invalidateAll()

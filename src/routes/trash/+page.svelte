@@ -7,6 +7,7 @@
 		deleteNote,
 	} from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
+	import { makeToastPromise } from '$lib/Helper/utils'
 
 	export let data: PageData
 
@@ -22,18 +23,42 @@
 
 	async function handleRecover(item: Folder | Note) {
 		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
-			await recoverFolder(userId, item.id)
+			await makeToastPromise(
+				recoverFolder(userId, item.id),
+				{
+					loading: 'Recovering folder...',
+					success: 'Recovered!',
+					error: 'Failed to recover folder',
+				},
+				'green'
+			)
 		} else if (item.type === 'note' && userId) {
-			await recoverNote(userId, item.id)
+			await makeToastPromise(
+				recoverNote(userId, item.id),
+				{
+					loading: 'Recovering note...',
+					success: 'Recovered!',
+					error: 'Failed to recover note',
+				},
+				'green'
+			)
 		}
 		invalidateAll()
 	}
 
 	async function handleDelete(item: Folder | Note) {
 		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
-			await deleteFolder(userId, item.id)
+			await makeToastPromise(deleteFolder(userId, item.id), {
+				loading: 'Deleting folder...',
+				success: 'Deleted!',
+				error: 'Failed to delete folder',
+			})
 		} else if (item.type === 'note' && userId) {
-			await deleteNote(userId, item.id)
+			await makeToastPromise(deleteNote(userId, item.id), {
+				loading: 'Deleting note...',
+				success: 'Deleted!',
+				error: 'Failed to delete note',
+			})
 		}
 		invalidateAll()
 	}

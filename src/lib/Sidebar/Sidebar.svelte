@@ -135,20 +135,28 @@
 		</div>
 	</nav>
 
-	<section id="bottom">
-		<div class="border-t flex border-nord3 h-13 py-1 px-2 items-center">
+	<section
+		class="border-t flex border-nord3 h-13 py-1 px-2 items-center justify-between">
+		<div>
 			{#if avatarUrl}
 				<img
 					src={avatarUrl}
 					alt="avatar"
-					class="rounded-full h-9 w-auto" />
+					class="rounded-full h-6 w-auto" />
 			{:else}
 				<img
 					src={`https://api.multiavatar.com/${userId}.png`}
 					alt="avatar"
-					class="rounded-full h-9 w-auto" />
+					class="rounded-full h-6 w-auto" />
 			{/if}
 		</div>
+		<form action="/logout" method="POST">
+			<button type="submit" class="flex">
+				<iconify-icon
+					class="m-auto text-xl hover:(rubberBand text-nord6/80) "
+					icon="ri:logout-box-line" />
+			</button>
+		</form>
 	</section>
 
 	<div class="resize-container">
