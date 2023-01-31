@@ -7,7 +7,7 @@ A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 ## Features
 
 -   📃 Create edit and delete notes
--   ☁️ Cloud Synced across devices
+-   ☁️ Cloud synced across devices
 -   Ⓜ️ Preview & edit notes in real-time with Markdown syntax & rich text
 -   👤 Social login with [ GitHub, Discord, Google ]
 -   🌓 Dark ~~and Light~~ mode powerd by [Nord](https://www.nordtheme.com/docs/colors-and-palettes)
