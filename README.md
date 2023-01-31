@@ -34,6 +34,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Better navbar breadcrumbs
 -   [ ] Home note / page
 -   [ ] Encrypt notes
+-   [ ] Note tree search
 
 ## Bugs & issues
 
