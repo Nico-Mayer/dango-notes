@@ -21,7 +21,7 @@ A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 
 Feel free to contribute to the project by opening a pull request or an issue.
 
-## Milestones until beta release
+## Milestones & ToDo`s until beta release
 
 -   [ ] Sidebar items draggable
 -   [ ] Improved login flow
@@ -31,6 +31,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Milkdown v7
 -   [ ] Note sharing and & Y.js collaboration feature (?)
 -   [ ] Persistent sorting inside folders
+-   [ ] Better navbar breadcrumbs
 
 ## Bugs & issues
 
