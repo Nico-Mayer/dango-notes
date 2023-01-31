@@ -1,12 +1,38 @@
-# <img src="https://api.iconify.design/material-symbols:cleaning-bucket.svg?color=%23d37eb4" width="40"  height="40"/> lean-kit
+# [🍡 Dango Notes](dango-notes.vercel.app)
 
-Minimal Svelte-kit stater template [Demo](https://lean-kit.vercel.app/)
+A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 
-### Features:
+> ⚠️ Dango Notes is still in alpha, don`t use it without backups of your notes at this point.
 
--   [x] ![typescript](https://api.iconify.design/vscode-icons:file-type-typescript-official.svg) **[Typescript](https://www.typescriptlang.org/)**
--   [x] ![windicss](https://api.iconify.design/vscode-icons:file-type-windi.svg) **[WindiCSS](https://windicss.org/)**
--   [x] ![animation](https://api.iconify.design/line-md:downloading-loop.svg?color=%23fafafa) **[WindiCSS animations powerd by Animate.css](https://windicss.org/plugins/community/animations.html)**
--   [x] ![iconify](https://api.iconify.design/line-md:iconify1.svg?color=%23fafafa) **[Iconify Webcomponent](https://docs.iconify.design/iconify-icon/)**
--   [x] ![nord](https://api.iconify.design/simple-icons:nordvpn.svg?color=%23d8dee9) **[Nord color pallet](https://www.nordtheme.com/docs/colors-and-palettes)**
--   [x] ![darkmode](https://api.iconify.design/line-md:light-dark-loop.svg?color=%23d8dee9) **SSR Dark Mode without reload flashing**
+## Features
+
+-   📃 Create edit and delete notes
+-   ☁️ Cloud Synced across devices
+-   Ⓜ️ Preview & edit notes in real-time with Markdown syntax & rich text
+-   👤 Social login with [ GitHub, Discord, Google ]
+-   🌓 Dark ~~and Light~~ mode powerd by [Nord](https://www.nordtheme.com/docs/colors-and-palettes)
+
+## TechStack
+
+-   Frontend: Svelte-kit
+-   Backend: Supabase
+
+## Contributing
+
+Feel free to contribute to the project by opening a pull request or an issue.
+
+## Milestones until beta release
+
+-   [ ] Sidebar items draggable
+-   [ ] Improved login flow
+-   [ ] Emoji picker & item rename improvements
+-   [ ] User settings Page
+-   [ ] Light mode
+-   [ ] Milkdown v7
+-   [ ] Note sharing and & Y.js collaboration feature (?)
+-   [ ] Persistent sorting inside folders
+
+## Bugs & issues
+
+-   [ ] Login with email not working 100% of the time
+-   [ ] MD h1 flickering on first focus

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import 'iconify-icon'
 	import { addFolder } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 	export let userId: string | undefined

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { PageData } from './$types'
-	import {
-		recoverFolder,
-		recoverNote,
-		deleteFolder,
-		deleteNote,
-	} from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 	import { makeToastPromise } from '$lib/Helper/utils'
+	import {
+		deleteFolder,
+		deleteNote,
+		recoverFolder,
+		recoverNote,
+	} from '$lib/supabase'
+	import type { PageData } from './$types'
 
 	export let data: PageData
 

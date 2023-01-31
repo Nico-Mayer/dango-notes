@@ -7,11 +7,12 @@
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
 	import { contextMenuAdd, contextMenuEdit } from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
+	import 'iconify-icon'
 	import { onMount } from 'svelte'
+	import { Toaster } from 'svelte-french-toast'
 	import 'virtual:windi.css'
 	import '../app.css'
 	import type { LayoutData } from './$types'
-	import { Toaster } from 'svelte-french-toast'
 
 	export let data: LayoutData
 	let userId: string

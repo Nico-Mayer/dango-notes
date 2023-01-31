@@ -1,10 +1,9 @@
 <script lang="ts">
-	import type { Provider } from '@supabase/supabase-js'
-	import 'iconify-icon'
-	import { goto } from '$app/navigation'
-	import { supabaseClient } from '$lib/supabase'
 	import { enhance } from '$app/forms'
+	import { goto } from '$app/navigation'
 	import InputText from '$lib/InputText.svelte'
+	import { supabaseClient } from '$lib/supabase'
+	import type { Provider } from '@supabase/supabase-js'
 	import type { SubmitFunction } from '@sveltejs/kit'
 	let email = ''
 	let password = ''
@@ -13,7 +12,7 @@
 		password = ''
 	}
 	async function singInWithProvider(provider: Provider) {
-		const { data, error } = await supabaseClient.auth.signInWithOAuth({
+		await supabaseClient.auth.signInWithOAuth({
 			provider: provider,
 		})
 	}
