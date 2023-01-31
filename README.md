@@ -32,6 +32,8 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Note sharing and & Y.js collaboration feature (?)
 -   [ ] Persistent sorting inside folders
 -   [ ] Better navbar breadcrumbs
+-   [ ] Home note / page
+-   [ ] Encrypt notes
 
 ## Bugs & issues
 
