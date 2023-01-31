@@ -8,7 +8,6 @@
 
 	export let x: number
 	export let y: number
-	export let userId: string
 
 	let menu: HTMLElement
 
@@ -58,13 +57,13 @@
 		const item = $contextMenuEdit.item
 		if (item) {
 			if (item.type === 'folder' || item.type === 'workspace') {
-				await makeToastPromise(trashFolder(userId, item.id), {
+				await makeToastPromise(trashFolder(item.id), {
 					loading: `Moving ${item.name}...`,
 					success: `Moved ${item.name} to trash`,
 					error: `Failed to move ${item.name}`,
 				})
 			} else if (item.type === 'note') {
-				await makeToastPromise(trashNote(userId, item.id), {
+				await makeToastPromise(trashNote(item.id), {
 					loading: `Moving ${item.name}...`,
 					success: `Moved ${item.name} to trash`,
 					error: `Failed to move ${item.name}`,

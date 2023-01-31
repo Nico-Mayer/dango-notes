@@ -7,7 +7,6 @@
 	import NavNote from './NavNote.svelte'
 
 	export let item: Folder
-	export let userId: string
 	export let lvl: number
 	let containerFolder: HTMLElement
 
@@ -19,7 +18,7 @@
 
 	function handleOpen() {
 		item.open = !item.open
-		updateFolder(userId, item.id, { ...item, open: item.open })
+		updateFolder(item.id, { ...item, open: item.open })
 	}
 
 	function handleContextMenuAdd(e: MouseEvent) {
@@ -98,10 +97,10 @@
 	{#if item.open === true && item.notes && item.subfolders && item.notes.length + item.subfolders.length > 0}
 		<div transition:slide class:p-1={item.type === 'workspace'}>
 			{#each item.notes as note}
-				<NavNote item={note} {userId} lvl={lvl + 1} />
+				<NavNote item={note} lvl={lvl + 1} />
 			{/each}
 			{#each item.subfolders as folder}
-				<NavFolder item={folder} {userId} lvl={lvl + 1} />
+				<NavFolder item={folder} lvl={lvl + 1} />
 			{/each}
 		</div>
 	{/if}

@@ -47,7 +47,7 @@
 			})
 			if (isFolder(item) || isWorkspace(item)) {
 				if (item.open === false) {
-					await updateFolder(userId, item.id, { ...item, open: true })
+					await updateFolder(item.id, { ...item, open: true })
 				}
 			}
 			invalidateAll()
@@ -60,7 +60,7 @@
 			await addNote(userId, item.id)
 			if (isFolder(item) || isWorkspace(item)) {
 				if (item.open === false) {
-					await updateFolder(userId, item.id, { ...item, open: true })
+					await updateFolder(item.id, { ...item, open: true })
 				}
 			}
 			invalidateAll()

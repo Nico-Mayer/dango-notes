@@ -68,10 +68,7 @@
 		<ContextMenuAdd x={$contextMenuAdd.x} y={$contextMenuAdd.y} {userId} />
 	{/if}
 	{#if $contextMenuEdit.show}
-		<ContextMenuEdit
-			x={$contextMenuEdit.x}
-			y={$contextMenuEdit.y}
-			{userId} />
+		<ContextMenuEdit x={$contextMenuEdit.x} y={$contextMenuEdit.y} />
 	{/if}
 
 	{#if session}
@@ -82,7 +79,7 @@
 
 	<div class="flex flex-col flex-1">
 		{#if session}
-			<Navbar {currentFolder} {currentNote} {userId} />
+			<Navbar {currentFolder} {currentNote} />
 		{/if}
 
 		<slot />

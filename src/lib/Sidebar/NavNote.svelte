@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
 	export let item: Note
-	export let userId: string
 	export let lvl: number
 
 	let containerNote: HTMLElement

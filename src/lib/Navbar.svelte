@@ -6,7 +6,6 @@
 
 	export let currentFolder: Folder | undefined
 	export let currentNote: Note | undefined
-	export let userId: string | undefined
 
 	let inputFolderName: HTMLInputElement
 	let inputNoteName: HTMLInputElement
@@ -19,14 +18,9 @@
 
 	async function handleSubmit(type: 'folder' | 'note') {
 		if (type === 'folder') {
-			if (
-				currentFolder === undefined ||
-				userId === undefined ||
-				folderName === undefined
-			)
-				return
+			if (currentFolder === undefined || folderName === undefined) return
 
-			const { error } = await updateFolder(userId, currentFolder.id, {
+			const { error } = await updateFolder(currentFolder.id, {
 				...currentFolder,
 				name: inputFolderName.value,
 			})
@@ -39,13 +33,12 @@
 		if (type === 'note') {
 			if (
 				currentNote === undefined ||
-				userId === undefined ||
 				noteName === undefined ||
 				currentFolder === undefined
 			)
 				return
 
-			const { error } = await updateNote(userId, currentNote.id, {
+			const { error } = await updateNote(currentNote.id, {
 				...currentNote,
 				name: inputNoteName.value,
 			})

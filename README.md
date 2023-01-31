@@ -21,6 +21,10 @@ A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 
 Feel free to contribute to the project by opening a pull request or an issue.
 
+## Working on
+
+> Encrypt notes
+
 ## Milestones & ToDo`s until beta release
 
 -   [ ] Sidebar items draggable
@@ -35,6 +39,8 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Home note / page
 -   [ ] Encrypt notes
 -   [ ] Note tree search
+-   [x] Row level security
+-   [ ] Code refactor
 
 ## Bugs & issues
 

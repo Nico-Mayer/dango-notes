@@ -12,7 +12,7 @@
 	export let data: PageData
 
 	$: ({ trashItems, session } = data)
-	$: userId = session?.user?.id
+
 	$: {
 		trashItems.sort((a, b) => {
 			if (a.trashedAt === null) return 1
@@ -22,9 +22,9 @@
 	}
 
 	async function handleRecover(item: Folder | Note) {
-		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
+		if (item.type === 'folder' || item.type === 'workspace') {
 			await makeToastPromise(
-				recoverFolder(userId, item.id),
+				recoverFolder(item.id),
 				{
 					loading: `Recovering ${item.name}...`,
 					success: 'Recovered!',
@@ -32,9 +32,9 @@
 				},
 				'green'
 			)
-		} else if (item.type === 'note' && userId) {
+		} else if (item.type === 'note') {
 			await makeToastPromise(
-				recoverNote(userId, item.id),
+				recoverNote(item.id),
 				{
 					loading: `Recovering ${item.name}...`,
 					success: 'Recovered!',
@@ -47,14 +47,14 @@
 	}
 
 	async function handleDelete(item: Folder | Note) {
-		if ((item.type === 'folder' || item.type === 'workspace') && userId) {
-			await makeToastPromise(deleteFolder(userId, item.id), {
+		if (item.type === 'folder' || item.type === 'workspace') {
+			await makeToastPromise(deleteFolder(item.id), {
 				loading: `Deleting ${item.name}...`,
 				success: 'Deleted!',
 				error: `Failed to delete ${item.name}`,
 			})
-		} else if (item.type === 'note' && userId) {
-			await makeToastPromise(deleteNote(userId, item.id), {
+		} else if (item.type === 'note') {
+			await makeToastPromise(deleteNote(item.id), {
 				loading: `Deleting ${item.name}...`,
 				success: 'Deleted!',
 				error: `Failed to delete ${item.name}`,

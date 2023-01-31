@@ -18,28 +18,25 @@ export async function addNote(userId: string, parentFolderId: string) {
 	return { data, error }
 }
 
-export async function deleteNote(userId: string, noteId: string) {
+export async function deleteNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.delete()
 		.eq('id', noteId)
-		.eq('owner', userId)
 		.single()
 	return { data, error }
 }
 
-export async function getNote(userId: string, noteId: string) {
+export async function getNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.select()
 		.eq('id', noteId)
-		.eq('owner', userId)
 		.single()
 	return { data, error }
 }
 
 export async function updateNote(
-	userId: string,
 	noteId: string,
 
 	newNote: Note
@@ -48,28 +45,26 @@ export async function updateNote(
 		.from('note')
 		.update(newNote)
 		.eq('id', noteId)
-		.eq('owner', userId)
+
 		.single()
 	return { data, error }
 }
 
-export async function trashNote(userId: string, noteId: string) {
+export async function trashNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', noteId)
-		.eq('owner', userId)
 
 	if (error) console.error(error)
 
 	return { data, error }
 }
-export async function recoverNote(userId: string, noteId: string) {
+export async function recoverNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.update({ trash: false, trashedAt: null })
 		.eq('id', noteId)
-		.eq('owner', userId)
 
 	if (error) console.error(error)
 
@@ -91,28 +86,22 @@ export async function addFolder(newFolder: {
 	return { data, error }
 }
 
-export async function getFolder(userId: string, folderId: string) {
+export async function getFolder(folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.select()
 		.eq('id', folderId)
-		.eq('owner', userId)
 		.single()
 	return { data, error }
 }
 
-export async function updateFolder(
-	userId: string,
-	folderId: string,
-	newFolder: Folder
-) {
+export async function updateFolder(folderId: string, newFolder: Folder) {
 	delete newFolder.notes
 	delete newFolder.subfolders
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.update(newFolder)
 		.eq('id', folderId)
-		.eq('owner', userId)
 		.select()
 		.single()
 
@@ -120,32 +109,30 @@ export async function updateFolder(
 	return { data, error }
 }
 
-export async function deleteFolder(userId: string, folderId: string) {
+export async function deleteFolder(folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.delete()
 		.eq('id', folderId)
-		.eq('owner', userId)
+
 		.single()
 	return { data, error }
 }
 
-export async function trashFolder(userId: string, folderId: string) {
+export async function trashFolder(folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', folderId)
-		.eq('owner', userId)
 
 	return { data, error }
 }
 
-export async function recoverFolder(userId: string, folderId: string) {
+export async function recoverFolder(folderId: string) {
 	const { data, error } = await supabaseClient
 		.from('folder')
 		.update({ trash: false, trashedAt: null })
 		.eq('id', folderId)
-		.eq('owner', userId)
 
 	return { data, error }
 }
