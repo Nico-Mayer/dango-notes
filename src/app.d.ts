@@ -14,7 +14,7 @@ declare global {
 		name: string
 		content: string
 		icon_url: string | null
-		last_edited: string | null
+		last_edited: number | null
 		shared_with: string | null
 		type: string
 		trash: boolean

@@ -36,7 +36,7 @@
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
 		<section class="flex min-w-0 grow justify-center items-center">
-			<div class="flex h-5 w-5 items-center justify-center">
+			<div class="flex h-6 w-6 items-center justify-center">
 				<iconify-icon icon="ci:dot-02-s" />
 			</div>
 			<div class="flex ml-2 min-w-0 items-center grow">
@@ -62,7 +62,7 @@
 
 <style>
 	.active {
-		@apply bg-nord2;
+		@apply bg-nord2 shadow-sm shadow-nord0;
 		color: rgba(236, 239, 244) !important;
 	}
 </style>
