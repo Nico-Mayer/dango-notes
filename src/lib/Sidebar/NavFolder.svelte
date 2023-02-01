@@ -96,7 +96,7 @@
 	</button>
 
 	{#if item.open === true && item.notes && item.subfolders && item.notes.length + item.subfolders.length > 0}
-		<div transition:slide class:p-1={item.type === 'workspace'}>
+		<div transition:slide class:openWs={item.type === 'workspace'}>
 			{#each item.notes as note}
 				<NavNote item={note} lvl={lvl + 1} />
 			{/each}
@@ -109,9 +109,13 @@
 
 <style>
 	.workspace {
-		@apply rounded-none bg-nord0 text-nord6/80;
+		@apply border-b rounded-none border-nord3 text-nord6/80;
 	}
 	.workspace:hover {
-		@apply bg-nord0 text-nord6;
+		@apply bg-nord3 text-nord6;
+	}
+
+	.openWs {
+		@apply border-b border-nord3 p-1;
 	}
 </style>

@@ -123,7 +123,7 @@
 		class="border-transparent border-t h-full max-h-full overflow-y-auto"
 		on:scroll={handleScroll}
 		bind:this={scrollContainer}>
-		<ul class="space-y-1 py-1">
+		<ul class="py-1">
 			{#if folderTree}
 				{#each folderTree as rootFolder}
 					<NavFolder item={rootFolder} lvl={0} />

@@ -62,7 +62,7 @@
 
 <style>
 	.active {
-		@apply bg-nord2 shadow-sm shadow-nord0;
+		@apply bg-nord2;
 		color: rgba(236, 239, 244) !important;
 	}
 </style>

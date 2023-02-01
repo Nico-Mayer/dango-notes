@@ -3,7 +3,7 @@
 	import { contextRename } from '$lib/store'
 	import { clickoutside } from '@svelte-put/clickoutside'
 	import { updateNote, updateFolder } from '$lib/supabase'
-	import { isFolder, isNote } from '$lib/Helper/utils'
+	import { isFolder, isNote, isWorkspace } from '$lib/Helper/utils'
 	import { invalidateAll } from '$app/navigation'
 
 	const { x, y, boxBoundaries, item } = $contextRename
@@ -25,7 +25,7 @@
 		if (!item) return
 
 		if (newName.length > 0) {
-			if (isFolder(item))
+			if (isFolder(item) || isWorkspace(item))
 				await updateFolder(item.id, { ...item, name: newName })
 			else if (isNote(item))
 				await updateNote(item.id, { ...item, name: newName })
@@ -54,6 +54,7 @@
 			<iconify-icon class="m-auto" icon="carbon:sun" />
 		</div>
 		<form on:submit|preventDefault={handleRename}>
+			<!-- svelte-ignore a11y-autofocus -->
 			<input
 				class="rounded bg-nord2 py-1 px-2 input"
 				type="text"
