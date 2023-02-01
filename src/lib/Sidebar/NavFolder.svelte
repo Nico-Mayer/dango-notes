@@ -39,6 +39,7 @@
 			show: true,
 			x: pageX,
 			y: pageY,
+			boxBoundaries: containerFolder.getBoundingClientRect(),
 			item: item,
 		}
 	}

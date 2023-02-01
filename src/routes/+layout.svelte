@@ -4,8 +4,9 @@
 	import Navbar from '$lib/Navbar.svelte'
 	import ContextMenuAdd from '$lib/Sidebar/ContextMenuAdd.svelte'
 	import ContextMenuEdit from '$lib/Sidebar/ContextMenuEdit.svelte'
+	import ContextRename from '$lib/Sidebar/ContextRename.svelte'
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
-	import { contextMenuAdd, contextMenuEdit } from '$lib/store'
+	import { contextMenuAdd, contextMenuEdit, contextRename } from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
 	import 'iconify-icon'
 	import { onMount } from 'svelte'
@@ -65,10 +66,13 @@
 
 <main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative">
 	{#if $contextMenuAdd.show}
-		<ContextMenuAdd x={$contextMenuAdd.x} y={$contextMenuAdd.y} {userId} />
+		<ContextMenuAdd {userId} />
 	{/if}
 	{#if $contextMenuEdit.show}
-		<ContextMenuEdit x={$contextMenuEdit.x} y={$contextMenuEdit.y} />
+		<ContextMenuEdit />
+	{/if}
+	{#if $contextRename.show}
+		<ContextRename />
 	{/if}
 
 	{#if session}

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { contextMenuEdit } from '$lib/store'
+	import { contextMenuEdit, contextRename } from '$lib/store'
 	import { clickoutside } from '@svelte-put/clickoutside'
 	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 	import { makeToastPromise } from '$lib/Helper/utils'
 
-	export let x: number
-	export let y: number
+	const { x, y, item } = $contextMenuEdit
 
 	let menu: HTMLElement
 
@@ -20,20 +19,20 @@
 		},
 		{
 			icon: 'material-symbols:drive-file-rename-outline-outline-rounded',
-			text: 'Edit',
-			handler: handleEdit,
+			text: 'Rename',
+			handler: handleRename,
 			active: false,
 		},
 		{
 			icon: 'material-symbols:star-outline-rounded',
 			text: 'Add to Favorites',
-			handler: handleEdit,
+			handler: () => {},
 			active: false,
 		},
 		{
 			icon: 'material-symbols:content-copy-outline-rounded',
 			text: 'Duplicate',
-			handler: handleEdit,
+			handler: () => {},
 			active: false,
 		},
 	]
@@ -75,7 +74,15 @@
 		}
 	}
 
-	function handleEdit() {
+	function handleRename(e: MouseEvent) {
+		$contextRename = {
+			show: true,
+			x: 0,
+			y: 0,
+			boxBoundaries: $contextMenuEdit.boxBoundaries,
+			item: $contextMenuEdit.item,
+		}
+		e.stopPropagation()
 		handleClose()
 	}
 
@@ -105,7 +112,7 @@
 				break
 			case 'Enter':
 				if (activeItem) {
-					activeItem.handler()
+					activeItem.handler
 				}
 				break
 		}
@@ -120,7 +127,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
-	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute"
+	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
 		class="rounded-lg flex flex-col bg-nord3 shadow-xl p-1 shadow-nord0 text-nord6/80 w-52 gap-1 absolute"

@@ -15,7 +15,6 @@
 			<div>
 				<InputText
 					name="email"
-					id="email"
 					type="email"
 					label="Email"
 					required={true}

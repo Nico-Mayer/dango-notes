@@ -6,8 +6,8 @@
 	import { invalidateAll } from '$app/navigation'
 	import { isFolder, isWorkspace } from '$lib/Helper/utils'
 
-	export let x: number
-	export let y: number
+	const { x, y } = $contextMenuAdd
+
 	export let userId: string
 
 	let menu: HTMLElement

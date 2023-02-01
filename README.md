@@ -23,7 +23,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 
 ## Working on
 
-> Encrypt notes
+> Emoji picker & item rename improvements
 
 ## Milestones & ToDo`s until beta release
 
@@ -32,17 +32,27 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Emoji picker & item rename improvements
 -   [ ] User settings Page
 -   [ ] Light mode
--   [ ] Milkdown v7
 -   [ ] Note sharing and & Y.js collaboration feature (?)
 -   [ ] Persistent sorting inside folders
--   [ ] Better navbar breadcrumbs
+-   [ ] Improve navbar & breadcrumbs
 -   [ ] Home note / page
 -   [ ] Encrypt notes
 -   [ ] Note tree search
 -   [x] Row level security
 -   [ ] Code refactor
+-   [ ] Keyboard shortcuts
 
 ## Bugs & issues
 
 -   [ ] Login with email not working 100% of the time
 -   [ ] MD h1 flickering on first focus
+-   [ ] Text color input field not matching when autocomplete
+-   [ ] Context menu overflow handler
+
+## Considerations
+
+-   [ ] Milkdown v7 or Lexical
+-   [ ] UnoCSS or WindiCSS
+-   [ ] Generate random name for user with email login
+-   [ ] Vim Bindings in Markdown editor
+-   [ ] Store Folder Tree in store memory for jit updates

@@ -126,7 +126,7 @@
 		<ul class="space-y-1 py-1">
 			{#if folderTree}
 				{#each folderTree as rootFolder}
-					<NavFolder item={rootFolder} {userId} lvl={0} />
+					<NavFolder item={rootFolder} lvl={0} />
 				{/each}
 			{/if}
 		</ul>

@@ -62,13 +62,12 @@
 			use:enhance={submitLogin}>
 			<InputText
 				name="email"
-				id="email"
 				label="Email"
 				required={true}
 				bind:value={email} />
 
 			<InputText
-				id="password"
+				name="password"
 				type="password"
 				label="Password"
 				autocomplete={false}

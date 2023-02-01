@@ -23,6 +23,7 @@
 			show: true,
 			x: pageX,
 			y: pageY,
+			boxBoundaries: containerNote.getBoundingClientRect(),
 			item: item,
 		}
 	}
