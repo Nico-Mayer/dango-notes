@@ -33,6 +33,7 @@
 	<a
 		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:(bg-nord3 text-nord6/80) "
 		class:active
+		on:contextmenu|preventDefault|stopPropagation={handleContextMenuEdit}
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
 		<section class="flex min-w-0 grow justify-center items-center">

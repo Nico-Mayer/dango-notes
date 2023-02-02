@@ -40,8 +40,16 @@
 	$: activeItem = menuItems.find((item) => item.active)
 
 	onMount(() => {
+		const windowHeight = window.innerHeight
+		const overflow = windowHeight - y - menu.clientHeight < 0
+
+		if (overflow) {
+			menu.style.top = `${y - menu.clientHeight}px`
+		} else {
+			menu.style.top = `${y}px`
+		}
+
 		menu.style.left = `${x}px`
-		menu.style.top = `${y}px`
 	})
 
 	function handleClose() {
@@ -74,7 +82,7 @@
 		}
 	}
 
-	function handleRename(e: MouseEvent) {
+	function handleRename(e: MouseEvent | KeyboardEvent) {
 		$contextRename = {
 			show: true,
 			x: 0,
@@ -83,6 +91,7 @@
 			item: $contextMenuEdit.item,
 		}
 		e.stopPropagation()
+		e.preventDefault()
 		handleClose()
 	}
 
@@ -112,7 +121,7 @@
 				break
 			case 'Enter':
 				if (activeItem) {
-					activeItem.handler
+					activeItem.handler(e)
 				}
 				break
 		}

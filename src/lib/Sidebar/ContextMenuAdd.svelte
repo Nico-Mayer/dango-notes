@@ -30,8 +30,16 @@
 	$: activeItem = menuItems.find((item) => item.active)
 
 	onMount(() => {
+		const windowHeight = window.innerHeight
+		const overflow = windowHeight - y - menu.clientHeight < 0
+
+		if (overflow) {
+			menu.style.top = `${y - menu.clientHeight}px`
+		} else {
+			menu.style.top = `${y}px`
+		}
+
 		menu.style.left = `${x}px`
-		menu.style.top = `${y}px`
 	})
 
 	function handleClose() {

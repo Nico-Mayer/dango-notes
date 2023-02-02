@@ -28,7 +28,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 ## Milestones & ToDo`s until beta release
 
 -   [ ] Sidebar items draggable
--   [ ] Improved login flow
+-   [ ] Improved login flow / Magic links login
 -   [ ] Emoji picker & item rename improvements
 -   [ ] User settings Page
 -   [ ] Light mode
@@ -56,3 +56,5 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Generate random name for user with email login
 -   [ ] Vim Bindings in Markdown editor
 -   [ ] Store Folder Tree in store memory for jit updates
+-   [ ] PDF Export
+-   [ ] Folder / Workspace download

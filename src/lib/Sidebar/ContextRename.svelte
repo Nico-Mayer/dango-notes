@@ -59,6 +59,7 @@
 				class="rounded bg-nord2 py-1 px-2 input"
 				type="text"
 				bind:value={newName}
+				maxlength="32"
 				autofocus
 				placeholder={item?.name} />
 			<div />
