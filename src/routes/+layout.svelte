@@ -66,7 +66,7 @@
 </svelte:head>
 
 <main
-	class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative overflow-hidden">
+	class="flex h-screen bg-nord0 border-nord3 w-screen text-nord4 relative overflow-hidden">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}

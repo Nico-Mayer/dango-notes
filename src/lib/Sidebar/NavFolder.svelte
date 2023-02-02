@@ -48,7 +48,7 @@
 
 <div>
 	<button
-		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord6/80) "
+		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord5) "
 		class:workspace={lvl === 0}
 		bind:this={containerFolder}
 		on:click={handleOpen}
@@ -59,7 +59,7 @@
 				on:click|stopPropagation={handleOpen}>
 				<iconify-icon
 					class={item.type === 'workspace'
-						? 'text-nord7'
+						? 'text-nord10'
 						: 'text-nord13'}
 					icon={item.open
 						? 'ri:arrow-down-s-line'
@@ -68,7 +68,7 @@
 			<div class="flex ml-2 min-w-0 items-center grow">
 				{#if item.type === 'workspace'}
 					<iconify-icon
-						class="text-lg text-nord7"
+						class="text-xl text-nord10"
 						icon="material-symbols:space-dashboard" />
 				{:else}
 					<iconify-icon
@@ -112,10 +112,10 @@
 
 <style>
 	.workspace {
-		@apply border-b rounded-none border-nord3 text-nord6/80;
+		@apply border-b rounded-none border-nord3 h-10 text-nord4;
 	}
 	.workspace:hover {
-		@apply bg-nord3 text-nord6;
+		@apply bg-nord3 text-nord5;
 	}
 
 	.openWs {
