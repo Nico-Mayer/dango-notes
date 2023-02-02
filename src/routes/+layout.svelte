@@ -65,7 +65,8 @@
 	<meta name="robots" content="index, follow" />
 </svelte:head>
 
-<main class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative">
+<main
+	class="flex h-screen bg-nord0 border-nord3 w-screen text-nord6 relative overflow-hidden">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}
@@ -82,7 +83,7 @@
 
 	<Toaster />
 
-	<div class="flex flex-col flex-1">
+	<div class="flex flex-col flex-1 overflow-scroll">
 		{#if session}
 			<Navbar {currentFolder} {currentNote} />
 		{/if}

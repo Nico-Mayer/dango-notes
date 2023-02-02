@@ -5,6 +5,7 @@
 	import { slide } from 'svelte/transition'
 	import NavFolder from './NavFolder.svelte'
 	import NavNote from './NavNote.svelte'
+	import { tippy } from '$lib/tippy'
 
 	export let item: Folder
 	export let lvl: number
@@ -84,12 +85,14 @@
 		<section class="flex space-x-1">
 			<button
 				class="hidden items-center justify-center btn group-hover:flex"
-				on:click|stopPropagation={handleContextMenuEdit}>
+				on:click|stopPropagation={handleContextMenuEdit}
+				use:tippy={{ content: 'Delete, rename, etc...' }}>
 				<iconify-icon icon="ri:more-fill" />
 			</button>
 			<button
 				class="hidden items-center justify-center btn group-hover:flex"
-				on:click|stopPropagation={handleContextMenuAdd}>
+				on:click|stopPropagation={handleContextMenuAdd}
+				use:tippy={{ content: 'Add folder | note' }}>
 				<iconify-icon icon="ri:add-fill" />
 			</button>
 		</section>

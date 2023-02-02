@@ -53,7 +53,7 @@
 		<section class="flex space-x-1">
 			<button
 				class="hidden items-center justify-center btn group-hover:flex"
-				use:tippy={{ content: 'delete, rename, etc...' }}
+				use:tippy={{ content: 'Delete, rename, etc...' }}
 				on:click|preventDefault|stopPropagation={handleContextMenuEdit}>
 				<iconify-icon icon="ri:more-fill" />
 			</button>

@@ -5,6 +5,7 @@
 	import AddWorkspaceEl from './AddWorkspaceEl.svelte'
 	import NavFolder from './NavFolder.svelte'
 	import UserItem from './UserItem.svelte'
+	import { tippy } from '$lib/tippy'
 
 	export let folderTree: Folder[] | null
 	export let user: User
@@ -81,7 +82,8 @@
 
 			<button
 				class="rounded-lg flex opacity-0 p-1 trans items-center hover:bg-nord2 group-hover:opacity-100"
-				on:click={handleMinimize}>
+				on:click={handleMinimize}
+				use:tippy={{ content: 'Close sidebar' }}>
 				<iconify-icon
 					class="text-xl hover:(rubberBand text-nord6/80) "
 					icon="material-symbols:keyboard-double-arrow-left-rounded" />

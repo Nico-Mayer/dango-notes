@@ -30,7 +30,7 @@ export async function makeToastPromise(
 			error: error,
 		},
 		{
-			style: 'border-radius: 200px; background: #4C566A; color: #ECEFF4;',
+			style: 'border-radius: 200px; background: #D8DEE9; color: #2E3440;',
 			position: 'bottom-center',
 			iconTheme: {
 				primary: primary,

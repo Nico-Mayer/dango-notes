@@ -19,8 +19,8 @@ select:-webkit-autofill:focus {
 }
 
 .tippy-box[data-theme~='own'] {
-	@apply bg-nord2;
-	@apply text-nord6/60;
+	@apply bg-nord4;
+	@apply text-nord0/60;
 	@apply rounded-lg;
 	@apply text-xs;
 }
