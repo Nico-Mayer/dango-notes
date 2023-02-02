@@ -18,6 +18,13 @@ select:-webkit-autofill:focus {
 	transition: background-color 5000s ease-in-out 0s;
 }
 
+.tippy-box[data-theme~='own'] {
+	@apply bg-nord2;
+	@apply text-nord6/60;
+	@apply rounded-lg;
+	@apply text-xs;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 8px;

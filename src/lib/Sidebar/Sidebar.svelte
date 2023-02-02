@@ -19,7 +19,6 @@
 	let scrollContainer: HTMLElement
 
 	onMount(() => {
-		console.log(user)
 		const width = localStorage.getItem('sidebarWidth')
 		if (width && parseInt(width) >= minSize && parseInt(width) <= maxSize) {
 			sidebar.style.width = width

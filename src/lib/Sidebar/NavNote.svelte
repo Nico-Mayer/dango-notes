@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tippy } from '$lib/tippy'
 	import { contextMenuEdit } from '$lib/store'
 	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
@@ -52,6 +53,7 @@
 		<section class="flex space-x-1">
 			<button
 				class="hidden items-center justify-center btn group-hover:flex"
+				use:tippy={{ content: 'delete, rename, etc...' }}
 				on:click|preventDefault|stopPropagation={handleContextMenuEdit}>
 				<iconify-icon icon="ri:more-fill" />
 			</button>
