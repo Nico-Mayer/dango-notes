@@ -43,9 +43,8 @@ export async function updateNote(
 ) {
 	const { data, error } = await supabaseClient
 		.from('note')
-		.update(newNote)
+		.update({ ...newNote, last_edited: Date.now() })
 		.eq('id', noteId)
-
 		.single()
 	return { data, error }
 }

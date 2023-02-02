@@ -118,7 +118,7 @@
 
 <div class="h-screen text-sm w-screen top-0 left-0 z-100 absolute">
 	<div
-		class="rounded-lg flex flex-col bg-nord3 shadow-xl p-1 shadow-nord0 text-nord6/80 w-52 gap-1 absolute"
+		class="rounded-lg flex flex-col bg-nord3 shadow-xl p-1 shadow-nord0 text-nord6/80 w-66 gap-1 absolute"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>

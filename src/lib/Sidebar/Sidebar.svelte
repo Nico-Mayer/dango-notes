@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { sidebarOpen } from '$lib/store'
+	import type { User } from '@supabase/supabase-js'
 	import { onMount } from 'svelte'
 	import AddWorkspaceEl from './AddWorkspaceEl.svelte'
 	import NavFolder from './NavFolder.svelte'
+	import UserItem from './UserItem.svelte'
 
 	export let folderTree: Folder[] | null
-	export let userId: string
-	export let avatarUrl: string
+	export let user: User
+
+	$: ({ id } = user)
 
 	const minSize = 270
 	const maxSize = 500
@@ -16,6 +19,7 @@
 	let scrollContainer: HTMLElement
 
 	onMount(() => {
+		console.log(user)
 		const width = localStorage.getItem('sidebarWidth')
 		if (width && parseInt(width) >= minSize && parseInt(width) <= maxSize) {
 			sidebar.style.width = width
@@ -131,33 +135,11 @@
 			{/if}
 		</ul>
 		<div class="mt-2">
-			<AddWorkspaceEl {userId} />
+			<AddWorkspaceEl userId={id} />
 		</div>
 	</nav>
 
-	<section
-		class="border-t flex border-nord3 h-13 py-1 px-2 items-center justify-between">
-		<div>
-			{#if avatarUrl}
-				<img
-					src={avatarUrl}
-					alt="avatar"
-					class="rounded-full h-6 w-auto" />
-			{:else}
-				<img
-					src={`https://api.multiavatar.com/${userId}.png`}
-					alt="avatar"
-					class="rounded-full h-6 w-auto" />
-			{/if}
-		</div>
-		<form action="/logout" method="POST">
-			<button type="submit" class="flex">
-				<iconify-icon
-					class="m-auto text-xl hover:(rubberBand text-nord6/80) "
-					icon="ri:logout-box-line" />
-			</button>
-		</form>
-	</section>
+	<UserItem {user} />
 
 	<div class="resize-container">
 		<div

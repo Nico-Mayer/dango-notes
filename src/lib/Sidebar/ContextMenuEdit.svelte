@@ -4,7 +4,7 @@
 	import { clickoutside } from '@svelte-put/clickoutside'
 	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
-	import { makeToastPromise } from '$lib/Helper/utils'
+	import { isNote, makeToastPromise } from '$lib/Helper/utils'
 
 	const { x, y, item } = $contextMenuEdit
 
@@ -40,6 +40,7 @@
 	$: activeItem = menuItems.find((item) => item.active)
 
 	onMount(() => {
+		console.log(item)
 		const windowHeight = window.innerHeight
 		const overflow = windowHeight - y - menu.clientHeight < 0
 
@@ -139,20 +140,29 @@
 	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
-		class="rounded-lg flex flex-col bg-nord3 shadow-xl p-1 shadow-nord0 text-nord6/80 w-52 gap-1 absolute"
+		class="rounded-lg flex flex-col bg-nord3 shadow-xl shadow-nord0 text-nord6/80 w-66 absolute"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
-		{#each menuItems as item, i}
-			<button
-				class="ctx-btn"
-				class:active={item.active}
-				on:click={item.handler}
-				on:mouseenter={() => setActive(i)}>
-				<iconify-icon class="text-lg" icon={item.icon} />
-				<span>{item.text}</span>
-			</button>
-		{/each}
+		<div class="flex flex-col p-1 gap-1">
+			{#each menuItems as item, i}
+				<button
+					class="ctx-btn"
+					class:active={item.active}
+					on:click={item.handler}
+					on:mouseenter={() => setActive(i)}>
+					<iconify-icon class="text-lg" icon={item.icon} />
+					<span>{item.text}</span>
+				</button>
+			{/each}
+		</div>
+
+		{#if isNote(item) && item.last_edited}
+			<div class="border-t flex flex-col border-nord2 text-xs p-3 gap-1">
+				<span>Last Edited: </span>
+				<span>{new Date(item.last_edited).toLocaleString()}</span>
+			</div>
+		{/if}
 		<div />
 	</div>
 </div>

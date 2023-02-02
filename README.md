@@ -1,4 +1,4 @@
-# [🍡 Dango Notes](dango-notes.vercel.app)
+# [🍡 Dango Notes](https://dango-notes.vercel.app)
 
 A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 
@@ -47,7 +47,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [x] ~~Login with email not working 100% of the time~~
 -   [ ] MD h1 flickering on first focus
 -   [ ] Text color input field not matching when autocomplete
--   [ ] Context menu overflow handler
+-   [x] Context menu overflow handler
 
 ## Considerations
 

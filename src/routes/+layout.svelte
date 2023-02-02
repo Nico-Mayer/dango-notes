@@ -21,7 +21,8 @@
 	let currentNote: Note | undefined = undefined
 
 	$: ({ session, folderTree, notes, folders } = data)
-	$: avatarUrl = session?.user?.user_metadata.avatar_url
+	$: user = session?.user
+
 	$: {
 		if (session) userId = session.user.id
 		else userId = ''
@@ -75,8 +76,8 @@
 		<ContextRename />
 	{/if}
 
-	{#if session}
-		<Sidebar {folderTree} {avatarUrl} {userId} />
+	{#if session && user}
+		<Sidebar {user} {folderTree} />
 	{/if}
 
 	<Toaster />
