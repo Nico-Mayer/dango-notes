@@ -13,7 +13,7 @@ declare global {
 		owner: string
 		name: string
 		content: string
-		icon_url: string | null
+		icon: string | null
 		last_edited: number | null
 		shared_with: string | null
 		type: string
@@ -25,7 +25,7 @@ declare global {
 		created_at: string
 		owner: string
 		name: string
-		icon_url: string | null
+		icon: string | null
 		shared_with: string | null
 		desc: string
 		parent_folder_id: string | null

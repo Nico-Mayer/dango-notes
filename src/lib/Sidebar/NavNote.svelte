@@ -41,9 +41,7 @@
 				<iconify-icon icon="ci:dot-02-s" />
 			</div>
 			<div class="flex ml-2 min-w-0 items-center grow">
-				<iconify-icon
-					class="text-lg "
-					icon="material-symbols:note-outline-rounded" />
+				<span>{item.icon}</span>
 
 				<span class="font-semibold text-sm ml-2 truncate">
 					{item.name}

@@ -41,6 +41,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [x] Row level security
 -   [ ] Code refactor
 -   [ ] Keyboard shortcuts
+-   [ ] Tippy.js
 
 ## Bugs & issues
 
