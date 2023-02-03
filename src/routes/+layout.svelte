@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '@unocss/reset/tailwind.css'
 	import { invalidateAll } from '$app/navigation'
 	import { page } from '$app/stores'
 	import Navbar from '$lib/Navbar.svelte'
@@ -11,7 +12,6 @@
 	import 'iconify-icon'
 	import { onMount } from 'svelte'
 	import { Toaster } from 'svelte-french-toast'
-	import 'virtual:windi.css'
 	import '../app.css'
 	import type { LayoutData } from './$types'
 
@@ -65,8 +65,7 @@
 	<meta name="robots" content="index, follow" />
 </svelte:head>
 
-<main
-	class="flex h-screen bg-nord0 border-nord3 w-screen text-nord4 relative overflow-hidden">
+<main class="flex h-screen w-screen  relative overflow-hidden">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}
@@ -91,3 +90,5 @@
 		<slot />
 	</div>
 </main>
+
+<style uno:preflights uno:safelist global></style>

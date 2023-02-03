@@ -16,7 +16,7 @@
 </script>
 
 <button
-	class="flex h-9 w-full px-4 rotate-6 items-center justify-between group trans hover:(bg-nord3 text-nord5) "
+	class="flex h-9 w-full px-4 items-center justify-between group trans hover:(bg-nord3 text-nord5) "
 	on:click={handleAddWorkspace}>
 	<section class="flex space-x-2 items-center">
 		<iconify-icon
