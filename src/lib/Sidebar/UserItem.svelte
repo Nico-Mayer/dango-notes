@@ -6,8 +6,7 @@
 	$: ({ avatar_url } = user?.user_metadata)
 </script>
 
-<section
-	class="border-t flex border-nord3 h-13 py-1 px-2 items-center justify-between">
+<section class="border-t flex h-13 py-1 px-2 items-center justify-between">
 	<div>
 		{#if avatar_url}
 			<img
@@ -30,9 +29,7 @@
 	</div>
 	<form action="/logout" method="POST">
 		<button type="submit" class="flex">
-			<iconify-icon
-				class="m-auto text-xl hover:(rubberBand text-nord6/80) "
-				icon="ri:logout-box-line" />
+			<div class="i-ri-logout-box-line m-auto text-xl" />
 		</button>
 	</form>
 </section>

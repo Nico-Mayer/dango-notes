@@ -48,7 +48,7 @@
 
 <div>
 	<button
-		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:(bg-nord3 text-nord5) "
+		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center "
 		class:workspace={lvl === 0}
 		bind:this={containerFolder}
 		on:click={handleOpen}
@@ -57,23 +57,15 @@
 			<button
 				class="flex items-center btn justify-center"
 				on:click|stopPropagation={handleOpen}>
-				<iconify-icon
-					class={item.type === 'workspace'
-						? 'text-nord10'
-						: 'text-nord13'}
-					icon={item.open
-						? 'ri:arrow-down-s-line'
-						: 'ri:arrow-right-s-line'} />
+				<div
+					class="i-ri-arrow-right-s-line trans"
+					class:rotate-90={item.open} />
 			</button>
 			<div class="flex ml-2 min-w-0 items-center grow">
 				{#if item.type === 'workspace'}
-					<iconify-icon
-						class="text-xl text-nord10"
-						icon="material-symbols:space-dashboard" />
+					<div class="i-ri-archive-line text-lg" />
 				{:else}
-					<iconify-icon
-						class="text-lg text-[#f0be51]"
-						icon="material-symbols:folder-open-rounded" />
+					<div class={item.open ? 'openFolder' : 'folder'} />
 				{/if}
 
 				<span class="font-semibold text-sm ml-2 truncate">
@@ -87,13 +79,13 @@
 				class="hidden items-center justify-center btn group-hover:flex"
 				on:click|stopPropagation={handleContextMenuEdit}
 				use:tippy={{ content: 'Delete, rename, etc...' }}>
-				<iconify-icon icon="ri:more-fill" />
+				<div class="i-ri-more-fill" />
 			</button>
 			<button
 				class="hidden items-center justify-center btn group-hover:flex"
 				on:click|stopPropagation={handleContextMenuAdd}
 				use:tippy={{ content: 'Add folder | note' }}>
-				<iconify-icon icon="ri:add-fill" />
+				<div class="i-ri-add-fill" />
 			</button>
 		</section>
 	</button>
@@ -112,13 +104,19 @@
 
 <style>
 	.workspace {
-		@apply border-b rounded-none border-nord3 h-10;
+		@apply border-b rounded-none h-10;
 	}
 	.workspace:hover {
-		@apply bg-nord3 text-nord5;
 	}
 
 	.openWs {
-		@apply border-b border-nord3 p-1;
+		@apply border-b p-1;
+	}
+	.folder {
+		@apply i-ri-folder-line text-lg trans;
+	}
+
+	.openFolder {
+		@apply i-ri-folder-open-line text-lg trans;
 	}
 </style>

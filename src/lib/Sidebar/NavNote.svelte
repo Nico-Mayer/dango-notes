@@ -32,17 +32,17 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:(bg-nord3 text-nord5) "
+		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between"
 		class:active
 		on:contextmenu|preventDefault|stopPropagation={handleContextMenuEdit}
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
 		<section class="flex min-w-0 grow justify-center items-center">
 			<div class="flex h-6 w-6 items-center justify-center">
-				<iconify-icon icon="ci:dot-02-s" />
+				<div class="i-carbon-dot-mark text-xs" />
 			</div>
 			<div class="flex ml-2 min-w-0 items-center grow">
-				<span>{item.icon}</span>
+				<div class="text-lg i-ri-file-line" />
 
 				<span class="font-semibold text-sm ml-2 truncate">
 					{item.name}
@@ -55,7 +55,7 @@
 				class="hidden items-center justify-center btn group-hover:flex"
 				use:tippy={{ content: 'Delete, rename, etc...' }}
 				on:click|preventDefault|stopPropagation={handleContextMenuEdit}>
-				<iconify-icon icon="ri:more-fill" />
+				<div class="i-ri-more-fill" />
 			</button>
 		</section>
 	</a>
@@ -63,7 +63,5 @@
 
 <style>
 	.active {
-		@apply bg-nord2;
-		color: rgba(236, 239, 244) !important;
 	}
 </style>

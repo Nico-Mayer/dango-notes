@@ -82,7 +82,7 @@
 
 	<Toaster />
 
-	<div class="flex flex-col flex-1 overflow-scroll">
+	<div class="flex flex-col flex-1">
 		{#if session}
 			<Navbar {currentFolder} {currentNote} />
 		{/if}

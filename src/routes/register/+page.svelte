@@ -54,13 +54,12 @@
 				{/if}
 			</div>
 
-			<button
-				class="rounded font-bold bg-nord10 p-2 text-nord6"
-				type="submit">Register</button>
+			<button class="rounded font-bold p-2" type="submit"
+				>Register</button>
 		</form>
 
 		<div class="h-8 separator">Or</div>
-		<a href="/login" class="text-sm text-nord8 underline">SIGN IN</a>
+		<a href="/login" class="text-sm underline">SIGN IN</a>
 	</div>
 </main>
 

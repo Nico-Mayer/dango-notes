@@ -53,14 +53,12 @@
 
 <main class="flex font-semibold h-12 w-full p-2 gap-5 items-center ">
 	<button
-		class="rounded-lg flex p-1 trans items-center hover:bg-nord1"
+		class="rounded-lg flex p-1 trans items-center"
 		class:hidden={$sidebarOpen}
 		on:click={() => {
 			$sidebarOpen = true
 		}}>
-		<iconify-icon
-			class="text-xl hover:(rubberBand text-nord5) "
-			icon="material-symbols:menu" />
+		<div class="text-xl i-carbon-menu" />
 	</button>
 
 	<div class="flex gap-2 items-center">
@@ -101,9 +99,7 @@
 		@apply bg-transparent border-none rounded-lg outline-none py-1 px-4 transition-all ease-in-out duration-250;
 	}
 	.input-field:hover {
-		@apply bg-nord1 text-nord5;
 	}
 	.input-field:focus {
-		@apply bg-nord1 text-nord5;
 	}
 </style>

@@ -66,7 +66,7 @@
 
 <main>
 	<table class="w-full table-auto">
-		<thead class="border-b border-nord3">
+		<thead class="border-b">
 			<tr>
 				<th class="table-header">Name</th>
 				<th class="table-header">Deleted at</th>
@@ -75,21 +75,15 @@
 		</thead>
 		<tbody>
 			{#each trashItems as item, i}
-				<tr class="trans hover:bg-nord2">
+				<tr class="trans">
 					<td class="table-data">
 						<div class="flex gap-2">
 							{#if item.type === 'folder'}
-								<iconify-icon
-									class="text-lg text-[#f0be51]"
-									icon="material-symbols:folder-rounded" />
+								<div class="text-lg i-ri-folder-line" />
 							{:else if item.type === 'workspace'}
-								<iconify-icon
-									class="text-lg text-nord7"
-									icon="material-symbols:space-dashboard" />
+								<div class="text-lg i-ri-archive-line" />
 							{:else}
-								<iconify-icon
-									class="text-lg "
-									icon="material-symbols:note-outline-rounded" />
+								<div class="text-lg i-ri-file-line" />
 							{/if}
 							<div>{item.name}</div>
 						</div>
@@ -104,16 +98,12 @@
 							<button
 								class="flex items-center"
 								on:click={() => handleRecover(item)}>
-								<iconify-icon
-									class="text-lg text-nord14"
-									icon="grommet-icons:revert" />
+								<div class="text-lg i-ri-arrow-go-back-line" />
 							</button>
 							<button
 								class="flex items-center"
 								on:click={() => handleDelete(item)}>
-								<iconify-icon
-									class="text-lg text-nord12"
-									icon="material-symbols:delete-outline-rounded" />
+								<div class="text-lg i-ri-delete-bin-line" />
 							</button>
 						</section>
 					</td>
@@ -125,9 +115,9 @@
 
 <style>
 	.table-header {
-		@apply font-medium text-sm text-left py-4 px-6 text-nord6/80;
+		@apply font-medium text-sm text-left py-4 px-6;
 	}
 	.table-data {
-		@apply font-light text-sm py-4 px-6 text-nord6/60 whitespace-nowrap;
+		@apply font-light text-sm py-4 px-6 whitespace-nowrap;
 	}
 </style>
