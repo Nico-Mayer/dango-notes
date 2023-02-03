@@ -6,6 +6,7 @@
 	import NavFolder from './NavFolder.svelte'
 	import UserItem from './UserItem.svelte'
 	import { tippy } from '$lib/tippy'
+	import DarkToggle from '$lib/DarkToggle.svelte'
 
 	export let folderTree: Folder[] | null
 	export let user: User
@@ -102,9 +103,10 @@
 				<a href="/" class="shortcut">
 					<div class="i-akar-icons-home" />
 				</a>
-				<button class="shortcut">
-					<div class="i-ri-moon-line" />
-				</button>
+
+				<DarkToggle
+					class="rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6" />
+
 				<a href="/trash" class="shortcut">
 					<div class="i-akar-icons-trash" />
 				</a>
