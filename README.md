@@ -28,7 +28,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 ## Milestones & ToDo`s until beta release
 
 -   [ ] Sidebar items draggable
--   [ ] Improved login flow / Magic links login
+-   [ ] Improved login flow / Magic links login / State machine & animations
 -   [ ] Emoji picker & item rename improvements
 -   [ ] User settings Page
 -   [ ] Light mode
