@@ -19,7 +19,7 @@
 	class="flex h-9 w-full px-4 items-center justify-between group trans"
 	on:click={handleAddWorkspace}>
 	<section class="flex space-x-2 items-center">
-		<div class="i-ri-add-fill text-lg hover:rotate-18 " />
+		<div class="i-ri-add-fill text-lg group-hover:rotate-360 trans " />
 		<span class="font-semibold text-sm">Add a workspace</span>
 	</section>
 </button>

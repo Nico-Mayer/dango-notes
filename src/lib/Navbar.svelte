@@ -54,7 +54,7 @@
 <main class="flex font-semibold h-12 w-full p-2 gap-5 items-center ">
 	<button
 		class="rounded-lg flex p-1 trans items-center"
-		class:hidden={$sidebarOpen}
+		class:hide={$sidebarOpen}
 		on:click={() => {
 			$sidebarOpen = true
 		}}>
@@ -101,5 +101,9 @@
 	.input-field:hover {
 	}
 	.input-field:focus {
+	}
+
+	.hide {
+		@apply hidden;
 	}
 </style>

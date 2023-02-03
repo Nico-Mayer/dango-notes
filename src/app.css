@@ -2,6 +2,10 @@ body {
 	padding: 0 !important;
 	margin: 0 !important;
 }
+* {
+	border-style: solid;
+	@apply dark:border-nord3;
+}
 
 /* Change Autocomplete styles in Chrome */
 input:-webkit-autofill,
@@ -32,15 +36,15 @@ select:-webkit-autofill:focus {
 
 /* Track */
 ::-webkit-scrollbar-track {
-	@apply bg-nord0;
+	@apply dark:bg-nord0;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	@apply bg-nord2;
+	@apply dark:bg-nord2;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	@apply bg-nord3;
+	@apply dark:bg-nord3;
 }

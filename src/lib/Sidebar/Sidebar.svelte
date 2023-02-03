@@ -69,14 +69,15 @@
 </script>
 
 <main
-	class="flex flex-col h-screen min-w-[270px] w-70 select-none relative sidebar"
+	class="flex flex-col h-screen min-w-[270px] w-70 select-none relative sidebar dark:bg-nord1"
 	class:hide={!$sidebarOpen}
 	bind:this={sidebar}>
 	<section id="top" class="group">
-		<div class="flex h-12 p-2  items-center justify-between">
+		<div class="flex h-12 p-2 items-center justify-between">
 			<div class="flex ml-2 gap-2 items-center">
 				<img
 					src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg"
+					class="h-6 w-auto"
 					alt="dango" />
 			</div>
 
@@ -84,12 +85,12 @@
 				class="rounded-lg flex opacity-0 p-1 trans items-center group-hover:opacity-100"
 				on:click={handleMinimize}
 				use:tippy={{ content: 'Close sidebar' }}>
-				<div class="i-akar-icons-sidebar-right text-xl" />
+				<div class="i-akar-icons-sidebar-left text-xl" />
 			</button>
 		</div>
 		<section class="flex flex-col w-full p-2 gap-2">
 			<div
-				class="rounded-lg flex w-full py-2 px-4 items-center justify-center ">
+				class="rounded-lg flex w-full py-2 px-4 items-center justify-center bg-nord6">
 				<dic class="i-ri-search-line" />
 				<input
 					class="bg-transparent outline-none ml-2 w-full"
@@ -98,22 +99,16 @@
 			</div>
 
 			<div class="flex text-lg justify-between">
-				<a
-					href="/"
-					class="rounded-lg flex h-13 w-13 trans items-center justify-center">
+				<a href="/" class="shortcut">
 					<div class="i-akar-icons-home" />
 				</a>
-				<button
-					class="rounded-lg flex h-13 w-13 trans items-center justify-center">
+				<button class="shortcut">
 					<div class="i-ri-moon-line" />
 				</button>
-				<a
-					href="/trash"
-					class="rounded-lg flex h-13 w-13 trans items-center justify-center ">
+				<a href="/trash" class="shortcut">
 					<div class="i-akar-icons-trash" />
 				</a>
-				<button
-					class="rounded-lg flex  h-13 w-13 trans items-center justify-center">
+				<button class="shortcut">
 					<div class="i-akar-icons-gear" />
 				</button>
 			</div>
@@ -172,5 +167,12 @@
 		z-index: 1;
 		pointer-events: auto;
 		transition: width 0.2s ease 0s;
+	}
+
+	.shortcut {
+		@apply rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6;
+	}
+	.shortcut:hover {
+		@apply bg-nord5;
 	}
 </style>

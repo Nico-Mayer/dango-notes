@@ -65,7 +65,8 @@
 	<meta name="robots" content="index, follow" />
 </svelte:head>
 
-<main class="flex h-screen w-screen  relative overflow-hidden">
+<main
+	class="flex h-screen w-screen dark:bg-nord0 dark:text-nord4 relative overflow-hidden">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}
