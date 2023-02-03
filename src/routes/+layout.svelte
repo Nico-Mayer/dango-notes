@@ -7,7 +7,12 @@
 	import ContextMenuEdit from '$lib/Sidebar/ContextMenuEdit.svelte'
 	import ContextRename from '$lib/Sidebar/ContextRename.svelte'
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
-	import { contextMenuAdd, contextMenuEdit, contextRename } from '$lib/store'
+	import {
+		contextMenuAdd,
+		contextMenuEdit,
+		contextRename,
+		sidebarOpen,
+	} from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
 	import 'iconify-icon'
 	import { onMount } from 'svelte'
@@ -52,6 +57,15 @@
 			subscription.unsubscribe()
 		}
 	})
+
+	function handleKeyDown(event: KeyboardEvent) {
+		const meta = event.metaKey
+		const key = event.key
+
+		if (meta && key === 'b') {
+			$sidebarOpen = !$sidebarOpen
+		}
+	}
 </script>
 
 <svelte:head>
@@ -64,7 +78,7 @@
 		content="notetaking, productivity, notes, organization, online" />
 	<meta name="robots" content="index, follow" />
 </svelte:head>
-
+<svelte:window on:keydown={handleKeyDown} />
 <main
 	class="flex h-screen w-screen dark:bg-nord0 dark:text-nord4 relative overflow-hidden">
 	{#if $contextMenuAdd.show}

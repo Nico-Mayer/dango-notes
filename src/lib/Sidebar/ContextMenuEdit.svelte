@@ -40,7 +40,6 @@
 	$: activeItem = menuItems.find((item) => item.active)
 
 	onMount(() => {
-		console.log(item)
 		const windowHeight = window.innerHeight
 		const overflow = windowHeight - y - menu.clientHeight < 0
 
