@@ -112,7 +112,7 @@
 
 <style>
 	.workspace {
-		@apply border-b rounded-none border-nord3 h-10 text-nord4;
+		@apply border-b rounded-none border-nord3 h-10;
 	}
 	.workspace:hover {
 		@apply bg-nord3 text-nord5;
