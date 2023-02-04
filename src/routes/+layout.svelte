@@ -80,7 +80,7 @@
 </svelte:head>
 <svelte:window on:keydown={handleKeyDown} />
 <main
-	class="flex h-screen w-screen dark:bg-nord0 dark:text-nord4 relative overflow-hidden">
+	class="flex h-screen w-screen text-nord3 relative overflow-hidden dark:bg-nord0 dark:text-nord4">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}

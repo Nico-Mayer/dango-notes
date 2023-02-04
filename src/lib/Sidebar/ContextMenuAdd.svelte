@@ -116,16 +116,16 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="h-screen text-sm w-screen top-0 left-0 z-100 absolute">
+<div class=" h-screen text-sm w-screen top-0 left-0 z-100 absolute ">
 	<div
-		class="rounded-lg flex flex-col shadow-xl p-1 w-66 gap-1 absolute"
+		class="bg-white rounded-lg flex flex-col shadow-xl p-1 w-66 gap-1 absolute dark:bg-nord3"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
 		{#each menuItems as item, i}
 			<button
 				class="ctx-btn"
-				class:active={item.active}
+				class:activeItem={item.active}
 				on:click={item.handler}
 				on:mouseenter={() => setActive(i)}>
 				<div class={item.icon} />
@@ -140,13 +140,11 @@
 	.ctx-btn {
 		@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
 	}
-	.active {
-	}
 
 	.addFile {
-		@apply i-ri-file-add-line text-lg;
+		@apply text-lg i-ri-file-add-line;
 	}
 	.addFolder {
-		@apply i-ri-folder-add-line text-lg;
+		@apply text-lg i-ri-folder-add-line;
 	}
 </style>

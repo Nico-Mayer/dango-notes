@@ -32,14 +32,14 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between"
-		class:active
+		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:(bg-nord4 dark:bg-nord3) "
+		class:activeItem={active}
 		on:contextmenu|preventDefault|stopPropagation={handleContextMenuEdit}
 		href={`/${item.parent_folder_id}/${item.id}`}
 		bind:this={containerNote}>
 		<section class="flex min-w-0 grow justify-center items-center">
 			<div class="flex h-6 w-6 items-center justify-center">
-				<div class="i-carbon-dot-mark text-xs" />
+				<div class="text-xs i-carbon-dot-mark" />
 			</div>
 			<div class="flex ml-2 min-w-0 items-center grow">
 				<div class="text-lg i-ri-file-line" />
@@ -60,8 +60,3 @@
 		</section>
 	</a>
 </div>
-
-<style>
-	.active {
-	}
-</style>

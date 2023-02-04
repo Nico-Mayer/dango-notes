@@ -35,8 +35,11 @@ const config = {
 				},
 			},
 			shortcuts: {
-				btn: 'rounded-lg h-6 w-6 text-lg transition-all ease-in-out duration-250',
 				trans: 'transition-all ease-in-out duration-250',
+				btn: 'rounded-lg h-6 w-6 text-lg trans hover:(bg-nord6 dark:bg-nord2)',
+				shortcut:
+					'rounded-lg flex bg-nord6 h-13 w-13 trans items-center justify-center dark:bg-nord2 hover:bg-nord5 dark:hover:bg-nord3',
+				activeItem: 'bg-nord5 dark:bg-nord2',
 			},
 		}),
 		sveltekit(),

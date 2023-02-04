@@ -1,7 +1,6 @@
 <script lang="ts">
 	// relies on script in app.html
 	import { onMount } from 'svelte'
-	import { slide } from 'svelte/transition'
 	let theme: string | null
 	onMount(() => {
 		theme = localStorage.getItem('theme')

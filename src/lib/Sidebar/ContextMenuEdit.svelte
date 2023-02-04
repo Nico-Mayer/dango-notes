@@ -139,7 +139,7 @@
 	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
-		class="rounded-lg flex flex-col  shadow-xl w-66 absolute"
+		class="bg-white rounded-lg flex  flex-col shadow-xl w-66 absolute dark:bg-nord3"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
@@ -147,7 +147,7 @@
 			{#each menuItems as item, i}
 				<button
 					class="ctx-btn"
-					class:active={item.active}
+					class:activeItem={item.active}
 					on:click={item.handler}
 					on:mouseenter={() => setActive(i)}>
 					<div class={item.icon} />
@@ -170,19 +170,17 @@
 	.ctx-btn {
 		@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
 	}
-	.active {
-	}
 
 	.rename {
-		@apply i-ri-edit-line text-lg;
+		@apply text-lg i-ri-edit-line;
 	}
 	.delete {
-		@apply i-ri-delete-bin-line text-lg;
+		@apply text-lg i-ri-delete-bin-line;
 	}
 	.star {
-		@apply i-ri-star-line text-lg;
+		@apply text-lg i-ri-star-line;
 	}
 	.duplicate {
-		@apply i-ri-file-copy-line text-lg;
+		@apply text-lg i-ri-file-copy-line;
 	}
 </style>

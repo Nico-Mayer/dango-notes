@@ -46,18 +46,18 @@
 <main class="h-screen text-sm w-screen top-0 left-0 z-200 absolute">
 	<div
 		id="rename-context-menu"
-		class="rounded-lg flex h-9 shadow-xl p-1 gap-2 absolute items-center"
+		class="bg-white rounded-lg flex h-9 shadow-xl p-1 gap-2 absolute items-center dark:bg-nord3"
 		bind:this={container}
 		use:clickoutside
 		on:clickoutside={handleClose}>
 		<div
 			class="rounded-lg flex h-full w-[28px] items-center justify-center">
-			<div class="i-ri-bear-smile-line text-lg" />
+			<div class="text-lg i-ri-bear-smile-line" />
 		</div>
 		<form on:submit|preventDefault={handleRename}>
 			<!-- svelte-ignore a11y-autofocus -->
 			<input
-				class="rounded py-1 px-2 input"
+				class="rounded bg-nord6 py-1 px-2 input dark:bg-nord2"
 				type="text"
 				bind:value={newName}
 				maxlength="32"

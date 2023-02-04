@@ -86,12 +86,12 @@
 				class="rounded-lg flex opacity-0 p-1 trans items-center group-hover:opacity-100"
 				on:click={handleMinimize}
 				use:tippy={{ content: 'Close sidebar' }}>
-				<div class="i-akar-icons-sidebar-left text-xl" />
+				<div class="text-xl i-akar-icons-sidebar-left" />
 			</button>
 		</div>
 		<section class="flex flex-col w-full p-2 gap-2">
 			<div
-				class="rounded-lg flex w-full py-2 px-4 items-center justify-center bg-nord6">
+				class="rounded-lg flex bg-nord6 w-full py-2 px-4 items-center justify-center dark:bg-nord2">
 				<dic class="i-ri-search-line" />
 				<input
 					class="bg-transparent outline-none ml-2 w-full"
@@ -104,8 +104,7 @@
 					<div class="i-akar-icons-home" />
 				</a>
 
-				<DarkToggle
-					class="rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6" />
+				<DarkToggle class="shortcut" />
 
 				<a href="/trash" class="shortcut">
 					<div class="i-akar-icons-trash" />
@@ -120,7 +119,7 @@
 	</section>
 
 	<nav
-		class="border-transparent border-t h-full max-h-full overflow-y-auto"
+		class="border-transparent border-t h-full max-h-full overflow-y-auto dark:border-transparent"
 		on:scroll={handleScroll}
 		bind:this={scrollContainer}>
 		<ul class="py-1">
@@ -142,7 +141,7 @@
 			class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
 			on:mousedown={handleSidebarResize}>
 			<div
-				class="border-l h-full duration-500 trans"
+				class="border-l h-full  duration-500 trans group-hover:(border-nord3 opacity-50) dark:group-hover:border-nord4 "
 				class:is-resizing={resizing} />
 		</div>
 	</div>
@@ -169,12 +168,5 @@
 		z-index: 1;
 		pointer-events: auto;
 		transition: width 0.2s ease 0s;
-	}
-
-	.shortcut {
-		@apply rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6;
-	}
-	.shortcut:hover {
-		@apply bg-nord5;
 	}
 </style>
