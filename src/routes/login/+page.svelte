@@ -74,9 +74,7 @@
 				required={true}
 				bind:value={password} />
 
-			<button
-				class="rounded font-bold bg-nord10 p-2 text-nord6"
-				type="submit">Login</button>
+			<button class="rounded font-bold p-2" type="submit">Login</button>
 		</form>
 
 		<div class="h-8 separator">Or login with</div>
@@ -103,7 +101,7 @@
 		</form>
 		<div class="flex h-10 text-sm items-center justify-center">
 			<span>Need an account?</span>
-			<a href="/register" class="ml-2 text-nord8 underline">SIGN UP</a>
+			<a href="/register" class="ml-2 underline">SIGN UP</a>
 		</div>
 	</div>
 </main>

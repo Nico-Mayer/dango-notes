@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '@unocss/reset/tailwind.css'
 	import { invalidateAll } from '$app/navigation'
 	import { page } from '$app/stores'
 	import Navbar from '$lib/Navbar.svelte'
@@ -6,12 +7,16 @@
 	import ContextMenuEdit from '$lib/Sidebar/ContextMenuEdit.svelte'
 	import ContextRename from '$lib/Sidebar/ContextRename.svelte'
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte'
-	import { contextMenuAdd, contextMenuEdit, contextRename } from '$lib/store'
+	import {
+		contextMenuAdd,
+		contextMenuEdit,
+		contextRename,
+		sidebarOpen,
+	} from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
 	import 'iconify-icon'
 	import { onMount } from 'svelte'
 	import { Toaster } from 'svelte-french-toast'
-	import 'virtual:windi.css'
 	import '../app.css'
 	import type { LayoutData } from './$types'
 
@@ -52,6 +57,15 @@
 			subscription.unsubscribe()
 		}
 	})
+
+	function handleKeyDown(event: KeyboardEvent) {
+		const meta = event.metaKey
+		const key = event.key
+
+		if (meta && key === 'b') {
+			$sidebarOpen = !$sidebarOpen
+		}
+	}
 </script>
 
 <svelte:head>
@@ -64,9 +78,9 @@
 		content="notetaking, productivity, notes, organization, online" />
 	<meta name="robots" content="index, follow" />
 </svelte:head>
-
+<svelte:window on:keydown={handleKeyDown} />
 <main
-	class="flex h-screen bg-nord0 border-nord3 w-screen text-nord4 relative overflow-hidden">
+	class="flex h-screen w-screen dark:bg-nord0 dark:text-nord4 relative overflow-hidden">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}
@@ -83,7 +97,7 @@
 
 	<Toaster />
 
-	<div class="flex flex-col flex-1 overflow-scroll">
+	<div class="flex flex-col flex-1">
 		{#if session}
 			<Navbar {currentFolder} {currentNote} />
 		{/if}
@@ -91,3 +105,5 @@
 		<slot />
 	</div>
 </main>
+
+<style uno:preflights uno:safelist global></style>

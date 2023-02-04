@@ -12,25 +12,25 @@
 
 	let menuItems = [
 		{
-			icon: 'material-symbols:delete-outline-rounded',
+			icon: 'delete',
 			text: 'Delete',
 			handler: handleDelete,
 			active: false,
 		},
 		{
-			icon: 'material-symbols:drive-file-rename-outline-outline-rounded',
+			icon: 'rename',
 			text: 'Rename',
 			handler: handleRename,
 			active: false,
 		},
 		{
-			icon: 'material-symbols:star-outline-rounded',
+			icon: 'star',
 			text: 'Add to Favorites',
 			handler: () => {},
 			active: false,
 		},
 		{
-			icon: 'material-symbols:content-copy-outline-rounded',
+			icon: 'duplicate',
 			text: 'Duplicate',
 			handler: () => {},
 			active: false,
@@ -40,7 +40,6 @@
 	$: activeItem = menuItems.find((item) => item.active)
 
 	onMount(() => {
-		console.log(item)
 		const windowHeight = window.innerHeight
 		const overflow = windowHeight - y - menu.clientHeight < 0
 
@@ -140,7 +139,7 @@
 	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
-		class="rounded-lg flex flex-col bg-nord3 shadow-xl shadow-nord0 text-nord6/80 w-66 absolute"
+		class="rounded-lg flex flex-col  shadow-xl w-66 absolute"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
@@ -151,14 +150,14 @@
 					class:active={item.active}
 					on:click={item.handler}
 					on:mouseenter={() => setActive(i)}>
-					<iconify-icon class="text-lg" icon={item.icon} />
+					<div class={item.icon} />
 					<span>{item.text}</span>
 				</button>
 			{/each}
 		</div>
 
 		{#if isNote(item) && item.last_edited}
-			<div class="border-t flex flex-col border-nord2 text-xs p-3 gap-1">
+			<div class="border-t flex flex-col text-xs p-3 gap-1">
 				<span>Last Edited: </span>
 				<span>{new Date(item.last_edited).toLocaleString()}</span>
 			</div>
@@ -172,6 +171,18 @@
 		@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
 	}
 	.active {
-		@apply bg-nord2 text-nord6;
+	}
+
+	.rename {
+		@apply i-ri-edit-line text-lg;
+	}
+	.delete {
+		@apply i-ri-delete-bin-line text-lg;
+	}
+	.star {
+		@apply i-ri-star-line text-lg;
+	}
+	.duplicate {
+		@apply i-ri-file-copy-line text-lg;
 	}
 </style>

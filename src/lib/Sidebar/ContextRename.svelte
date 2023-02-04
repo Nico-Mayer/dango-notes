@@ -46,17 +46,18 @@
 <main class="h-screen text-sm w-screen top-0 left-0 z-200 absolute">
 	<div
 		id="rename-context-menu"
-		class="rounded-lg flex bg-nord3 h-9 shadow-xl p-1 animate-fast shadow-nord0 text-nord6/80 gap-2 absolute items-center"
+		class="rounded-lg flex h-9 shadow-xl p-1 gap-2 absolute items-center"
 		bind:this={container}
 		use:clickoutside
 		on:clickoutside={handleClose}>
-		<div class="rounded-lg flex h-full bg-nord2 w-[28px]">
-			<iconify-icon class="m-auto" icon="carbon:sun" />
+		<div
+			class="rounded-lg flex h-full w-[28px] items-center justify-center">
+			<div class="i-ri-bear-smile-line text-lg" />
 		</div>
 		<form on:submit|preventDefault={handleRename}>
 			<!-- svelte-ignore a11y-autofocus -->
 			<input
-				class="rounded bg-nord2 py-1 px-2 input"
+				class="rounded py-1 px-2 input"
 				type="text"
 				bind:value={newName}
 				maxlength="32"

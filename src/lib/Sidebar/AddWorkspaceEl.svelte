@@ -16,12 +16,10 @@
 </script>
 
 <button
-	class="flex h-9 w-full px-4 rotate-6 items-center justify-between group trans hover:(bg-nord3 text-nord5) "
+	class="flex h-9 w-full px-4 items-center justify-between group trans"
 	on:click={handleAddWorkspace}>
 	<section class="flex space-x-2 items-center">
-		<iconify-icon
-			icon="ri:add-fill"
-			class="text-lg  group-hover:rubberBand" />
+		<div class="i-ri-add-fill text-lg group-hover:rotate-360 trans " />
 		<span class="font-semibold text-sm">Add a workspace</span>
 	</section>
 </button>

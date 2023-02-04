@@ -1,4 +1,4 @@
-import { defineConfig } from 'windicss/helpers'
+/* import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
 	darkMode: 'class',
@@ -44,3 +44,4 @@ export default defineConfig({
 		shakeX: 'animate-shakeX animate-animated',
 	},
 })
+ */

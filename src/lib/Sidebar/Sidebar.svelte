@@ -6,6 +6,7 @@
 	import NavFolder from './NavFolder.svelte'
 	import UserItem from './UserItem.svelte'
 	import { tippy } from '$lib/tippy'
+	import DarkToggle from '$lib/DarkToggle.svelte'
 
 	export let folderTree: Folder[] | null
 	export let user: User
@@ -69,30 +70,29 @@
 </script>
 
 <main
-	class="flex flex-col h-screen bg-nord1 min-w-[270px] w-70 select-none relative sidebar"
-	class:hidden={!$sidebarOpen}
+	class="flex flex-col h-screen min-w-[270px] w-70 select-none relative sidebar dark:bg-nord1"
+	class:hide={!$sidebarOpen}
 	bind:this={sidebar}>
 	<section id="top" class="group">
-		<div class="flex h-12 p-2  items-center justify-between">
+		<div class="flex h-12 p-2 items-center justify-between">
 			<div class="flex ml-2 gap-2 items-center">
-				<iconify-icon
-					icon="fluent-emoji-high-contrast:dango"
-					class="text-xl" />
+				<img
+					src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg"
+					class="h-6 w-auto"
+					alt="dango" />
 			</div>
 
 			<button
-				class="rounded-lg flex opacity-0 p-1 trans items-center hover:bg-nord3 group-hover:opacity-100"
+				class="rounded-lg flex opacity-0 p-1 trans items-center group-hover:opacity-100"
 				on:click={handleMinimize}
 				use:tippy={{ content: 'Close sidebar' }}>
-				<iconify-icon
-					class="text-xl hover:(rubberBand text-nord6) "
-					icon="material-symbols:keyboard-double-arrow-left-rounded" />
+				<div class="i-akar-icons-sidebar-left text-xl" />
 			</button>
 		</div>
 		<section class="flex flex-col w-full p-2 gap-2">
 			<div
-				class="rounded-lg flex bg-nord2 w-full py-2 px-4 items-center justify-center ">
-				<iconify-icon icon="ri:search-line" />
+				class="rounded-lg flex w-full py-2 px-4 items-center justify-center bg-nord6">
+				<dic class="i-ri-search-line" />
 				<input
 					class="bg-transparent outline-none ml-2 w-full"
 					placeholder="Search..."
@@ -100,23 +100,18 @@
 			</div>
 
 			<div class="flex text-lg justify-between">
-				<a
-					href="/"
-					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center  hover:(bg-nord3 text-nord5) ">
-					<iconify-icon icon="akar-icons:home-alt1" />
+				<a href="/" class="shortcut">
+					<div class="i-akar-icons-home" />
 				</a>
-				<button
-					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord5) ">
-					<iconify-icon icon="ri:moon-line" />
-				</button>
-				<a
-					href="/trash"
-					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord5) ">
-					<iconify-icon icon="akar-icons:trash-bin" />
+
+				<DarkToggle
+					class="rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6" />
+
+				<a href="/trash" class="shortcut">
+					<div class="i-akar-icons-trash" />
 				</a>
-				<button
-					class="rounded-lg flex bg-nord2 h-13 w-13 trans items-center justify-center hover:(bg-nord3 text-nord5) ">
-					<iconify-icon icon="ri:settings-3-line" />
+				<button class="shortcut">
+					<div class="i-akar-icons-gear" />
 				</button>
 			</div>
 		</section>
@@ -147,7 +142,7 @@
 			class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
 			on:mousedown={handleSidebarResize}>
 			<div
-				class="border-l h-full border-nord3 duration-500 trans group-hover:(border-nord4/50) "
+				class="border-l h-full duration-500 trans"
 				class:is-resizing={resizing} />
 		</div>
 	</div>
@@ -159,7 +154,9 @@
 	}
 
 	.is-resizing {
-		@apply border-nord4/50;
+	}
+	.hide {
+		@apply hidden;
 	}
 
 	.resize-container {
@@ -172,5 +169,12 @@
 		z-index: 1;
 		pointer-events: auto;
 		transition: width 0.2s ease 0s;
+	}
+
+	.shortcut {
+		@apply rounded-lg flex h-13 w-13 trans items-center justify-center bg-nord6;
+	}
+	.shortcut:hover {
+		@apply bg-nord5;
 	}
 </style>

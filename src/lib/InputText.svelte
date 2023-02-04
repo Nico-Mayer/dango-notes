@@ -12,7 +12,7 @@
 </script>
 
 <div
-	class="rounded flex flex-col bg-nord1 w-full py-2 px-4 ring-blue-400 gap-2"
+	class="rounded flex flex-col w-full py-2 px-4 ring-blue-400 gap-2"
 	class:ring-2={selected}>
 	<label class="flex text-sm gap-1 items-center" for="username">
 		<div class={$$props.class} />
