@@ -96,7 +96,8 @@
 
 <style>
 	.input-field {
-		@apply bg-transparent border-none rounded-lg outline-none py-1 px-4 transition-all ease-in-out duration-250;
+		--at-apply: bg-transparent border-none rounded-lg outline-none py-1 px-4
+			transition-all ease-in-out duration-250;
 	}
 	.input-field:hover {
 	}
@@ -104,6 +105,6 @@
 	}
 
 	.hide {
-		@apply hidden;
+		--at-apply: hidden;
 	}
 </style>

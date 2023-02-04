@@ -155,7 +155,7 @@
 	.is-resizing {
 	}
 	.hide {
-		@apply hidden;
+		--at-apply: hidden;
 	}
 
 	.resize-container {

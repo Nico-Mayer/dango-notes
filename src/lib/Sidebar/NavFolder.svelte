@@ -104,17 +104,17 @@
 
 <style>
 	.workspace {
-		@apply border-b rounded-none h-10;
+		--at-apply: border-b rounded-none h-10;
 	}
 
 	.openWs {
-		@apply border-b p-1;
+		--at-apply: border-b p-1;
 	}
 	.folder {
-		@apply text-lg i-ri-folder-line trans;
+		--at-apply: text-lg i-ri-folder-line trans;
 	}
 
 	.openFolder {
-		@apply text-lg i-ri-folder-open-line trans;
+		--at-apply: text-lg i-ri-folder-open-line trans;
 	}
 </style>

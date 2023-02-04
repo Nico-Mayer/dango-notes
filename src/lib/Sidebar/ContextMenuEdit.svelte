@@ -157,7 +157,8 @@
 		</div>
 
 		{#if isNote(item) && item.last_edited}
-			<div class="border-t flex flex-col text-xs p-3 gap-1">
+			<div
+				class="border-t flex flex-col text-xs p-3 gap-1 dark:border-nord2">
 				<span>Last Edited: </span>
 				<span>{new Date(item.last_edited).toLocaleString()}</span>
 			</div>
@@ -168,19 +169,20 @@
 
 <style>
 	.ctx-btn {
-		@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
+		--at-apply: rounded-lg flex h-8 text-left px-2 gap-4 items-center
+			justify-start;
 	}
 
 	.rename {
-		@apply text-lg i-ri-edit-line;
+		--at-apply: text-lg i-ri-edit-line;
 	}
 	.delete {
-		@apply text-lg i-ri-delete-bin-line;
+		--at-apply: text-lg i-ri-delete-bin-line;
 	}
 	.star {
-		@apply text-lg i-ri-star-line;
+		--at-apply: text-lg i-ri-star-line;
 	}
 	.duplicate {
-		@apply text-lg i-ri-file-copy-line;
+		--at-apply: text-lg i-ri-file-copy-line;
 	}
 </style>

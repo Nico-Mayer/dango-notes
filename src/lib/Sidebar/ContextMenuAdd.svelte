@@ -138,13 +138,14 @@
 
 <style>
 	.ctx-btn {
-		@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
+		--at-apply: rounded-lg flex h-8 text-left px-2 gap-4 items-center
+			justify-start;
 	}
 
 	.addFile {
-		@apply text-lg i-ri-file-add-line;
+		--at-apply: text-lg i-ri-file-add-line;
 	}
 	.addFolder {
-		@apply text-lg i-ri-folder-add-line;
+		--at-apply: text-lg i-ri-folder-add-line;
 	}
 </style>
