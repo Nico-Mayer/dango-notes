@@ -139,7 +139,7 @@
 	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
-		class="bg-white rounded-lg flex  flex-col shadow-xl w-66 absolute dark:bg-nord3"
+		class="bg-white rounded-lg flex flex-col shadow-xl w-66 absolute dark:bg-nord3"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>

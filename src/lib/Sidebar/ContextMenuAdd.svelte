@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import { contextMenuAdd } from '$lib/store'
-	import { clickoutside } from '@svelte-put/clickoutside'
-	import { addFolder, addNote, updateFolder } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 	import { isFolder, isWorkspace } from '$lib/Helper/utils'
+	import { contextMenuAdd } from '$lib/store'
+	import { addFolder, addNote, updateFolder } from '$lib/supabase'
+	import { clickoutside } from '@svelte-put/clickoutside'
+	import { onMount } from 'svelte'
 
 	const { x, y } = $contextMenuAdd
 
