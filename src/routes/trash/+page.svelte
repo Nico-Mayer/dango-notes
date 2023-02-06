@@ -115,9 +115,9 @@
 
 <style>
 	.table-header {
-		@apply font-medium text-sm text-left py-4 px-6;
+		--at-apply: font-medium text-sm text-left py-4 px-6;
 	}
 	.table-data {
-		@apply font-light text-sm py-4 px-6 whitespace-nowrap;
+		--at-apply: font-light text-sm py-4 px-6 whitespace-nowrap;
 	}
 </style>

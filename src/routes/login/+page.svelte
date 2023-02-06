@@ -108,24 +108,25 @@
 
 <style>
 	.social-btn {
-		@apply rounded-full flex font-semibold p-3 transition-all gap-3 duration-200 justify-center items-center;
+		--at-apply: rounded-full flex font-semibold p-3 transition-all gap-3
+			duration-200 justify-center items-center;
 	}
 	.social-btn:hover {
-		@apply opacity-90;
-		@apply shadow-lg;
+		--at-apply: opacity-90;
+		--at-apply: shadow-lg;
 	}
 	.separator {
 		display: flex;
 		align-items: center;
 		text-align: center;
-		@apply text-sm;
+		--at-apply: text-sm;
 	}
 
 	.separator::before,
 	.separator::after {
 		content: '';
 		flex: 1;
-		@apply border-b;
+		--at-apply: border-b;
 	}
 
 	.separator:not(:empty)::before {
