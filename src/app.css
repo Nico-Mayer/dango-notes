@@ -48,3 +48,16 @@ select:-webkit-autofill:focus {
 ::-webkit-scrollbar-thumb:hover {
 	@apply dark:bg-nord3;
 }
+
+.files-icon {
+	--at-apply: i-akar-icons-copy;
+}
+.search-icon {
+	--at-apply: i-akar-icons-search;
+}
+.trash-icon {
+	--at-apply: i-akar-icons-trash;
+}
+.settings-icon {
+	--at-apply: i-akar-icons-gear;
+}

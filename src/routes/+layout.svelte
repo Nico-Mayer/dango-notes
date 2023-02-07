@@ -91,18 +91,20 @@
 		<ContextRename />
 	{/if}
 
-	{#if session && user}
-		<Sidebar {user} {folderTree} />
-	{/if}
-
 	<Toaster />
 
 	<div class="flex flex-col flex-1">
-		{#if session}
+		{#if session && user}
 			<Navbar {currentFolder} {currentNote} />
 		{/if}
 
-		<slot />
+		<div class="flex flex-1">
+			{#if session && user}
+				<Sidebar {user} {folderTree} />
+			{/if}
+
+			<slot />
+		</div>
 	</div>
 </main>
 

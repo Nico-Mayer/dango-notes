@@ -7,14 +7,39 @@
 	import UserItem from './UserItem.svelte'
 	import { tippy } from '$lib/tippy'
 	import DarkToggle from '$lib/DarkToggle.svelte'
+	import SideItem from './SideItem.svelte'
 
 	export let folderTree: Folder[] | null
 	export let user: User
 
 	$: ({ id } = user)
 
+	const xOff = 48
 	const minSize = 270
 	const maxSize = 500
+
+	const sidebarItems = [
+		{
+			icon: 'files-icon',
+			name: 'main',
+			link: '/',
+		},
+		{
+			icon: 'search-icon',
+			name: 'Search',
+			link: `/profile/${id}`,
+		},
+		{
+			icon: 'trash-icon',
+			name: 'Trash',
+			link: '/trash',
+		},
+		{
+			icon: 'settings-icon',
+			name: 'Settings',
+			link: '/settings',
+		},
+	]
 
 	let sidebar: HTMLElement
 	let resizing = false
@@ -25,8 +50,8 @@
 		if (width && parseInt(width) >= minSize && parseInt(width) <= maxSize) {
 			sidebar.style.width = width
 		} else {
-			sidebar.style.width = '280px'
-			localStorage.setItem('sidebarWidth', '280px')
+			sidebar.style.width = `${330}px`
+			localStorage.setItem('sidebarWidth', `${330}px`)
 		}
 	})
 
@@ -35,8 +60,9 @@
 		window.addEventListener('mousemove', handleMouseMove)
 		window.addEventListener('mouseup', handleMouseUp)
 		function handleMouseMove(e: MouseEvent) {
-			if (e.clientX > minSize && e.clientX < maxSize) {
-				sidebar.style.width = e.clientX + 'px'
+			if (e.clientX - xOff > minSize && e.clientX - xOff < maxSize) {
+				console.log(e.clientX - xOff)
+				sidebar.style.width = e.clientX - xOff + 'px'
 				document.body.style.cursor = 'col-resize'
 			}
 		}
@@ -69,80 +95,43 @@
 	}
 </script>
 
-<main
-	class="flex flex-col h-screen min-w-[270px] w-70 select-none relative sidebar dark:bg-nord1"
-	class:hide={!$sidebarOpen}
-	bind:this={sidebar}>
-	<section id="top" class="group">
-		<div class="flex h-12 p-2 items-center justify-between">
-			<div class="flex ml-2 gap-2 items-center">
-				<img
-					src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg"
-					class="h-6 w-auto"
-					alt="dango" />
-			</div>
-
-			<button
-				class="rounded-lg flex opacity-0 p-1 trans items-center group-hover:opacity-100"
-				on:click={handleMinimize}
-				use:tippy={{ content: 'Close sidebar' }}>
-				<div class="text-xl i-akar-icons-sidebar-left" />
-			</button>
-		</div>
-		<section class="flex flex-col w-full p-2 gap-2">
-			<div
-				class="rounded-lg flex bg-nord6 w-full py-2 px-4 items-center justify-center dark:bg-nord2">
-				<dic class="i-ri-search-line" />
-				<input
-					class="bg-transparent outline-none ml-2 w-full"
-					placeholder="Search..."
-					type="text" />
-			</div>
-
-			<div class="flex text-lg justify-between">
-				<a href="/" class="shortcut">
-					<div class="i-akar-icons-home" />
-				</a>
-
-				<DarkToggle class="shortcut" />
-
-				<a href="/trash" class="shortcut">
-					<div class="i-akar-icons-trash" />
-				</a>
-				<button class="shortcut">
-					<div class="i-akar-icons-gear" />
-				</button>
-			</div>
+<main class="flex select-none ">
+	<div class="flex flex-col h-full w-12 items-center">
+		<section class="flex flex-col">
+			{#each sidebarItems as item}
+				<SideItem name={item.name} class={item.icon} />
+			{/each}
 		</section>
+	</div>
 
-		<section />
-	</section>
+	<div
+		class="flex flex-col min-w-[270px] w-70 relative dark:bg-nord1"
+		class:hide={!$sidebarOpen}
+		bind:this={sidebar}>
+		<nav
+			class="border-transparent border-t max-h-full h-[calc(100vh_-_48px)] overflow-y-auto dark:border-transparent"
+			on:scroll={handleScroll}
+			bind:this={scrollContainer}>
+			<ul>
+				{#if folderTree}
+					{#each folderTree as rootFolder}
+						<NavFolder item={rootFolder} lvl={0} />
+					{/each}
+				{/if}
+			</ul>
+			<div class="mt-2">
+				<AddWorkspaceEl userId={id} />
+			</div>
+		</nav>
 
-	<nav
-		class="border-transparent border-t h-full max-h-full overflow-y-auto dark:border-transparent"
-		on:scroll={handleScroll}
-		bind:this={scrollContainer}>
-		<ul class="py-1">
-			{#if folderTree}
-				{#each folderTree as rootFolder}
-					<NavFolder item={rootFolder} lvl={0} />
-				{/each}
-			{/if}
-		</ul>
-		<div class="mt-2">
-			<AddWorkspaceEl userId={id} />
-		</div>
-	</nav>
-
-	<UserItem {user} />
-
-	<div class="resize-container">
-		<div
-			class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
-			on:mousedown={handleSidebarResize}>
+		<div class="resize-container">
 			<div
-				class="border-l h-full  duration-500 trans group-hover:(border-nord3 opacity-50) dark:group-hover:border-nord4 "
-				class:is-resizing={resizing} />
+				class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
+				on:mousedown={handleSidebarResize}>
+				<div
+					class=" h-full trans group-hover:(border-l border-nord3 opacity-50) dark:group-hover:(border-l border-nord4) "
+					class:is-resizing={resizing} />
+			</div>
 		</div>
 	</div>
 </main>
