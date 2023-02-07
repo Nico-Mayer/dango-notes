@@ -68,14 +68,14 @@
 		display: flex;
 		align-items: center;
 		text-align: center;
-		@apply text-sm;
+		--at-apply: text-sm;
 	}
 
 	.separator::before,
 	.separator::after {
 		content: '';
 		flex: 1;
-		@apply border-b;
+		--at-apply: border-b;
 	}
 
 	.separator:not(:empty)::before {
