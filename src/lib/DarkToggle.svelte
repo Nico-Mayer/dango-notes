@@ -17,6 +17,8 @@
 	}
 </script>
 
-<button class={$$props.class} on:click={toggleTheme}>
-	<div class="i-ri-sun-line" />
+<button
+	class="h-12 opacity-60 w-12 trans hover:opacity-100"
+	on:click={toggleTheme}>
+	<div class="m-auto text-xl i-ri-moon-line dark:i-ri-sun-line" />
 </button>

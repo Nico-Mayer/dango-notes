@@ -56,7 +56,7 @@ select:-webkit-autofill:focus {
 	--at-apply: i-akar-icons-search;
 }
 .trash-icon {
-	--at-apply: i-akar-icons-trash;
+	--at-apply: i-akar-icons-trash-bin;
 }
 .settings-icon {
 	--at-apply: i-akar-icons-gear;

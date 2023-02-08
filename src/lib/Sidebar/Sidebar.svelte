@@ -96,11 +96,19 @@
 </script>
 
 <main class="flex select-none ">
-	<div class="flex flex-col h-full w-12 items-center">
+	<div
+		class="flex flex-col h-full bg-nord6 w-12 items-center justify-between dark:bg-nord0">
 		<section class="flex flex-col">
 			{#each sidebarItems as item}
 				<SideItem name={item.name} class={item.icon} />
 			{/each}
+		</section>
+		<section class="flex flex-col items-center">
+			<DarkToggle />
+			<button class="h-12 w-12">
+				<div
+					class="m-auto text-xl opacity-60 i-ri-side-bar-line hover:opacity-100" />
+			</button>
 		</section>
 	</div>
 

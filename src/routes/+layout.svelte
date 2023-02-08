@@ -95,7 +95,7 @@
 
 	<div class="flex flex-col flex-1">
 		{#if session && user}
-			<Navbar {currentFolder} {currentNote} />
+			<Navbar {user} {currentFolder} {currentNote} />
 		{/if}
 
 		<div class="flex flex-1">
