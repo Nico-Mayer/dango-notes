@@ -8,6 +8,7 @@
 	import { tippy } from '$lib/tippy'
 	import DarkToggle from '$lib/DarkToggle.svelte'
 	import SideItem from './SideItem.svelte'
+	import Workspaces from '$lib/Sidebar/Views/Workspaces.svelte'
 
 	export let folderTree: Folder[] | null
 	export let user: User
@@ -23,21 +24,25 @@
 			icon: 'files-icon',
 			name: 'main',
 			link: '/',
+			active: true,
 		},
 		{
 			icon: 'search-icon',
 			name: 'Search',
 			link: `/profile/${id}`,
+			active: false,
 		},
 		{
 			icon: 'trash-icon',
 			name: 'Trash',
 			link: '/trash',
+			active: false,
 		},
 		{
 			icon: 'settings-icon',
 			name: 'Settings',
 			link: '/settings',
+			active: false,
 		},
 	]
 
@@ -100,7 +105,10 @@
 		class="flex flex-col h-full bg-nord6 w-12 items-center justify-between dark:bg-nord0">
 		<section class="flex flex-col">
 			{#each sidebarItems as item}
-				<SideItem name={item.name} class={item.icon} />
+				<SideItem
+					name={item.name}
+					class={item.icon}
+					active={item.active} />
 			{/each}
 		</section>
 		<section class="flex flex-col items-center">
@@ -120,15 +128,10 @@
 			class="border-transparent border-t max-h-full h-[calc(100vh_-_48px)] overflow-y-auto dark:border-transparent"
 			on:scroll={handleScroll}
 			bind:this={scrollContainer}>
-			<ul>
-				{#if folderTree}
-					{#each folderTree as rootFolder}
-						<NavFolder item={rootFolder} lvl={0} />
-					{/each}
+			<div>
+				{#if sidebarItems[0].active}
+					<Workspaces {folderTree} {id} />
 				{/if}
-			</ul>
-			<div class="mt-2">
-				<AddWorkspaceEl userId={id} />
 			</div>
 		</nav>
 
@@ -150,6 +153,7 @@
 	}
 
 	.is-resizing {
+		--at-apply: border-l border-nord3 opacity-50 dark:(border-l border-nord4);
 	}
 	.hide {
 		--at-apply: hidden;

@@ -2,7 +2,6 @@
 	import { invalidateAll } from '$app/navigation'
 	import UserItem from '$lib/Sidebar/UserItem.svelte'
 	import type { User } from '@supabase/supabase-js'
-	import { slide, fade } from 'svelte/transition'
 	import { updateNote } from './supabase'
 
 	export let currentFolder: Folder | undefined
@@ -10,7 +9,6 @@
 	export let user: User
 
 	let inputNoteName: HTMLInputElement
-	let hover = false
 
 	$: noteName = currentNote?.name
 
@@ -36,22 +34,13 @@
 
 <main
 	class="flex bg-nord6 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord0">
-	<section
-		class="flex trans hover:bg-nord10/20"
-		on:mouseenter={() => (hover = true)}
-		on:mouseleave={() => (hover = false)}>
+	<section class="flex trans hover:bg-nord10/20">
 		<div class="flex h-10 w-12">
 			<img
 				src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg?color=%2381a1c1"
 				class="m-auto h-[24px] w-[24px]"
 				alt="logo" />
 		</div>
-
-		{#if hover}
-			<div>
-				<h1 class="flex">Dango Notes</h1>
-			</div>
-		{/if}
 	</section>
 
 	{#if currentNote}
