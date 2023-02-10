@@ -1,4 +1,6 @@
-export const GET = async ({ locals }) => {
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async ({ locals }) => {
 	async function getTrashedNotes(locals: Locals): Promise<Note[]> {
 		if (!locals.session) return []
 		const { id: owner } = locals?.session?.user
