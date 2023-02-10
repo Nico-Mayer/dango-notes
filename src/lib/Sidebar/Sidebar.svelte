@@ -2,13 +2,11 @@
 	import { sidebarOpen } from '$lib/store'
 	import type { User } from '@supabase/supabase-js'
 	import { onMount } from 'svelte'
-	import AddWorkspaceEl from './AddWorkspaceEl.svelte'
-	import NavFolder from './NavFolder.svelte'
-	import UserItem from './UserItem.svelte'
 	import { tippy } from '$lib/tippy'
 	import DarkToggle from '$lib/DarkToggle.svelte'
 	import SideItem from './SideItem.svelte'
 	import Workspaces from '$lib/Sidebar/Views/Workspaces.svelte'
+	import Trash from './Views/Trash.svelte'
 
 	export let folderTree: Folder[] | null
 	export let user: User
@@ -18,31 +16,32 @@
 	const xOff = 48
 	const minSize = 270
 	const maxSize = 500
+	let active = 0
 
 	const sidebarItems = [
 		{
 			icon: 'files-icon',
 			name: 'main',
 			link: '/',
-			active: true,
+			index: 0,
 		},
 		{
 			icon: 'search-icon',
 			name: 'Search',
 			link: `/profile/${id}`,
-			active: false,
+			index: 1,
 		},
 		{
 			icon: 'trash-icon',
 			name: 'Trash',
 			link: '/trash',
-			active: false,
+			index: 2,
 		},
 		{
 			icon: 'settings-icon',
 			name: 'Settings',
 			link: '/settings',
-			active: false,
+			index: 3,
 		},
 	]
 
@@ -94,9 +93,9 @@
 		}
 	}
 
-	function handleMinimize() {
-		$sidebarOpen = false
-		localStorage.setItem('sidebarOpen', 'false')
+	function toggleSidebar() {
+		$sidebarOpen = !$sidebarOpen
+		localStorage.setItem('sidebarOpen', $sidebarOpen.toString())
 	}
 </script>
 
@@ -106,15 +105,17 @@
 		<section class="flex flex-col">
 			{#each sidebarItems as item}
 				<SideItem
+					on:click={() => (active = item.index)}
 					name={item.name}
 					class={item.icon}
-					active={item.active} />
+					active={active === item.index} />
 			{/each}
 		</section>
 		<section class="flex flex-col items-center">
 			<DarkToggle />
 			<button class="h-12 w-12">
-				<div
+				<button
+					on:click={toggleSidebar}
 					class="m-auto text-xl opacity-60 i-ri-side-bar-line hover:opacity-100" />
 			</button>
 		</section>
@@ -129,8 +130,10 @@
 			on:scroll={handleScroll}
 			bind:this={scrollContainer}>
 			<div>
-				{#if sidebarItems[0].active}
+				{#if active === 0}
 					<Workspaces {folderTree} {id} />
+				{:else if active === 2}
+					<Trash />
 				{/if}
 			</div>
 		</nav>
