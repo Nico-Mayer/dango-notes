@@ -1,6 +1,6 @@
-import type { PageServerLoad } from './$types'
+import type { RequestHandler } from './$types'
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const GET: RequestHandler = async ({ locals }) => {
 	async function getTrashedNotes(locals: Locals): Promise<Note[]> {
 		if (!locals.session) return []
 		const { id: owner } = locals?.session?.user
@@ -43,7 +43,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		return [...notes, ...folders]
 	}
 
-	return {
-		trashItems: getTrashItems(locals),
-	}
+	return new Response(
+		JSON.stringify({ trashItems: await getTrashItems(locals) })
+	)
 }
