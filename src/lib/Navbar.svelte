@@ -1,110 +1,66 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation'
-	import { updateFolder, updateNote } from '$lib/supabase'
-	import { sidebarOpen } from './store'
-	import { page } from '$app/stores'
+	import UserItem from '$lib/Sidebar/UserItem.svelte'
+	import type { User } from '@supabase/supabase-js'
+	import { updateNote } from './supabase'
 
 	export let currentFolder: Folder | undefined
 	export let currentNote: Note | undefined
+	export let user: User
 
-	let inputFolderName: HTMLInputElement
 	let inputNoteName: HTMLInputElement
 
-	$: folderName = currentFolder?.name
 	$: noteName = currentNote?.name
 
-	$: inTrash = $page.route.id === '/trash'
-	$: home = $page.route.id === '/'
+	async function handleSubmit() {
+		if (currentNote === undefined || noteName === undefined) return
 
-	async function handleSubmit(type: 'folder' | 'note') {
-		if (type === 'folder') {
-			if (currentFolder === undefined || folderName === undefined) return
+		let newName =
+			inputNoteName.value.length > 0 ? inputNoteName.value : 'Untitled'
 
-			const { error } = await updateFolder(currentFolder.id, {
-				...currentFolder,
-				name: inputFolderName.value,
-			})
-
-			if (error) console.error(error)
-
-			inputFolderName.blur()
-			invalidateAll()
-		}
-		if (type === 'note') {
-			if (
-				currentNote === undefined ||
-				noteName === undefined ||
-				currentFolder === undefined
-			)
-				return
-
-			const { error } = await updateNote(currentNote.id, {
-				...currentNote,
-				name: inputNoteName.value,
-			})
-
-			if (error) console.error(error)
-
-			inputNoteName.blur()
-			invalidateAll()
-		}
+		const { error } = await updateNote(currentNote.id, {
+			...currentNote,
+			name: newName,
+		})
+		if (error) console.error(error)
+		inputNoteName.blur()
+		invalidateAll()
 	}
 </script>
 
-<main class="flex font-semibold h-12 w-full p-2 gap-5 items-center ">
-	<button
-		class="rounded-lg flex p-1 trans items-center"
-		class:hide={$sidebarOpen}
-		on:click={() => {
-			$sidebarOpen = true
-		}}>
-		<div class="text-xl i-carbon-menu" />
-	</button>
+<svelte:head>
+	<title>{'Dango Notes | ' + currentNote?.name ?? 'Untitled'}</title>
+</svelte:head>
 
-	<div class="flex gap-2 items-center">
-		{#if home}
-			<h1 class="px-4">Home</h1>
-		{:else if inTrash}
-			<h1 class="px-4">Trash</h1>
-		{:else}
-			<div>
-				<form on:submit|preventDefault={() => handleSubmit('folder')}>
-					<input
-						bind:this={inputFolderName}
-						maxlength="32"
-						class="input-field"
-						type="text"
-						value={folderName}
-						on:blur={() => handleSubmit('folder')} />
-				</form>
-			</div>
-			<span> / </span>
-			<div>
-				<form on:submit|preventDefault={() => handleSubmit('note')}>
-					<input
-						bind:this={inputNoteName}
-						maxlength="32"
-						class="input-field"
-						type="text"
-						value={noteName}
-						on:blur={() => handleSubmit('note')} />
-				</form>
-			</div>
-		{/if}
-	</div>
+<main
+	class="flex bg-nord6 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord0">
+	<section class="flex trans hover:bg-nord10/20">
+		<div class="flex h-10 w-12">
+			<img
+				src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg?color=%2381a1c1"
+				class="m-auto h-[24px] w-[24px]"
+				alt="logo" />
+		</div>
+	</section>
+
+	{#if currentNote}
+		<section id="mid">
+			<form on:submit|preventDefault={() => handleSubmit()}>
+				<input
+					on:focus={() => {
+						inputNoteName.select()
+					}}
+					bind:this={inputNoteName}
+					type="text"
+					class="bg-transparent h-10 text-center text-sm py-1 px-2 w-32 hover:(dark:bg-nord3 bg-nord5) focus:(outline-none hover:bg-transparent) "
+					maxlength="32"
+					value={noteName}
+					on:blur={() => handleSubmit()} />
+			</form>
+		</section>
+	{/if}
+
+	<section id="right">
+		<UserItem {user} />
+	</section>
 </main>
-
-<style>
-	.input-field {
-		--at-apply: bg-transparent border-none rounded-lg outline-none py-1 px-4
-			transition-all ease-in-out duration-250;
-	}
-	.input-field:hover {
-	}
-	.input-field:focus {
-	}
-
-	.hide {
-		--at-apply: hidden;
-	}
-</style>
