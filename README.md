@@ -10,7 +10,7 @@ A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 -   ☁️ Cloud synced across devices
 -   Ⓜ️ Preview & edit notes in real-time with Markdown syntax & rich text
 -   👤 Social login with [ GitHub, Discord, Google ]
--   🌓 Dark ~~and Light~~ mode powerd by [Nord](https://www.nordtheme.com/docs/colors-and-palettes)
+-   🌓 Dark and Light mode powered by [Nord](https://www.nordtheme.com/docs/colors-and-palettes)
 
 ## TechStack
 
@@ -31,11 +31,10 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Improved login flow / Magic links login / State machine & animations
 -   [ ] Emoji picker & item rename improvements
 -   [ ] User settings Page
--   [ ] Light mode
+-   [x] Light mode
 -   [ ] Note sharing and & Y.js collaboration feature (?)
 -   [ ] Persistent sorting inside folders
--   [ ] Improve navbar & breadcrumbs
--   [ ] Home note / page
+-   [ ] Improve navbar
 -   [ ] Encrypt notes
 -   [ ] Note tree search
 -   [x] Row level security
@@ -59,3 +58,4 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Store Folder Tree in store memory for jit updates
 -   [ ] PDF Export
 -   [ ] Folder / Workspace download
+-   [ ] Home note / page
