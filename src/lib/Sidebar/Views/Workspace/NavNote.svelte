@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { tippy } from '$lib/tippy'
-	import { contextMenuEdit } from '$lib/store'
-	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
+	import { contextMenuEdit } from '$lib/store'
+	import { tippy } from '$lib/tippy'
+	import { onMount } from 'svelte'
+
 	export let item: Note
 	export let lvl: number
 

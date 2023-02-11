@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { addFolder } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
+	import { addFolder } from '$lib/supabase'
+
 	export let userId: string | undefined
 
 	async function handleAddWorkspace() {
@@ -19,7 +20,7 @@
 	class="flex h-9 w-full px-4 items-center justify-between group trans"
 	on:click={handleAddWorkspace}>
 	<section class="flex space-x-2 items-center">
-		<div class="i-ri-add-fill text-lg group-hover:rotate-360 trans " />
+		<div class="text-lg i-ri-add-fill trans group-hover:rotate-360 " />
 		<span class="font-semibold text-sm">Add a workspace</span>
 	</section>
 </button>

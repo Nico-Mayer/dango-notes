@@ -5,10 +5,11 @@
 	import { tippy } from '$lib/tippy'
 	import DarkToggle from '$lib/DarkToggle.svelte'
 	import SideItem from './SideItem.svelte'
-	import Workspaces from '$lib/Sidebar/Views/Workspaces.svelte'
-	import Trash from './Views/Trash.svelte'
+	import Workspaces from '$lib/Sidebar/Views/Workspace/Workspaces.svelte'
+	import Trash from './Views/Trash/Trash.svelte'
 
 	export let folderTree: Folder[] | null
+	export let trashItems: (Folder | Note)[] | undefined
 	export let user: User
 
 	$: ({ id } = user)
@@ -133,7 +134,7 @@
 				{#if active === 0}
 					<Workspaces {folderTree} {id} />
 				{:else if active === 2}
-					<Trash />
+					<Trash {trashItems} />
 				{/if}
 			</div>
 		</nav>

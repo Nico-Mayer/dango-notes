@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation'
-	import UserItem from '$lib/Sidebar/UserItem.svelte'
+	import UserItem from '$lib/Navbar/UserItem.svelte'
 	import type { User } from '@supabase/supabase-js'
-	import { updateNote } from './supabase'
+	import { updateNote } from '../supabase'
 
-	export let currentFolder: Folder | undefined
 	export let currentNote: Note | undefined
 	export let user: User
 

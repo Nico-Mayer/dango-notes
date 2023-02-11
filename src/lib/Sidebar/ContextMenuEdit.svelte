@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import { contextMenuEdit, contextRename } from '$lib/store'
-	import { clickoutside } from '@svelte-put/clickoutside'
-	import { trashFolder, trashNote } from '$lib/supabase'
 	import { invalidateAll } from '$app/navigation'
 	import { isNote, makeToastPromise } from '$lib/Helper/utils'
+	import { contextMenuEdit, contextRename } from '$lib/store'
+	import { trashFolder, trashNote } from '$lib/supabase'
+	import { clickoutside } from '@svelte-put/clickoutside'
+	import { onMount } from 'svelte'
 
 	const { x, y, item } = $contextMenuEdit
 

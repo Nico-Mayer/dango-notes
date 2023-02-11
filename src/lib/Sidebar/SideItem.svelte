@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	const dispatch = createEventDispatcher()
 
 	export let active: boolean
+
+	const dispatch = createEventDispatcher()
 
 	function handleClick() {
 		dispatch('click')

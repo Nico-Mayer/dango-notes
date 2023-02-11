@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { contextMenuAdd, contextMenuEdit } from '$lib/store'
 	import { updateFolder } from '$lib/supabase'
+	import { tippy } from '$lib/tippy'
 	import { onMount } from 'svelte'
 	import { slide } from 'svelte/transition'
 	import NavFolder from './NavFolder.svelte'
 	import NavNote from './NavNote.svelte'
-	import { tippy } from '$lib/tippy'
 
 	export let item: Folder
 	export let lvl: number

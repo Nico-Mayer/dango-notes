@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AddWorkspaceEl from '../AddWorkspaceEl.svelte'
-	import NavFolder from '../NavFolder.svelte'
+	import AddWorkspaceEl from './AddWorkspaceEl.svelte'
+	import NavFolder from './NavFolder.svelte'
 
 	export let folderTree: Folder[] | null
 	export let id: string

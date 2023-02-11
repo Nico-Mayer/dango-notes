@@ -1,8 +1,7 @@
 <script lang="ts">
-	import '@unocss/reset/tailwind.css'
 	import { invalidateAll } from '$app/navigation'
 	import { page } from '$app/stores'
-	import Navbar from '$lib/Navbar.svelte'
+	import Navbar from '$lib/Navbar/Navbar.svelte'
 	import ContextMenuAdd from '$lib/Sidebar/ContextMenuAdd.svelte'
 	import ContextMenuEdit from '$lib/Sidebar/ContextMenuEdit.svelte'
 	import ContextRename from '$lib/Sidebar/ContextRename.svelte'
@@ -14,6 +13,7 @@
 		sidebarOpen,
 	} from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
+	import '@unocss/reset/tailwind.css'
 	import 'iconify-icon'
 	import { onMount } from 'svelte'
 	import { Toaster } from 'svelte-french-toast'
@@ -22,10 +22,10 @@
 
 	export let data: LayoutData
 	let userId: string
-	let currentFolder: Folder | undefined = undefined
+
 	let currentNote: Note | undefined = undefined
 
-	$: ({ session, folderTree, notes, folders } = data)
+	$: ({ session, folderTree, notes, folders, trashItems } = data)
 	$: user = session?.user
 
 	$: {
@@ -33,13 +33,6 @@
 		else userId = ''
 	}
 	$: {
-		if ($page.params.folderId) {
-			currentFolder = folders?.find(
-				(folder) => folder.id === $page.params.folderId
-			)
-		} else {
-			currentFolder = undefined
-		}
 		if ($page.params.noteId) {
 			currentNote = notes?.find((note) => note.id === $page.params.noteId)
 		} else {
@@ -60,9 +53,10 @@
 
 	function handleKeyDown(event: KeyboardEvent) {
 		const meta = event.metaKey
+		const control = event.ctrlKey
 		const key = event.key
 
-		if (meta && key === 'b') {
+		if ((meta || control) && key === 'b') {
 			$sidebarOpen = !$sidebarOpen
 		}
 	}
@@ -95,12 +89,12 @@
 
 	<div class="flex flex-col flex-1">
 		{#if session && user}
-			<Navbar {user} {currentFolder} {currentNote} />
+			<Navbar {user} {currentNote} />
 		{/if}
 
 		<div class="flex flex-1">
 			{#if session && user}
-				<Sidebar {user} {folderTree} />
+				<Sidebar {user} {folderTree} {trashItems} />
 			{/if}
 
 			<slot />
