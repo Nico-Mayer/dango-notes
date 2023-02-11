@@ -51,7 +51,7 @@
 					}}
 					bind:this={inputNoteName}
 					type="text"
-					class="bg-transparent h-10 text-center text-sm py-1 px-2 w-32 hover:(dark:bg-nord3 bg-nord5) focus:(outline-none hover:bg-transparent) "
+					class="bg-transparent h-10 text-center text-sm py-1 px-2 w-32 hover:(dark:bg-nord3 bg-nord5) focus:(outline-none border hover:bg-transparent) "
 					maxlength="32"
 					value={noteName}
 					on:blur={() => handleSubmit()} />

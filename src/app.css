@@ -23,10 +23,10 @@ select:-webkit-autofill:focus {
 }
 
 .tippy-box[data-theme~='own'] {
-	@apply bg-nord4;
-	@apply text-nord0/60;
-	@apply rounded-lg;
-	@apply text-xs;
+	--at-apply: bg-nord4;
+	--at-apply: text-nord0/60;
+	--at-apply: rounded-lg;
+	--at-apply: dark:bg-nord3 dark:text-nord4/60;
 }
 
 /* width */
@@ -60,4 +60,10 @@ select:-webkit-autofill:focus {
 }
 .settings-icon {
 	--at-apply: i-akar-icons-gear;
+}
+.sidebar-line{
+	--at-apply: i-ri-side-bar-line;
+}
+.sidebar-fill{
+	--at-apply: i-ri-side-bar-fill;
 }

@@ -23,7 +23,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 
 ## Working on
 
-> Tippy.js
+> Emoji picker & item rename improvements
 
 ## Milestones & ToDo`s until beta release
 
@@ -40,7 +40,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [x] Row level security
 -   [ ] Code refactor
 -   [ ] Keyboard shortcuts
--   [ ] Tippy.js
+-   [x] Tippy.js
 
 ## Bugs & issues
 

@@ -22,7 +22,7 @@
 	const sidebarItems = [
 		{
 			icon: 'files-icon',
-			name: 'main',
+			name: 'Files',
 			link: '/',
 			index: 0,
 		},
@@ -107,17 +107,22 @@
 			{#each sidebarItems as item}
 				<SideItem
 					on:click={() => (active = item.index)}
-					name={item.name}
+					{item}
 					class={item.icon}
 					active={active === item.index} />
 			{/each}
 		</section>
 		<section class="flex flex-col items-center">
 			<DarkToggle />
-			<button class="h-12 w-12">
-				<button
-					on:click={toggleSidebar}
-					class="m-auto text-xl opacity-60 i-ri-side-bar-line hover:opacity-100" />
+			<button
+				class="h-12 opacity-60 w-12 hover:opacity-100"
+				on:click={toggleSidebar}
+				use:tippy={{
+					content: 'Toggle Sidebar cmd + b',
+				}}>
+				<div
+					class="m-auto text-xl sidebar-line"
+					class:sidebar-fill={$sidebarOpen} />
 			</button>
 		</section>
 	</div>

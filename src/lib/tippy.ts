@@ -5,6 +5,6 @@ import 'tippy.js/dist/tippy.css'
 export const tippy = createTippy({
 	animation: 'perspective-subtle',
 	theme: 'own',
-	placement: 'bottom',
+	placement: 'right',
 	arrow: false,
 })
