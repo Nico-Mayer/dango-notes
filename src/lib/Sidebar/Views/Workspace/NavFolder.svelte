@@ -91,7 +91,7 @@
 	</button>
 
 	{#if item.open === true && item.notes && item.subfolders && item.notes.length + item.subfolders.length > 0}
-		<div transition:slide class:openWs={item.type === 'workspace'}>
+		<div transition:slide|local class:openWs={item.type === 'workspace'}>
 			{#each item.notes as note}
 				<NavNote item={note} lvl={lvl + 1} />
 			{/each}

@@ -32,7 +32,7 @@
 </svelte:head>
 
 <main
-	class="flex bg-nord6 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord0">
+	class="flex bg-nord5 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord0">
 	<section class="flex trans hover:bg-nord10/20">
 		<div class="flex h-10 w-12">
 			<img

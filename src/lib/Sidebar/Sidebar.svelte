@@ -102,8 +102,8 @@
 
 <main class="flex select-none ">
 	<div
-		class="flex flex-col h-full bg-nord6 w-12 items-center justify-between dark:bg-nord0">
-		<section class="flex flex-col">
+		class="flex flex-col h-full bg-nord5 w-12 items-center justify-between dark:bg-nord0">
+		<section class="flex flex-col py-1">
 			{#each sidebarItems as item}
 				<SideItem
 					on:click={() => (active = item.index)}
@@ -123,7 +123,7 @@
 	</div>
 
 	<div
-		class="flex flex-col min-w-[270px] w-70 relative dark:bg-nord1"
+		class="flex flex-col bg-nord6 min-w-[270px] w-70 relative dark:bg-nord1"
 		class:hide={!$sidebarOpen}
 		bind:this={sidebar}>
 		<nav
