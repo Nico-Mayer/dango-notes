@@ -121,7 +121,7 @@
 					content: 'Toggle Sidebar cmd + b',
 				}}>
 				<div
-					class="m-auto text-xl "
+					class="m-auto text-xl trans"
 					class:i-ri-side-bar-fill={$sidebarOpen}
 					class:i-ri-side-bar-line={!$sidebarOpen} />
 			</button>
@@ -136,7 +136,7 @@
 			class="border-transparent border-t max-h-full h-[calc(100vh_-_48px)] overflow-y-auto dark:border-transparent"
 			on:scroll={handleScroll}
 			bind:this={scrollContainer}>
-			<div>
+			<div class="flex h-full flex-col">
 				{#if active === 0}
 					<Workspaces {folderTree} {id} />
 				{:else if active === 2}

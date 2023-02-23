@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation'
 	import UserItem from '$lib/Navbar/UserItem.svelte'
+	import LogoutBtn from '$lib/Navbar/LogoutBtn.svelte'
 	import type { User } from '@supabase/supabase-js'
 	import { updateNote } from '../supabase'
 
@@ -65,7 +66,8 @@
 		</section>
 	{/if}
 
-	<section id="right">
+	<section class="flex items-center justify-center" id="right">
 		<UserItem {user} />
+		<LogoutBtn />
 	</section>
 </main>

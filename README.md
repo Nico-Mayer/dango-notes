@@ -27,7 +27,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 
 ## Working on
 
-> Code refactor
+> Improve Milkdown Editor
 
 ## Milestones & ToDo`s until beta release
 
@@ -45,6 +45,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Keyboard shortcuts
 -   [x] Tippy.js
 -   [ ] Improve Milkdown Editor
+-   [ ] Work on Animations for better UX
 
 ## Bugs & issues
 

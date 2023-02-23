@@ -64,31 +64,40 @@
 	}
 </script>
 
-<main>
-	{#each trashItems as item}
-		<div class="flex py-1 px-2 justify-between">
-			<section class="flex text-center gap-2 items-center">
-				{#if item.type === 'folder'}
-					<div class="i-ri-folder-line" />
-				{:else if item.type === 'note'}
-					<div class="i-ri-file-line" />
-				{:else}
-					<div class="i-ri-archive-line" />
-				{/if}
-
-				<span>{item.name}</span>
-				<span class="text-xs opacity-50"
-					>{toDate(item.trashedAt ?? 0)}</span>
-			</section>
-
-			<section class="flex text-sm gap-2 items-center">
-				<button
-					class="i-ri-arrow-go-back-line"
-					on:click={() => handleRecover(item)} />
-				<button
-					class="i-ri-delete-bin-line"
-					on:click={() => handleDelete(item)} />
-			</section>
+{#if trashItems.length === 0}
+	<div class="flex h-full">
+		<div class="m-auto flex flex-col items-center">
+			<div class="i-akar-icons-trash text-4xl opacity-80" />
+			<span class="text-sm opacity-50">Trash is empty</span>
 		</div>
-	{/each}
-</main>
+	</div>
+{:else}
+	<main>
+		{#each trashItems as item}
+			<div class="flex py-1 px-2 justify-between">
+				<section class="flex text-center gap-2 items-center">
+					{#if item.type === 'folder'}
+						<div class="i-ri-folder-line" />
+					{:else if item.type === 'note'}
+						<div class="i-ri-file-line" />
+					{:else}
+						<div class="i-ri-archive-line" />
+					{/if}
+
+					<span>{item.name}</span>
+					<span class="text-xs opacity-50"
+						>{toDate(item.trashedAt ?? 0)}</span>
+				</section>
+
+				<section class="flex text-sm gap-2 items-center">
+					<button
+						class="i-ri-arrow-go-back-line"
+						on:click={() => handleRecover(item)} />
+					<button
+						class="i-ri-delete-bin-line"
+						on:click={() => handleDelete(item)} />
+				</section>
+			</div>
+		{/each}
+	</main>
+{/if}
