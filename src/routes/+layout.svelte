@@ -25,7 +25,7 @@
 
 	let currentNote: Note | undefined = undefined
 
-	$: ({ session, folderTree, notes, folders, trashItems } = data)
+	$: ({ session, folderTree, notes, trashItems } = data)
 	$: user = session?.user
 
 	$: {

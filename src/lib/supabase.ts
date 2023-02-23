@@ -30,17 +30,13 @@ export async function deleteNote(noteId: string) {
 export async function getNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
-		.select()
+		.select('*')
 		.eq('id', noteId)
 		.single()
 	return { data, error }
 }
 
-export async function updateNote(
-	noteId: string,
-
-	newNote: Note
-) {
+export async function updateNote(noteId: string, newNote: Note) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.update({ ...newNote, last_edited: Date.now() })
@@ -54,19 +50,14 @@ export async function trashNote(noteId: string) {
 		.from('note')
 		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', noteId)
-
-	if (error) console.error(error)
-
 	return { data, error }
 }
+
 export async function recoverNote(noteId: string) {
 	const { data, error } = await supabaseClient
 		.from('note')
 		.update({ trash: false, trashedAt: null })
 		.eq('id', noteId)
-
-	if (error) console.error(error)
-
 	return { data, error }
 }
 
@@ -103,8 +94,6 @@ export async function updateFolder(folderId: string, newFolder: Folder) {
 		.eq('id', folderId)
 		.select()
 		.single()
-
-	if (error) console.log(error)
 	return { data, error }
 }
 
@@ -113,7 +102,6 @@ export async function deleteFolder(folderId: string) {
 		.from('folder')
 		.delete()
 		.eq('id', folderId)
-
 		.single()
 	return { data, error }
 }
@@ -123,7 +111,6 @@ export async function trashFolder(folderId: string) {
 		.from('folder')
 		.update({ trash: true, trashedAt: Date.now() })
 		.eq('id', folderId)
-
 	return { data, error }
 }
 
@@ -132,6 +119,5 @@ export async function recoverFolder(folderId: string) {
 		.from('folder')
 		.update({ trash: false, trashedAt: null })
 		.eq('id', folderId)
-
 	return { data, error }
 }
