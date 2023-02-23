@@ -48,7 +48,7 @@
 
 <div>
 	<button
-		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:bg-nord4 dark:hover:bg-nord3"
+		class="rounded-lg flex h-9 w-full px-2 justify-between group items-center hover:bg-nord-4 dark:hover:bg-nord-3"
 		class:workspace={lvl === 0}
 		bind:this={containerFolder}
 		on:click={handleOpen}
@@ -104,17 +104,19 @@
 
 <style>
 	.workspace {
-		--at-apply: border-b rounded-none h-10;
+		@apply border-b rounded-none h-10;
 	}
 
 	.openWs {
-		--at-apply: border-b p-1;
+		@apply border-b p-1;
 	}
 	.folder {
-		--at-apply: text-lg i-ri-folder-line trans;
+		@apply text-lg i-ri-folder-line;
+		transition: all 0.25s ease-in-out;
 	}
 
 	.openFolder {
-		--at-apply: text-lg i-ri-folder-open-line trans;
+		@apply text-lg i-ri-folder-open-line;
+		transition: all 0.25s ease-in-out;
 	}
 </style>

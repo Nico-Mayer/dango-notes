@@ -30,6 +30,6 @@
 
 <style>
 	.active {
-		--at-apply: opacity-100;
+		@apply opacity-100;
 	}
 </style>

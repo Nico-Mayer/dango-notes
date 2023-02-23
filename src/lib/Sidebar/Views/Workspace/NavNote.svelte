@@ -33,7 +33,7 @@
 
 <div>
 	<a
-		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:(bg-nord4 dark:bg-nord3) "
+		class="rounded-lg flex h-9 w-full px-2 group items-center justify-between hover:bg-nord-4 dark:hover:bg-nord-3"
 		class:activeItem={active}
 		on:contextmenu|preventDefault|stopPropagation={handleContextMenuEdit}
 		href={`/${item.parent_folder_id}/${item.id}`}

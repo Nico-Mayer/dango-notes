@@ -43,10 +43,10 @@
 
 <svelte:window on:keydown={() => {}} />
 
-<main class="h-screen text-sm w-screen top-0 left-0 z-200 absolute">
+<main class="h-screen text-sm w-screen top-0 left-0 z-50 absolute">
 	<div
 		id="rename-context-menu"
-		class="bg-white rounded-lg flex h-9 shadow-xl p-1 gap-2 absolute items-center dark:bg-nord3"
+		class="bg-white rounded-lg flex h-9 shadow-xl p-1 gap-2 absolute items-center dark:bg-nord-3"
 		bind:this={container}
 		use:clickoutside
 		on:clickoutside={handleClose}>
@@ -57,7 +57,7 @@
 		<form on:submit|preventDefault={handleRename}>
 			<!-- svelte-ignore a11y-autofocus -->
 			<input
-				class="rounded bg-nord6 py-1 px-2 input dark:bg-nord2"
+				class="rounded bg-nord-6 py-1 px-2 input dark:bg-nord-2"
 				type="text"
 				bind:value={newName}
 				maxlength="32"

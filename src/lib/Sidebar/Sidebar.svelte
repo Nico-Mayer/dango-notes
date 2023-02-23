@@ -21,25 +21,25 @@
 
 	const sidebarItems = [
 		{
-			icon: 'files-icon',
+			icon: 'i-akar-icons-copy',
 			name: 'Files',
 			link: '/',
 			index: 0,
 		},
 		{
-			icon: 'search-icon',
+			icon: '	 i-akar-icons-search',
 			name: 'Search',
 			link: `/profile/${id}`,
 			index: 1,
 		},
 		{
-			icon: 'trash-icon',
+			icon: 'i-akar-icons-trash-bin',
 			name: 'Trash',
 			link: '/trash',
 			index: 2,
 		},
 		{
-			icon: 'settings-icon',
+			icon: 'i-akar-icons-gear',
 			name: 'Settings',
 			link: '/settings',
 			index: 3,
@@ -83,13 +83,13 @@
 	function handleScroll() {
 		if (
 			scrollContainer.scrollTop > 0 &&
-			!scrollContainer.classList.contains('border-nord3')
+			!scrollContainer.classList.contains('border-nord-3')
 		) {
 			scrollContainer.classList.remove('border-transparent')
-			scrollContainer.classList.add('border-nord3')
+			scrollContainer.classList.add('border-nord-3')
 			return
 		} else if (scrollContainer.scrollTop === 0) {
-			scrollContainer.classList.remove('border-nord3')
+			scrollContainer.classList.remove('border-nord-3')
 			scrollContainer.classList.add('border-transparent')
 		}
 	}
@@ -102,7 +102,7 @@
 
 <main class="flex select-none ">
 	<div
-		class="flex flex-col h-full bg-nord5 w-12 items-center justify-between dark:bg-nord0">
+		class="flex flex-col h-full bg-nord-5 w-12 items-center justify-between dark:bg-nord-0">
 		<section class="flex flex-col py-1">
 			{#each sidebarItems as item}
 				<SideItem
@@ -121,15 +121,16 @@
 					content: 'Toggle Sidebar cmd + b',
 				}}>
 				<div
-					class="m-auto text-xl sidebar-line"
-					class:sidebar-fill={$sidebarOpen} />
+					class="m-auto text-xl "
+					class:i-ri-side-bar-fill={$sidebarOpen}
+					class:i-ri-side-bar-line={!$sidebarOpen} />
 			</button>
 		</section>
 	</div>
 
 	<div
-		class="flex flex-col bg-nord6 min-w-[270px] w-70 relative dark:bg-nord1"
-		class:hide={!$sidebarOpen}
+		class="flex flex-col bg-nord-6 min-w-[270px] w-70 relative dark:bg-nord-1"
+		class:hidden={!$sidebarOpen}
 		bind:this={sidebar}>
 		<nav
 			class="border-transparent border-t max-h-full h-[calc(100vh_-_48px)] overflow-y-auto dark:border-transparent"
@@ -146,10 +147,15 @@
 
 		<div class="resize-container">
 			<div
-				class="flex h-full ml-[-6px] col-resize w-[12px] justify-center group"
+				class="flex h-full ml-[-6px] cursor-col-resize w-[12px] justify-center group"
 				on:mousedown={handleSidebarResize}>
 				<div
-					class=" h-full trans group-hover:(border-l border-nord3 opacity-50) dark:group-hover:(border-l border-nord4) "
+					class="h-full trans
+					group-hover:border-l
+					group-hover:opacity-50
+					group-hover:border-nord-3
+					dark:group-hover:border-nord-4
+					"
 					class:is-resizing={resizing} />
 			</div>
 		</div>
@@ -157,17 +163,6 @@
 </main>
 
 <style>
-	.col-resize {
-		cursor: col-resize;
-	}
-
-	.is-resizing {
-		--at-apply: border-l border-nord3 opacity-50 dark:(border-l border-nord4);
-	}
-	.hide {
-		--at-apply: hidden;
-	}
-
 	.resize-container {
 		position: absolute;
 		top: 0px;

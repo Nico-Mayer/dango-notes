@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
 	padding: 0 !important;
 	margin: 0 !important;
 }
 * {
 	border-style: solid;
-	@apply dark:border-nord3;
+	@apply border-nord-4;
+	@apply dark:border-nord-3;
 }
 
 /* Change Autocomplete styles in Chrome */
@@ -25,48 +30,72 @@ select:-webkit-autofill:focus {
 	transition: background-color 5000s ease-in-out 0s;
 }
 
+/* Tippy */
 .tippy-box[data-theme~='own'] {
-	--at-apply: bg-nord4;
-	--at-apply: text-nord0/60;
-	--at-apply: rounded-lg;
-	--at-apply: dark:bg-nord3 dark:text-nord4/60;
+	@apply bg-nord-4;
+	@apply text-nord-0/60;
+	@apply rounded-lg;
+	@apply dark:bg-nord-3 dark:text-nord-4/60;
 }
 
+/* Custom Scrollbar */
 /* width */
 ::-webkit-scrollbar {
 	width: 8px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
-	@apply dark:bg-nord0;
+	@apply dark:bg-nord-0;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	@apply dark:bg-nord2;
+	@apply dark:bg-nord-2;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	@apply dark:bg-nord3;
+	@apply dark:bg-nord-3;
 }
 
-.files-icon {
-	--at-apply: i-akar-icons-copy;
+/* Custom Classes */
+.trans {
+	transition: all 0.25s ease-in-out;
 }
-.search-icon {
-	--at-apply: i-akar-icons-search;
+.btn {
+	@apply rounded-lg;
+	@apply h-6;
+	@apply w-6;
+	@apply text-lg;
+	transition: all 0.25s ease-in-out;
+	@apply hover:bg-nord-6;
+	@apply dark:hover:bg-nord-2;
 }
-.trash-icon {
-	--at-apply: i-akar-icons-trash-bin;
+.ctx-btn {
+	@apply rounded-lg flex h-8 text-left px-2 gap-4 items-center justify-start;
 }
-.settings-icon {
-	--at-apply: i-akar-icons-gear;
+.shortcut {
+	@apply rounded-lg;
+	@apply flex items-center justify-center;
+	@apply bg-nord-6;
+	@apply h-12 w-12;
+	transition: all 0.25s ease-in-out;
+	@apply dark:bg-nord-2;
+	@apply hover:bg-nord-5;
+	@apply dark:hover:bg-nord-3;
 }
-.sidebar-line{
-	--at-apply: i-ri-side-bar-line;
+.activeItem {
+	@apply bg-nord-5;
+	@apply dark:bg-nord-2;
 }
-.sidebar-fill{
-	--at-apply: i-ri-side-bar-fill;
+.is-resizing {
+	@apply border-l border-nord-3 opacity-50;
+	@apply dark:border-nord-4;
+}
+
+/* Milkdown */
+.milkdown {
+	@apply px-2 py-4 m-5;
+}
+.editor {
+	@apply outline-none;
+	width: 100% !important;
 }

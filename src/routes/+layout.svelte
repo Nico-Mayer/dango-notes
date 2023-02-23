@@ -13,8 +13,6 @@
 		sidebarOpen,
 	} from '$lib/store'
 	import { supabaseClient } from '$lib/supabase'
-	import '@unocss/reset/tailwind.css'
-	import 'iconify-icon'
 	import { onMount } from 'svelte'
 	import { Toaster } from 'svelte-french-toast'
 	import '../app.css'
@@ -74,7 +72,7 @@
 </svelte:head>
 <svelte:window on:keydown={handleKeyDown} />
 <main
-	class="flex h-screen w-screen text-nord3 relative overflow-hidden dark:bg-nord0 dark:text-nord4">
+	class="flex h-screen w-screen text-nord-3 relative overflow-hidden dark:bg-nord-0 dark:text-nord-4">
 	{#if $contextMenuAdd.show}
 		<ContextMenuAdd {userId} />
 	{/if}

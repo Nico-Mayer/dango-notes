@@ -9,11 +9,11 @@
 
 	function editor(dom: HTMLDivElement) {
 		Editor.make()
-			.config(nord)
 			.config((ctx) => {
 				ctx.set(rootCtx, dom)
 				ctx.set(defaultValueCtx, defaultValue)
 			})
+			.config(nord)
 			.use(commonmark)
 			.create()
 	}

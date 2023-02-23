@@ -14,7 +14,11 @@ A minimal Markdown Notetaking app by [Nico Mayer](https://github.com/Nico-Mayer)
 
 ## TechStack
 
--   Frontend: Svelte-kit
+-   Frontend:
+
+    -   Svelte-Kit
+    -   Tailwind
+
 -   Backend: Supabase
 
 ## Contributing
@@ -23,12 +27,12 @@ Feel free to contribute to the project by opening a pull request or an issue.
 
 ## Working on
 
-> Emoji picker & item rename improvements
+> Code refactor
 
 ## Milestones & ToDo`s until beta release
 
 -   [ ] Sidebar items draggable
--   [ ] Improved login flow / Magic links login / State machine & animations
+-   [ ] Rethink login flow / Magic links login / State machine & animations
 -   [ ] Emoji picker & item rename improvements
 -   [ ] User settings Page
 -   [x] Light mode
@@ -38,21 +42,20 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [ ] Encrypt notes
 -   [ ] Note tree search
 -   [x] Row level security
--   [ ] Code refactor
 -   [ ] Keyboard shortcuts
 -   [x] Tippy.js
+-   [ ] Improve Milkdown Editor
 
 ## Bugs & issues
 
 -   [x] ~~Login with email not working 100% of the time~~
 -   [ ] MD h1 flickering on first focus
 -   [ ] Text color input field not matching when autocomplete
--   [x] Context menu overflow handler
+-   [x] ~~Context menu overflow handler~~
 
 ## Considerations
 
--   [ ] Milkdown v7 or Lexical
--   [ ] UnoCSS or WindiCSS
+-   [x] Milkdown v7 ~~or Lexical~~
 -   [ ] Generate random name for user with email login
 -   [ ] Vim Bindings in Markdown editor
 -   [ ] Store Folder Tree in store memory for jit updates

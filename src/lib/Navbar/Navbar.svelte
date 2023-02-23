@@ -32,8 +32,8 @@
 </svelte:head>
 
 <main
-	class="flex bg-nord5 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord0">
-	<section class="flex trans hover:bg-nord10/20">
+	class="flex bg-nord-5 h-10 w-full max-h-10 justify-between items-center relative dark:bg-nord-0">
+	<section class="flex trans hover:bg-nord-10/20">
 		<div class="flex h-10 w-12">
 			<img
 				src="https://api.iconify.design/fluent-emoji-high-contrast:dango.svg?color=%2381a1c1"
@@ -51,7 +51,13 @@
 					}}
 					bind:this={inputNoteName}
 					type="text"
-					class="bg-transparent h-10 text-center text-sm py-1 px-2 w-32 hover:(dark:bg-nord3 bg-nord5) focus:(outline-none border hover:bg-transparent) "
+					class="bg-transparent h-10 text-center text-sm py-1 px-2 w-32
+					hover:dark:bg-nord-3
+					hover:bg-nord-4
+					focus:outline-none
+					focus:border
+					focus:hover:bg-transparent
+					"
 					maxlength="32"
 					value={noteName}
 					on:blur={() => handleSubmit()} />

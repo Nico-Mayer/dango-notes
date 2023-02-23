@@ -12,25 +12,25 @@
 
 	let menuItems = [
 		{
-			icon: 'delete',
+			icon: 'i-ri-delete-bin-line',
 			text: 'Delete',
 			handler: handleDelete,
 			active: false,
 		},
 		{
-			icon: 'rename',
+			icon: 'i-ri-edit-line',
 			text: 'Rename',
 			handler: handleRename,
 			active: false,
 		},
 		{
-			icon: 'star',
+			icon: 'i-ri-star-line',
 			text: 'Add to Favorites',
 			handler: () => {},
 			active: false,
 		},
 		{
-			icon: 'duplicate',
+			icon: 'i-ri-file-copy-line',
 			text: 'Duplicate',
 			handler: () => {},
 			active: false,
@@ -136,10 +136,10 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
-	class="h-screen text-sm w-screen top-0 left-0 z-100 absolute overflow-hidden"
+	class="h-screen text-sm w-screen top-0 left-0 z-50 absolute overflow-hidden"
 	on:contextmenu|preventDefault={handleClose}>
 	<div
-		class="bg-white rounded-lg flex flex-col shadow-xl w-66 absolute dark:bg-nord3"
+		class="bg-white rounded-lg flex flex-col shadow-xl w-64 absolute dark:bg-nord-3"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
@@ -150,7 +150,7 @@
 					class:activeItem={item.active}
 					on:click={item.handler}
 					on:mouseenter={() => setActive(i)}>
-					<div class={item.icon} />
+					<div class={item.icon + ' text-lg'} />
 					<span>{item.text}</span>
 				</button>
 			{/each}
@@ -158,7 +158,7 @@
 
 		{#if isNote(item) && item.last_edited}
 			<div
-				class="border-t flex flex-col text-xs p-3 gap-1 dark:border-nord2">
+				class="border-t flex flex-col text-xs p-3 gap-1 dark:border-nord-2">
 				<span>Last Edited: </span>
 				<span>{new Date(item.last_edited).toLocaleString()}</span>
 			</div>
@@ -166,23 +166,3 @@
 		<div />
 	</div>
 </div>
-
-<style>
-	.ctx-btn {
-		--at-apply: rounded-lg flex h-8 text-left px-2 gap-4 items-center
-			justify-start;
-	}
-
-	.rename {
-		--at-apply: text-lg i-ri-edit-line;
-	}
-	.delete {
-		--at-apply: text-lg i-ri-delete-bin-line;
-	}
-	.star {
-		--at-apply: text-lg i-ri-star-line;
-	}
-	.duplicate {
-		--at-apply: text-lg i-ri-file-copy-line;
-	}
-</style>

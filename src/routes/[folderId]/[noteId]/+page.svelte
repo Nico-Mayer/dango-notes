@@ -7,6 +7,6 @@
 	$: ({ note } = data)
 </script>
 
-<main class="w-full">
+<div class="w-full prose dark:prose-invert">
 	<Milkdown defaultValue={note.content} />
-</main>
+</div>

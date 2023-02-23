@@ -116,9 +116,9 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class=" h-screen text-sm w-screen top-0 left-0 z-100 absolute ">
+<div class=" h-screen text-sm w-screen top-0 left-0 z-50 absolute ">
 	<div
-		class="bg-white rounded-lg flex flex-col shadow-xl p-1 w-66 gap-1 absolute dark:bg-nord3"
+		class="bg-white rounded-lg flex flex-col shadow-xl p-1 w-64 gap-1 absolute dark:bg-nord-3"
 		bind:this={menu}
 		use:clickoutside
 		on:clickoutside={handleClose}>
@@ -137,15 +137,10 @@
 </div>
 
 <style>
-	.ctx-btn {
-		--at-apply: rounded-lg flex h-8 text-left px-2 gap-4 items-center
-			justify-start;
-	}
-
 	.addFile {
-		--at-apply: text-lg i-ri-file-add-line;
+		@apply text-lg i-ri-file-add-line;
 	}
 	.addFolder {
-		--at-apply: text-lg i-ri-folder-add-line;
+		@apply text-lg i-ri-folder-add-line;
 	}
 </style>
