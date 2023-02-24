@@ -23,25 +23,21 @@
 		{
 			icon: 'i-akar-icons-copy',
 			name: 'Files',
-			link: '/',
 			index: 0,
 		},
 		{
 			icon: '	 i-akar-icons-search',
 			name: 'Search',
-			link: `/profile/${id}`,
 			index: 1,
 		},
 		{
 			icon: 'i-akar-icons-trash-bin',
 			name: 'Trash',
-			link: '/trash',
 			index: 2,
 		},
 		{
 			icon: 'i-akar-icons-gear',
 			name: 'Settings',
-			link: '/settings',
 			index: 3,
 		},
 	]
@@ -108,7 +104,7 @@
 <main class="flex select-none ">
 	<div
 		class="flex flex-col h-full bg-nord-5 w-12 items-center justify-between dark:bg-nord-0">
-		<section class="flex flex-col py-1">
+		<section class="flex flex-col">
 			{#each sidebarItems as item}
 				<SideItem
 					on:click={() => handleSidebarItemClick(item.index)}

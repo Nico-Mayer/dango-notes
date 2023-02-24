@@ -5,7 +5,6 @@
 	type SideItem = {
 		icon: string
 		name: string
-		link: string
 		index: number
 	}
 
@@ -19,14 +18,13 @@
 	}
 </script>
 
-<main
+<button
+	on:click={handleClick}
 	class="flex h-12 opacity-50 w-12 trans hover:opacity-100"
 	class:active
 	use:tippy={{ content: item?.name }}>
-	<button on:click={handleClick} class="m-auto text-2xl ">
-		<div class={$$props.class} />
-	</button>
-</main>
+	<div class={$$props.class + ' m-auto text-2xl'} />
+</button>
 
 <style>
 	.active {
