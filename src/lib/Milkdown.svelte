@@ -7,6 +7,7 @@
 	import { listener, listenerCtx } from '@milkdown/plugin-listener'
 	import { indent } from '@milkdown/plugin-indent'
 	import { prism, prismConfig } from '@milkdown/plugin-prism'
+	import { replaceAll } from '@milkdown/utils'
 	import markdown from 'refractor/lang/markdown'
 	import css from 'refractor/lang/css'
 	import javascript from 'refractor/lang/javascript'
@@ -23,13 +24,11 @@
 
 	let editor: Promise<Editor>
 	let editorRef: HTMLDivElement
-	let isMounted = false
 
 	$: initialContent, restartEditor()
 
 	onMount(async () => {
 		await initEditor()
-		isMounted = true
 	})
 
 	async function initEditor() {
@@ -65,8 +64,7 @@
 			.create()
 	}
 	async function restartEditor() {
-		if (!isMounted) return
-		await editor.then((editor) => editor.create())
+		;(await editor).action(replaceAll(initialContent))
 	}
 </script>
 
