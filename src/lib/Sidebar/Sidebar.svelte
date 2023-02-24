@@ -98,6 +98,11 @@
 		$sidebarOpen = !$sidebarOpen
 		localStorage.setItem('sidebarOpen', $sidebarOpen.toString())
 	}
+
+	function handleSidebarItemClick(index: number) {
+		active = index
+		if (!$sidebarOpen) $sidebarOpen = true
+	}
 </script>
 
 <main class="flex select-none ">
@@ -106,7 +111,7 @@
 		<section class="flex flex-col py-1">
 			{#each sidebarItems as item}
 				<SideItem
-					on:click={() => (active = item.index)}
+					on:click={() => handleSidebarItemClick(item.index)}
 					{item}
 					class={item.icon}
 					active={active === item.index} />

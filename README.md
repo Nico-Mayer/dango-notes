@@ -46,6 +46,7 @@ Feel free to contribute to the project by opening a pull request or an issue.
 -   [x] Tippy.js
 -   [ ] Improve Milkdown Editor
 -   [ ] Work on Animations for better UX
+-   [ ] Improve Trash Folder Logic
 
 ## Bugs & issues
 
