@@ -24,10 +24,12 @@
 
 	let editor: Promise<Editor>
 	let editorRef: HTMLDivElement
+	let mounted = false
 
 	$: initialContent, restartEditor()
 
 	onMount(async () => {
+		mounted = true
 		await initEditor()
 	})
 
@@ -40,7 +42,7 @@
 					.markdownUpdated((ctx, markdown, prevMarkdown) => {
 						value = markdown
 					})
-					.mounted((ctx) => {
+					.mounted(() => {
 						console.log('Milkdown mounted.')
 					})
 				ctx.set(prismConfig.key, {
@@ -64,6 +66,7 @@
 			.create()
 	}
 	async function restartEditor() {
+		if (!mounted) return
 		;(await editor).action(replaceAll(initialContent))
 	}
 </script>
