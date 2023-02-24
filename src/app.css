@@ -93,9 +93,9 @@ select:-webkit-autofill:focus {
 
 /* Milkdown */
 .milkdown {
-	@apply px-2 py-4 m-5;
+	@apply px-2 py-4 mx-5;
 }
 .editor {
 	@apply outline-none;
-	width: 100% !important;
+	@apply prose dark:prose-invert max-w-none;
 }

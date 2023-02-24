@@ -33,6 +33,6 @@
 	}
 </script>
 
-<div class="w-full prose dark:prose-invert">
+<div class="h-[calc(100vh-40px)] w-full overflow-y-scroll">
 	<Milkdown {initialContent} bind:value={newContent} />
 </div>

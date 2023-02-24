@@ -90,11 +90,10 @@
 			<Navbar {user} {currentNote} />
 		{/if}
 
-		<div class="flex flex-1">
+		<div class="flex w-screen">
 			{#if session && user}
 				<Sidebar {user} {folderTree} {trashItems} />
 			{/if}
-
 			<slot />
 		</div>
 	</div>
