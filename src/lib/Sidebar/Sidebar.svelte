@@ -101,7 +101,7 @@
 	}
 </script>
 
-<main class="flex select-none ">
+<main class="flex select-none h-[calc(100vh_-_40px)]">
 	<div
 		class="flex flex-col h-full bg-nord-5 w-12 items-center justify-between dark:bg-nord-0">
 		<section class="flex flex-col">

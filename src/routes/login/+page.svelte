@@ -1,4 +1,4 @@
-<main class="flex w-full">
+<main class="flex w-full h-screen">
 	<section class="w-1/3 border-r flex">
 		<form
 			class="flex flex-col w-full px-10 m-auto gap-2 items-center"

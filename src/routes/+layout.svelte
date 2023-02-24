@@ -85,7 +85,7 @@
 
 	<Toaster />
 
-	<div class="flex flex-col flex-1">
+	<div class="flex flex-col h-screen">
 		{#if session && user}
 			<Navbar {user} {currentNote} />
 		{/if}
