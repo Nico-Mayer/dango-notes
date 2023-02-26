@@ -92,19 +92,21 @@ select:-webkit-autofill:focus {
 }
 
 /* Milkdown */
+/*
 .milkdown {
-	@apply pl-2 py-4 ml-5;
-}
+	// Outer Milkdown Wrapper
+} */
+
 .split-editor {
-	@apply h-[calc(100vh_-_40px)];
+	@apply h-[calc(100vh_-_40px)] overflow-y-scroll;
 	display: grid;
-	overflow: scroll;
+
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .milkdown-split-editor {
-	@apply outline-none overflow-y-scroll bg-nord-1 h-full;
+	@apply outline-none overflow-y-scroll bg-nord-4 dark:bg-nord-1 h-full;
 }
 .editor {
-	@apply outline-none;
+	@apply outline-none p-2;
 	@apply prose dark:prose-invert max-w-none overflow-y-scroll;
 }
