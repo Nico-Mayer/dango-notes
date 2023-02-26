@@ -85,12 +85,12 @@
 
 	<Toaster />
 
-	<div class="flex flex-col h-screen">
+	<div class="flex flex-col h-screen w-screen overflow-hidden">
 		{#if session && user}
 			<Navbar {user} {currentNote} />
 		{/if}
 
-		<div class="flex w-screen">
+		<div class="flex w-screen h-[calc(100vh_-_40px)]">
 			{#if session && user}
 				<Sidebar {user} {folderTree} {trashItems} />
 			{/if}

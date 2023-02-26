@@ -93,9 +93,18 @@ select:-webkit-autofill:focus {
 
 /* Milkdown */
 .milkdown {
-	@apply px-2 py-4 mx-5;
+	@apply pl-2 py-4 ml-5;
+}
+.split-editor {
+	@apply h-[calc(100vh_-_40px)];
+	display: grid;
+	overflow: scroll;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.milkdown-split-editor {
+	@apply outline-none overflow-y-scroll bg-nord-1 h-full;
 }
 .editor {
 	@apply outline-none;
-	@apply prose dark:prose-invert max-w-none;
+	@apply prose dark:prose-invert max-w-none overflow-y-scroll;
 }

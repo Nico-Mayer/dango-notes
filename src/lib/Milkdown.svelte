@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import { Editor, rootCtx, defaultValueCtx } from '@milkdown/core'
+	import { splitEditing } from '@milkdown-lab/plugin-split-editing'
+	import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
+	import { history } from '@milkdown/plugin-history'
+	import { indent } from '@milkdown/plugin-indent'
+	import { listener, listenerCtx } from '@milkdown/plugin-listener'
+	import { prism, prismConfig } from '@milkdown/plugin-prism'
 	import { commonmark } from '@milkdown/preset-commonmark'
 	import { gfm } from '@milkdown/preset-gfm'
-	import { history } from '@milkdown/plugin-history'
-	import { listener, listenerCtx } from '@milkdown/plugin-listener'
-	import { indent } from '@milkdown/plugin-indent'
-	import { prism, prismConfig } from '@milkdown/plugin-prism'
-	import { replaceAll } from '@milkdown/utils'
-	import markdown from 'refractor/lang/markdown'
-	import css from 'refractor/lang/css'
-	import javascript from 'refractor/lang/javascript'
-	import typescript from 'refractor/lang/typescript'
-	import jsx from 'refractor/lang/jsx'
-	import tsx from 'refractor/lang/tsx'
-
 	import { nord } from '@milkdown/theme-nord'
 	import '@milkdown/theme-nord/style.css'
+	import { replaceAll } from '@milkdown/utils'
 	import 'prism-themes/themes/prism-nord.css'
+	import css from 'refractor/lang/css'
+	import javascript from 'refractor/lang/javascript'
+	import jsx from 'refractor/lang/jsx'
+	import markdown from 'refractor/lang/markdown'
+	import tsx from 'refractor/lang/tsx'
+	import typescript from 'refractor/lang/typescript'
+	import { onMount } from 'svelte'
 
 	export let initialContent: string
 	export let value: string
@@ -62,6 +62,7 @@
 			.use(history)
 			.use(listener)
 			.use(indent)
+			.use(splitEditing)
 			.use(prism)
 			.create()
 	}
@@ -71,4 +72,6 @@
 	}
 </script>
 
-<div bind:this={editorRef} />
+<div
+	class="w-full max-h-[calc(100vh_-_40px)] overflow-hidden"
+	bind:this={editorRef} />

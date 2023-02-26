@@ -35,6 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"@egoist/tailwindcss-icons": "^1.0.7",
+		"@milkdown-lab/plugin-split-editing": "^1.0.0",
 		"@milkdown/core": "^7.0.0",
 		"@milkdown/ctx": "7.0.0",
 		"@milkdown/plugin-history": "^7.0.0",
