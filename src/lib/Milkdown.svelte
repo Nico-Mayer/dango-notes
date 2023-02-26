@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { splitEditing } from '@milkdown-lab/plugin-split-editing'
 	import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 	import { history } from '@milkdown/plugin-history'
 	import { indent } from '@milkdown/plugin-indent'
@@ -34,6 +33,9 @@
 	})
 
 	async function initEditor() {
+		const { splitEditing } = await import(
+			'@milkdown-lab/plugin-split-editing'
+		)
 		editor = Editor.make()
 			.config((ctx) => {
 				ctx.set(rootCtx, editorRef)
